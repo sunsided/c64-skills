@@ -1,0 +1,7 @@
+# Packaged skill bundles (zip form for skill marketplaces)
+*.skill
+
+# OS / editor cruft
+.DS_Store
+*.swp
+*~
