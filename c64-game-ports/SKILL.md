@@ -13,7 +13,7 @@ description: >-
 # C64 Control (Game) Ports
 
 The C64 has **two DE-9 control ports** on the right side. Each takes one joystick
-or one paddle pair; a light pen goes in port 1 (Port A) only. The ports are wired
+or one paddle pair; a light pen goes in control port 1 only. The ports are wired
 to **CIA1** (the joystick/fire-button/keyboard-scan chip) and, for paddles, to the
 **SID** POT lines.
 
@@ -63,7 +63,7 @@ BASIC (port 2 here; use $DC01 / PEEK(56321) for port 1):
 | 9 | up & right |
 | 10 | down & right |
 
-Assembly (reads port 1 at $DC00 in the manual's routine; carry = fire state):
+Assembly (reads port 2 at $DC00; use $DC01 for port 1; carry = fire state):
 
 ```asm
 djrr    lda $dc00     ; read port (use $dc01 for the other port)

@@ -15,7 +15,8 @@ description: >-
 
 # Commodore 64 BASIC V2
 
-C64 BASIC V2 (Microsoft-derived, in the $A000–$BFFF ROM) has 65 keywords. Lines
+C64 BASIC V2 (Microsoft-derived, in the $A000–$BFFF ROM) has a compact keyword
+set — commands, statements, and functions (plus a few operators). Lines
 are tokenized on entry; abbreviations and spaces vanish at tokenize time. The
 logical screen line is 80 characters (2 physical 40-column rows) — that's the
 hard limit on an editable program line. Two modes: **DIRECT** (no line number,
@@ -75,7 +76,7 @@ operators have no precedence among themselves.
 - Strings compare by PETSCII code, left to right; shorter string sorts lower
   when all else equal; leading/trailing blanks count.
 
-## Keyword categories (all 65)
+## Keyword categories
 
 Abbreviation = type enough letters to be unambiguous, last one **SHIFTed**.
 `PRINT` abbreviates to `?`.

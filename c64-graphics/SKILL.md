@@ -169,8 +169,9 @@ scrolling lives in **c64-vic-ii**.
 
 - **Default screen RAM?** $0400 (1024). **Color RAM?** $D800 (55296), 4-bit.
 - **Change border / background?** `POKE 53280,c` / `POKE 53281,c`, c = 0–15.
-- **Where's the charset normally?** Char ROM imaged at $1000 in bank 0; $D018
-  low nibble = 4 by default.
+- **Where's the charset normally?** Char ROM imaged at $1000 in bank 0; the
+  default $D018 is $15 (21), and its char-base field selects that $1000 image
+  (bit 0 is unused).
 - **Why did my chars vanish after switching banks?** The ROM charset image only
   exists in banks 0 and 2; supply your own in banks 1/3.
 

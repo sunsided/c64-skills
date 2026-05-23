@@ -49,7 +49,7 @@ Common token bytes you will meet decoding a launcher:
 | `$99` | `PRINT` |
 | `$8F` | `REM` |
 | `$97` | `POKE` |
-| `$94` | `CLR` |
+| `$9C` | `CLR` |
 | `$A2` | `NEW` |
 
 ### Decoding `10 SYS 2064`
@@ -99,8 +99,9 @@ scan, jiffy clock); ending `JMP $EA81` just pulls registers and `RTI`.
 
 A cartridge maps ROM at `$8000` (8K, `$8000-$9FFF`) and optionally `$A000-$BFFF`
 (16K), controlled by the `EXROM`/`GAME` lines (see c64-memory-map). An autostart
-cartridge is recognised by the KERNAL via the signature bytes `CBM80` (PETSCII
-`C` `B` `M` plus `$80 $30`) at `$8004`, and the cold-/warm-start vectors at:
+cartridge is recognised by the KERNAL via the signature bytes `CBM80` — the bytes
+`$C3 $C2 $CD $38 $30` (shifted-PETSCII C,B,M then '8','0') at `$8004`, and the
+cold-/warm-start vectors at:
 
 ```
 $8000/$8001 : cold start (RESET) entry

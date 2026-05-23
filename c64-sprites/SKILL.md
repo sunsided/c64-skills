@@ -94,9 +94,9 @@ Y is a single 0–255 byte. X needs **9 bits** because the screen is wider than
 255 dots, so the 9th bit of each sprite's X lives in **$D010 (53264)**, one bit
 per sprite.
 
-- Visible Y for an unexpanded sprite: fully on-screen from Y=30 to Y=229; first
-  fully-off value is 250.
-- Visible X spans roughly 24 ($18) to 343 ($158); X > 255 requires the MSB bit.
+- Visible Y for an unexpanded sprite: first becomes visible at Y=30 (partially);
+  fully on-screen from Y=50 to Y=229; first fully-off value is 250.
+- Visible X spans roughly 24 ($18) to 343 ($157); X > 255 requires the MSB bit.
 
 To place sprite n at X = XPOS (0–511):
 

@@ -15,8 +15,8 @@ description: >-
 
 The C64 keyboard is an 8×8 switch matrix scanned by the KERNAL via CIA #1
 ($DC00 columns / $DC01 rows). Keystrokes queue in a **10-character buffer**
-(type-ahead) and are decoded into a PETSCII value placed at location **197
-($C5)** — `PEEK(197)` returns the matrix code of the key held now (64 = none).
+(type-ahead) and are decoded into PETSCII in that buffer. The **matrix code** of
+the key held now sits at location **197 ($C5)** — `PEEK(197)` returns it (64 = none).
 The buffer itself is at 631–640 with its count at 198; you can stuff keys there.
 
 ## Special keys — what each does
@@ -28,7 +28,7 @@ The buffer itself is at 631–640 with its count at 198; you can stuff keys ther
 | **SHIFT LOCK** | Mechanical latch holding SHIFT down. |
 | **`C=` (Commodore)** | See below — charset toggle (with SHIFT) and second color set (with number keys), and the left-front graphic (with a graphic key). |
 | **CTRL** | Held with a number key 1–8 sets text color; with 9/0 turns ReVerSe on/off; held during LIST slows the listing. Emits the PETSCII color/RVS control codes. |
-| **RUN/STOP** | Interrupts (breaks) a running BASIC program → `BREAK`. With **SHIFT**+RUN/STOP: LOAD+RUN first program from tape. |
+| **RUN/STOP** | Interrupts (breaks) a running BASIC program → `BREAK`, and **halts** a `LIST` (it stops the listing — it does not slow it; that's CTRL). With **SHIFT**+RUN/STOP: LOAD+RUN first program from tape. |
 | **RUN/STOP + RESTORE** | Warm reset: clears screen, restores default I/O & screen state, **leaves the BASIC program intact**. (RESTORE drives the CPU NMI line.) |
 | **RESTORE** | On its own does little; held-down RUN/STOP makes the NMI restore the machine to its normal state. |
 | **CLR/HOME** | HOME = cursor to top-left (no erase). **SHIFT**+CLR/HOME = clear screen + home. |
@@ -47,7 +47,7 @@ The Commodore key has three jobs:
 
 ### Resetting the machine
 - **Warm reset, keep program:** hold RUN/STOP, press RESTORE.
-- **Cold reset (wipes program/data):** `SYS 64759`.
+- **Cold reset (wipes program/data):** `SYS 64738`.
 
 ## Charset / color quick recipes
 ```basic
@@ -101,7 +101,7 @@ a queued RETURN commits everything before it, flush stray input before a prompt:
 - **`references/keyboard-tutorial.md`** — User's Guide verbatim: a friendly
   walk-through of each key (RETURN, SHIFT, CRSR, INST/DEL, CLR/HOME, RESTORE,
   CTRL, RUN/STOP, the `C=` key, function keys), the CTRL-for-color intro, and the
-  "back to normal" reset tips (RUN/STOP+RESTORE, `SYS 64759`). Read for plain
+  "back to normal" reset tips (RUN/STOP+RESTORE, `SYS 64738`). Read for plain
   per-key explanations.
 
 ## Cross-links

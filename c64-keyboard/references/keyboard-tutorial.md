@@ -200,5 +200,7 @@ a  program  in  the computer,  it will be left untouched.  This is a good
 sequence to remember, especially if you do a lot of programming.
   If  you  wish  to  reset  the machine as if it were turned off and then
 switched on again, type,  SYS 64759  and press <RETURN>. Be careful using
+  [Editor's note: "64759" is an error in this etext; the canonical C64 cold-reset
+  is SYS 64738 ($FCE2). See c64-keyboard SKILL.md.]
 this  command!  It  will  wipe  out  any  program  or information that is
 currently in the computer.

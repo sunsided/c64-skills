@@ -85,7 +85,7 @@ GAME/EXROM are high when no cartridge). The everyday configurations:
 | 111 ($37) | BASIC ROM | I/O | KERNAL ROM | default; 38K BASIC |
 | 110 ($36) | RAM | I/O | KERNAL ROM | RAM under BASIC, KERNAL+I/O up |
 | 101 ($35) | RAM | I/O | RAM | 60K RAM + I/O; write your own I/O |
-| 011 ($33) | RAM | char ROM | KERNAL ROM | char ROM visible, no I/O |
+| 011 ($33) | BASIC ROM | char ROM | KERNAL ROM | char ROM visible, no I/O |
 | 000 ($30) | RAM | RAM | RAM | all 64K RAM |
 
 The full nine-column table (including the Ultimax cartridge configuration and the
