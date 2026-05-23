@@ -1,17 +1,15 @@
 ---
 name: c64-graphics
 description: >-
-  Commodore 64 screen graphics from the programmer's view: the five VIC-II
-  display modes (standard text, multicolor text, extended background color/ECM,
-  standard hi-res bitmap, multicolor bitmap), custom/programmable 8x8 character
-  sets, screen/color/character memory layout, video bank selection, and smooth
-  scrolling. Use this skill WHEN you see questions like "how do I define custom
-  characters on the C64", "turn on multicolor mode", "POKE 53272 / 53265 /
-  53270 / 53280 / 53281", "$D011 $D016 $D018 bitmap mode", "how do I switch
-  VIC-II video banks", "where is screen RAM / color RAM", "set the bitmap base",
-  or "smooth scroll the screen". Pairs with c64-sprites (hardware sprites/MOBs),
-  c64-vic-ii (exact raster timing, bad lines, full chip spec), and
-  c64-memory-map (banking).
+  C64 screen graphics from the programmer's view: the five VIC-II display modes
+  (standard/multicolor text, ECM, standard/multicolor bitmap), custom 8x8
+  character sets, screen/color/character memory layout, video bank selection, and
+  smooth scrolling. Use this skill WHEN you see "how do I define custom
+  characters", "turn on multicolor mode", "POKE 53272 / 53265 / 53270 / 53281",
+  "$D011 $D016 $D018 bitmap mode", "switch VIC-II video banks", "where is screen
+  RAM / color RAM", "set the bitmap base", or "smooth scroll the screen". Pairs
+  with c64-sprites, c64-vic-ii (raster timing, full chip spec), and
+  c64-memory-map.
 ---
 
 # C64 Graphics (VIC-II display modes)

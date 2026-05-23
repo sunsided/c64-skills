@@ -1,19 +1,15 @@
 ---
 name: c64-hardware
 description: >-
-  The physical Commodore 64 machine and its servicing: system specs, the chip
-  complement (6510, VIC-II, SID, two 6526 CIAs, 82S100 PLA, ROMs, DRAM) and what
-  each chip does, the block-diagram circuit theory (power supply, reset, clock,
-  I/O+RAM+expansion decode, video/audio stages, cassette, keyboard/joystick/
-  paddle, serial+user port), board revisions and how to identify them,
-  connector/port pinouts, the PLA part itself, and a repair/troubleshooting
-  orientation. Use this skill WHEN a question is about the hardware, board, or
-  repair of a C64 — "what chip is U17", "why won't my C64 boot", "blank screen
-  on power up", "what voltage does the power brick supply", "which board
-  revision do I have", "5-pin vs 8-pin video", "expansion port pinout", "PLA
-  failure", "the 5V regulator killed my chips". Pairs with c64-memory-map (PLA
-  banking logic), c64-vic-ii / c64-sid / c64-cia (register-level chip
-  programming), and c64-io / c64-game-ports (driving the ports from software).
+  The physical Commodore 64 and its servicing: system specs, the chip complement
+  (6510, VIC-II, SID, two CIAs, PLA, ROMs, DRAM) and each chip's role, the
+  circuit theory (power, reset, clock, video/audio, ports), board revisions and
+  how to ID them, connector pinouts, and troubleshooting. Use this skill WHEN a
+  question is about C64 hardware, a board, or repair — "what chip is U17", "why
+  won't my C64 boot", "blank screen on power-up", "power-brick voltage", "which
+  board revision", "5-pin vs 8-pin video", "expansion port pinout", "PLA
+  failure". Pairs with c64-memory-map, c64-vic-ii / c64-sid / c64-cia, and c64-io
+  / c64-game-ports.
 ---
 
 # C64 Hardware & Servicing

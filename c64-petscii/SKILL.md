@@ -1,15 +1,14 @@
 ---
 name: c64-petscii
 description: >-
-  The three Commodore 64 character-code systems and how to put text on screen:
-  PETSCII (what PRINT and CHR$/ASC use, 0–255), screen/display codes (what you
-  POKE into screen RAM at $0400, a DIFFERENT 0–255 mapping), and ASCII; plus
-  cursor/color/reverse control codes and building text UIs with PETSCII box and
-  line graphics. Use this skill WHEN asked "what CHR$ code clears the screen",
-  "why does POKE 1024,1 show an A not a control char", "PETSCII vs screen codes",
-  "how do I print in red", "draw a box/menu in PETSCII", "color code for cyan",
-  or "POKE to screen RAM". Pairs with c64-keyboard (charset switching, the keys
-  that emit these codes), c64-graphics and c64-memory-map (screen RAM & banking).
+  The three C64 character-code systems and putting text on screen: PETSCII (what
+  PRINT and CHR$/ASC use), screen/display codes (a DIFFERENT mapping you POKE
+  into screen RAM at $0400), and ASCII; plus cursor/color/reverse control codes
+  and building text UIs with PETSCII box/line graphics. Use this skill WHEN asked
+  "what CHR$ code clears the screen", "why does POKE 1024,1 show an A", "PETSCII
+  vs screen codes", "how do I print in red", "draw a box/menu in PETSCII", "color
+  code for cyan", or "POKE to screen RAM". Pairs with c64-keyboard, c64-graphics,
+  and c64-memory-map.
 ---
 
 # C64 Character Codes: PETSCII, Screen Codes, ASCII

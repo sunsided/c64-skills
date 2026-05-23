@@ -1,17 +1,17 @@
 ---
 name: c64-vic-ii
 description: >-
-  Cycle-level hardware reference for the C64 video chip, the MOS 6566/6567/6569
-  VIC-II: the register map ($D000-$D02E), 16-color palette, raster mechanics
-  ($D012 + $D011 bit7 RST8), Bad Lines, the memory-access timing model, all eight
-  ECM/BMM/MCM graphics modes (incl. the three invalid ones), sprite
-  DMA/priority/collision, the border units, light pen, VIC interrupts
-  ($D019/$D01A), DRAM refresh, PAL vs NTSC timing (6569 vs 6567), and raster
-  effects (Hyperscreen/FLD/FLI). Use this skill WHEN you need emulator-accurate
-  timing or register/bit detail: "cycles per raster line on PAL", "what is a Bad
-  Line", "set a raster interrupt", "which $D011 bit is the 9th raster bit", "open
-  the border". For "how do I draw" see c64-graphics and c64-sprites; $DD00 VIC
-  bank bits see c64-memory-map; CIA timing/IRQ wiring see c64-cia.
+  Cycle-level hardware reference for the C64 video chip (MOS 6566/6567/6569
+  VIC-II): the register map ($D000-$D02E), 16-color palette, raster mechanics
+  ($D012 + $D011 RST8), Bad Lines, the memory-access timing model, all eight
+  ECM/BMM/MCM graphics modes (incl. the invalid ones), sprite
+  DMA/priority/collision, borders, light pen, interrupts ($D019/$D01A), DRAM
+  refresh, PAL vs NTSC timing (6569 vs 6567), and raster effects (FLD/FLI). Use
+  this skill WHEN you need emulator-accurate timing or register/bit detail:
+  "cycles per raster line on PAL", "what is a Bad Line", "set a raster
+  interrupt", "the 9th raster bit", "open the border". For drawing see
+  c64-graphics / c64-sprites; $DD00 VIC bank bits see c64-memory-map; CIA IRQ
+  wiring see c64-cia.
 ---
 
 # C64 VIC-II (MOS 6566 / 6567 / 6569) — hardware & timing reference

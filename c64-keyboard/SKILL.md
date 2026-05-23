@@ -1,15 +1,14 @@
 ---
 name: c64-keyboard
 description: >-
-  The Commodore 64 keyboard and screen editor: every special key and exactly
-  what it does — the Commodore (C=) key, CTRL, RUN/STOP, RESTORE, SHIFT /
-  SHIFT-LOCK, CLR/HOME, INST/DEL, the cursor (CRSR) keys, function keys f1–f8,
-  RETURN — plus screen-editor behavior (quote mode, insert mode, full-screen
-  line editing, the 10-key keyboard buffer). Use this skill WHEN asked "what
-  does the C= key do", "how do I switch to lower case", "what is RUN/STOP +
-  RESTORE", "how do I clear the screen", "what's quote mode", "how do I type a
-  cursor-down into a string", "reset the C64", or about the f-keys. Pairs with
-  c64-petscii (the codes these keys emit) and c64-cia (the NMI/RESTORE mechanism).
+  The C64 keyboard and screen editor: every special key and what it does — the
+  Commodore (C=) key, CTRL, RUN/STOP, RESTORE, SHIFT / SHIFT-LOCK, CLR/HOME,
+  INST/DEL, cursor (CRSR) keys, function keys f1–f8, RETURN — plus screen-editor
+  behavior (quote mode, insert mode, full-screen line editing, the 10-key
+  buffer). Use this skill WHEN asked "what does the C= key do", "switch to lower
+  case", "what is RUN/STOP + RESTORE", "clear the screen", "what's quote mode",
+  "type a cursor-down into a string", "reset the C64", or about the f-keys. Pairs
+  with c64-petscii and c64-cia (the NMI/RESTORE mechanism).
 ---
 
 # The Commodore 64 Keyboard & Screen Editor
