@@ -1,0 +1,321 @@
+C64 PLA logic equations
+
+
+On 30th August 1994, Jens Schönfeld (sysop@nostlgic.oche.de) posted
+the raw data from the C64 PLAs in the German newsgroup
+z-netz.rechner.c64+c128.allgemein.  He read the chip with an EPROM
+programmer device as a 27512 EPROM using a home-built adaptor.
+
+From the 64kB raw data, I, Marko Mäkelä (Marko.Makela@HUT.FI) and
+several others tried to manually create the logic equations,
+independent of each other.  I was the first one who completed the
+work.  Especially the CASRAM equations took lots of time.  My friend
+Andreas Boose (boose@unixserv.rz.fh-hannover.de) helped me to optimize
+the CASRAM equations a bit.
+
+Our work was finally verified by Mark Smith (mark@te.rl.ac.uk), who
+read out the 82S100 of my oldest C64 and converted the JEDEC file to
+logic equations with the Abel program.  Andreas Boose verified the new
+equations.
+
+This file contains three sections:
+1. a manufacturer data sheet of 82S100
+2. a JEDEC file which can be used to burn a 82S100 to act like a C64 PLA
+3. a logic equation file created with Abel
+
+Mark Smith writes:
+
+"Anyone should be able to blow a new PLA from the JEDEC file I sent
+you, and when supplies of the 82S100 chip finally dry up completely,
+the equations should be able to be put into a different type of logic
+array chip. The only thing that would have to be done is to make a
+printed circuit board adaptor to take the pins on the new chip to the
+correct positions to plug into the C64 motherboard. As far as I am
+aware, there are virtually no other PLA chips with a 28 pin
+footprint. Modern ones are nearly all square packaged PLCC types.  It
+is also very difficult to find a modern PLA chip with 16 inputs and 8
+outputs - most have only 22 dual purpose I/Os or have many more. I
+think the next step up is a 44 pin device.
+
+So a modern replacement would probably have to be a 44 pin PLCC square
+packaged PAL (PLA) chip mounted onto a printed circuit board which
+takes the pins to a 28 pin dual in line header outline.
+
+I'm sure it could be done. Maybe I should look into it, as 82S100s are
+very difficult to come by now and out of the 3 C64s I have, the 2 that
+were faulty both had duff PLA chips. The faulty PLA chips were both
+Commodore mass produced replacements for the fuse programmable
+82S100. I think that the commodore replacement chips are probably less
+reliable than the original 82S100s used in early machines."
+
+
+Hint: Search for "===" to find the sections in this file.
+===
+82S100 data sheet
+-----------------
+
+The 82S100 is a bipolar, fuse-link programmable logic array. It uses the
+standard AND/OR/invert architecture to directly implement custom 
+um-of-product logic equations.
+
+Each device consists of 16 dedicated inputs and 8 dedicated outputs. Each
+output is capable of being actively controlled by any or all of the 48
+product terms. The true, complement, or don't care condition of each of the
+16 inputs ANDed together comprise one P-Term. All 48 P-Terms are then OR-d
+to each output. The user must then only select which P-Terms will activate
+an output by disconnecting terms which do not affect the output. In addition,
+each output can be fused as active high or active low.
+
+The 82S100 is fully TTL compatible and includes chip-enable control for
+expansion of input variables and output inhibit. It features three state
+outputs.
+
+Field programmable Ni-Cr links
+16 inputs
+8 outputs
+48 product terms
+Commercial verion - N82S100 - 50ns max address access time
+Power dissipation - 600mW typ
+Input loading - 100uA max
+Chip enable input
+Three state outputs
+
+The 82S100 devices are shipped in an unprogrammed state characterised by:
+All internal Ni-Cr links are intact and therefore each product term contains
+both true and complement values of every input variable,
+the OR matrix contains all 48 P-Terms,
+the polarity of each output is set to active high,
+all outputs are at a low logic level.
+===-------------------- Cut here - filename=c64pla.jed ------------------------
+
+
+
+Data I/O*
+QP0028* QF1928* G0 *
+L0000
+11010111110110011111100111011111
+00111111111101111101010111111001
+11011111010111111111011111010101
+11111001101011110101111111110110
+11010110011110011101111101101111
+11011110110101100111100111011111
+01101111111101101101011001111001
+10101111011011111111111101111111
+11110111110110010110111111111111
+01111111111101111010100101101111*
+L0320
+01111111110101100111101011111111
+11111111111101011101011001011001
+11011111011110111111010111010110
+01111010110111110111101111011101
+11010110010110011101111101111011
+11011101110101100111101011011111
+01111011111101011101011001011001
+10101111011110111111010111010110
+
+11010110010110011010111101111011*
+L0640
+11011101110101100111101010101111
+01111011111111111101011001011001
+01101111011110111111111111010110
+01111010011011110111101111010111
+11011010111110011011111101111101
+11111111110110101111101101101111
+01111101111101111101100111111001
+10101111011111101111111111010101
+11111011011011110111111011111111
+11111111111101110110010101111110*
+L0960
+11111111111010110111111101101111
+01111111111111111110100111111111
+01101111011111111111111111100111
+11111111011011110111111111111111
+11011001111111110110111101111111
+11111111110101101011111101101111
+01111111101111111111111111111111
+11111111111111110111111111111111
+11111111111111110111111110111111
+
+L1280
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000*
+L1600
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000*
+
+01111111*
+C7F5D*
+849E
+
+
+
+===--------------------- Cut here - filename=c64pla.abl -----------------------
+
+
+MODULE c64pla 
+"Created by JED2AHDL ABEL 4.10 on Wed Jul 19 15:37:23 1995 
+
+TITLE 
+'PLA chip in old version of Commodore 64'
+
+        c64pla device 'f100';
+
+"Device is a Signetics/Mullard/Phillips 82S100
+
+
+"Pin and Node Declarations
+          FE,  A13,  A14,  A15               PIN   1, 2, 3, 4;
+          _VA14,  _CHAREN,  _HIRAM,  _LORAM  PIN   5, 6, 7, 8;
+          _CAS,  ROMH,  ROML,  I_O           PIN   9,10,11,12;
+          GR_W,  GND,  CHAROM,  KERNAL       PIN  13,14,15,16;
+          BASIC,  CASRAM,  _OE,  VA12        PIN  17,18,19,20;
+          VA13,  _GAME,  _EXROM,  R__W       PIN  21,22,23,24;
+          _AEC,  BA,  A12,  VCC              PIN  25,26,27,28;
+
+        CASRAM ISTYPE 'Neg';
+        ROMH,ROML,I_O,GR_W,CHAROM,KERNAL,BASIC,CASRAM ISTYPE 'Com';
+        ROMH,ROML,I_O,GR_W,CHAROM,KERNAL,BASIC,CASRAM ISTYPE 'Invert';
+
+        X,K,Z,C,P,U,D = .X.,.K.,.Z.,.C.,.P.,.U.,.D.;
+
+EQUATIONS
+
+!ROMH = (_HIRAM  & A15  & !A14  & A13  & !_AEC  & 
+               R__W  & !_EXROM  & !_GAME 
+             # A15  & A14  & A13  & !_AEC  & _EXROM  & 
+               !_GAME 
+             # _AEC  & _EXROM  & !_GAME  & VA13  & VA12 );
+!ROMH.OE = _OE;
+
+!ROML = (_LORAM  & _HIRAM  & A15  & !A14  & !A13  & 
+               !_AEC  & R__W  & !_EXROM 
+             # A15  & !A14  & !A13  & !_AEC  & _EXROM  & 
+               !_GAME );
+!ROML.OE = _OE;
+
+!I_O = (_HIRAM  & _CHAREN  & A15  & A14  & !A13  & 
+               A12  & BA  & !_AEC  & R__W  & _GAME 
+             # _HIRAM  & _CHAREN  & A15  & A14  & !A13  & 
+               A12  & !_AEC  & !R__W  & _GAME 
+             # _LORAM  & _CHAREN  & A15  & A14  & !A13  & 
+               A12  & BA  & !_AEC  & R__W  & _GAME 
+             # _LORAM  & _CHAREN  & A15  & A14  & !A13  & 
+               A12  & !_AEC  & !R__W  & _GAME 
+             # _HIRAM  & _CHAREN  & A15  & A14  & !A13  & 
+               A12  & BA  & !_AEC  & R__W  & !_EXROM  & 
+               !_GAME 
+             # _HIRAM  & _CHAREN  & A15  & A14  & !A13  & 
+               A12  & !_AEC  & !R__W  & !_EXROM  & !_GAME 
+             # _LORAM  & _CHAREN  & A15  & A14  & !A13  & 
+               A12  & BA  & !_AEC  & R__W  & !_EXROM  & 
+               !_GAME 
+             # _LORAM  & _CHAREN  & A15  & A14  & !A13  & 
+               A12  & !_AEC  & !R__W  & !_EXROM  & !_GAME 
+             # A15  & A14  & !A13  & A12  & BA  & 
+               !_AEC  & R__W  & _EXROM  & !_GAME 
+             # A15  & A14  & !A13  & A12  & !_AEC  & 
+               !R__W  & _EXROM  & !_GAME );
+!I_O.OE = _OE;
+
+!GR_W = (!_CAS  & A15  & A14  & !A13  & A12  & 
+               !_AEC  & !R__W );
+!GR_W.OE = _OE;
+
+!CHAROM = (_HIRAM  & !_CHAREN  & A15  & A14  & !A13  & 
+               A12  & !_AEC  & R__W  & _GAME 
+             # _LORAM  & !_CHAREN  & A15  & A14  & !A13  & 
+               A12  & !_AEC  & R__W  & _GAME 
+             # _HIRAM  & !_CHAREN  & A15  & A14  & !A13  & 
+               A12  & !_AEC  & R__W  & !_EXROM  & !_GAME 
+             # _VA14  & _AEC  & _GAME  & !VA13  & VA12 
+             # _VA14  & _AEC  & !_EXROM  & !_GAME  & !VA13  & 
+               VA12 );
+!CHAROM.OE = _OE;
+
+!KERNAL = (_HIRAM  & A15  & A14  & A13  & !_AEC  & 
+               R__W  & _GAME 
+             # _HIRAM  & A15  & A14  & A13  & !_AEC  & 
+               R__W  & !_EXROM  & !_GAME );
+!KERNAL.OE = _OE;
+
+!BASIC = (_LORAM  & _HIRAM  & A15  & !A14  & A13  & 
+               !_AEC  & R__W  & _GAME );
+!BASIC.OE = _OE;
+
+!CASRAM = !(_LORAM  & _HIRAM  & A15  & !A14  & A13  & 
+               !_AEC  & R__W  & _GAME 
+             # _HIRAM  & A15  & A14  & A13  & !_AEC  & 
+               R__W  & _GAME 
+             # _HIRAM  & A15  & A14  & A13  & !_AEC  & 
+               R__W  & !_EXROM  & !_GAME 
+             # _HIRAM  & !_CHAREN  & A15  & A14  & !A13  & 
+               A12  & !_AEC  & R__W  & _GAME 
+             # _LORAM  & !_CHAREN  & A15  & A14  & !A13  & 
+               A12  & !_AEC  & R__W  & _GAME 
+             # _HIRAM  & !_CHAREN  & A15  & A14  & !A13  & 
+               A12  & !_AEC  & R__W  & !_EXROM  & !_GAME 
+             # _VA14  & _AEC  & _GAME  & !VA13  & VA12 
+             # _VA14  & _AEC  & !_EXROM  & !_GAME  & !VA13  & 
+               VA12 
+             # _HIRAM  & _CHAREN  & A15  & A14  & !A13  & 
+               A12  & BA  & !_AEC  & R__W  & _GAME 
+             # _HIRAM  & _CHAREN  & A15  & A14  & !A13  & 
+               A12  & !_AEC  & !R__W  & _GAME 
+             # _LORAM  & _CHAREN  & A15  & A14  & !A13  & 
+               A12  & BA  & !_AEC  & R__W  & _GAME 
+             # _LORAM  & _CHAREN  & A15  & A14  & !A13  & 
+               A12  & !_AEC  & !R__W  & _GAME 
+             # _HIRAM  & _CHAREN  & A15  & A14  & !A13  & 
+               A12  & BA  & !_AEC  & R__W  & !_EXROM  & 
+               !_GAME 
+             # _HIRAM  & _CHAREN  & A15  & A14  & !A13  & 
+               A12  & !_AEC  & !R__W  & !_EXROM  & !_GAME 
+             # _LORAM  & _CHAREN  & A15  & A14  & !A13  & 
+               A12  & BA  & !_AEC  & R__W  & !_EXROM  & 
+               !_GAME 
+             # _LORAM  & _CHAREN  & A15  & A14  & !A13  & 
+               A12  & !_AEC  & !R__W  & !_EXROM  & !_GAME 
+             # A15  & A14  & !A13  & A12  & BA  & 
+               !_AEC  & R__W  & _EXROM  & !_GAME 
+             # A15  & A14  & !A13  & A12  & !_AEC  & 
+               !R__W  & _EXROM  & !_GAME 
+             # _LORAM  & _HIRAM  & A15  & !A14  & !A13  & 
+               !_AEC  & R__W  & !_EXROM 
+             # A15  & !A14  & !A13  & !_AEC  & _EXROM  & 
+               !_GAME 
+             # _HIRAM  & A15  & !A14  & A13  & !_AEC  & 
+               R__W  & !_EXROM  & !_GAME 
+             # A15  & A14  & A13  & !_AEC  & _EXROM  & 
+               !_GAME 
+             # _AEC  & _EXROM  & !_GAME  & VA13  & VA12 
+             # !A15  & !A14  & A12  & _EXROM  & !_GAME 
+             # !A15  & !A14  & A13  & _EXROM  & !_GAME 
+             # !A15  & A14  & _EXROM  & !_GAME 
+             # A15  & !A14  & A13  & _EXROM  & !_GAME 
+             # A15  & A14  & !A13  & !A12  & _EXROM  & 
+               !_GAME 
+             # _CAS );
+!CASRAM.OE = _OE;
+
+
+TEST_VECTORS
+([]->[])
+
+
+END
