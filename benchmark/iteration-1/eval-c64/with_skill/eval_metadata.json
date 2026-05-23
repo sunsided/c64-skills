@@ -1,0 +1,12 @@
+{
+  "eval_id": "c64",
+  "eval_name": "c64 (with_skill)",
+  "prompt": "I'm brand new to Commodore 64 programming. Give me a short orientation: the main chips, roughly where they live in the memory map, and where I'd look for sound vs sprites vs reading a joystick vs the disk drive.",
+  "assertions": [
+    "Names the VIC-II at $D000 (53248)",
+    "Names the SID at $D400 (54272)",
+    "Names the two CIA chips at $DC00 and $DD00",
+    "States KERNAL ROM at $E000 and BASIC ROM at $A000",
+    "Points sound to SID, sprites to VIC/sprites, joystick to control ports/CIA, disk to the disk topic"
+  ]
+}

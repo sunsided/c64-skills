@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-kernal",
+  "eval_name": "c64-kernal (without_skill)",
+  "prompt": "Give the exact register-level calling contract for two KERNAL routines: SETLFS and GETIN. Which registers hold which inputs, and what is returned?",
+  "assertions": [
+    "SETLFS: A = logical file number, X = device number, Y = secondary address",
+    "SETLFS is at $FFBA",
+    "GETIN: returns the input character in the accumulator A (0 if no key/character is available)",
+    "GETIN is at $FFE4"
+  ]
+}

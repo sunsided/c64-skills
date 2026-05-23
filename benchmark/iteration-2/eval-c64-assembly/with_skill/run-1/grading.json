@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Accumulator A is at $030C (780)",
+      "passed": true,
+      "evidence": "Table row: `$030C` 780 SAREG A"
+    },
+    {
+      "text": "X register is at $030D (781)",
+      "passed": true,
+      "evidence": "Table row: `$030D` 781 SXREG X"
+    },
+    {
+      "text": "Y register is at $030E (782)",
+      "passed": true,
+      "evidence": "Table row: `$030E` 782 SYREG Y"
+    },
+    {
+      "text": "Status register (SR/flags) is at $030F (783)",
+      "passed": true,
+      "evidence": "Table row: `$030F` 783 SPREG status P"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "SAVE\"NAME\" (device 1 is the default for tape, optionally SAVE\"NAME\",1)",
+      "passed": true,
+      "evidence": "'SAVE \"NAME\" : REM device 1 = default, no number needed'; also shows explicit device-1 form"
+    },
+    {
+      "text": "LOAD\"NAME\" searches forward for that named program; LOAD with no name loads the next program",
+      "passed": true,
+      "evidence": "'scans headers forward from current position until name matches' and 'Repeated LOAD (no name) loads NEXT program'"
+    },
+    {
+      "text": "Explains tape is sequential with no random-access directory",
+      "passed": true,
+      "evidence": "'Tape = sequential, no directory, no random access.'"
+    },
+    {
+      "text": "Mentions practical ways to find a program (tape counter / forward search / header messages)",
+      "passed": true,
+      "evidence": "lists forward header scan, step-through with FOUND messages, and tape counter + log"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

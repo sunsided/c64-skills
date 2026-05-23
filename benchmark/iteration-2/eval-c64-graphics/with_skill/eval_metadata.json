@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-graphics",
+  "eval_name": "c64-graphics (with_skill)",
+  "prompt": "Explain the exact bit layout of the VIC-II memory-pointer register $D018 (53272): which bits select the screen (video matrix) base and which select the character generator / bitmap base, and what address granularity each uses within the 16K VIC bank.",
+  "assertions": [
+    "Bits 7-4 select the video matrix (screen RAM) base, in units of $0400 (1K) within the VIC bank",
+    "Bits 3-1 select the character generator base, in units of $0800 (2K) within the bank",
+    "In bitmap mode, bit 3 selects the bitmap base at $0000 or $2000 within the bank (8K granularity)",
+    "Bit 0 is unused"
+  ]
+}

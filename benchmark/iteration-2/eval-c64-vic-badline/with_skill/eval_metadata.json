@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-vic-badline",
+  "eval_name": "c64-vic-badline (with_skill)",
+  "prompt": "State the exact Bad Line condition on the VIC-II \u2014 the precise relationship between the current raster line, the DEN bit, and the YSCROLL bits that triggers a bad line.",
+  "assertions": [
+    "Raster line is in the range $30 to $F7 (48 to 247)",
+    "The low 3 bits of the raster line equal YSCROLL (RASTER & 7 == YSCROLL, the low 3 bits of $D011)",
+    "The DEN (display enable) bit was set at some point in raster line $30",
+    "Describes that on a bad line the VIC stalls the CPU to do the c-accesses (badline steals cycles)"
+  ]
+}

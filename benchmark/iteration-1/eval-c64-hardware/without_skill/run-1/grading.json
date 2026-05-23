@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Names the PLA (906114 / 82S100) as a common cause of no-boot/blank screen",
+      "passed": true,
+      "evidence": "'PLA (906114-01, U17) \u2014 #1 killer. Generates all chip-select logic. Dead PLA = no ROM/RAM access = blank screen'"
+    },
+    {
+      "text": "Mentions checking the power supply / 5V rail",
+      "passed": true,
+      "evidence": "'Power rails \u2014 measure +5V and +12V at board'; table lists +5V expect 4.9\u20135.1V; mentions 7805 regulator"
+    },
+    {
+      "text": "Mentions RAM and/or the kernal/clock as suspects",
+      "passed": true,
+      "evidence": "RAM (4164 DRAM, U9\u2013U24), KERNAL (901227, U4), and clock (8701 oscillator) all listed as suspects"
+    },
+    {
+      "text": "Gives a sensible first-check ordering rather than vague advice",
+      "passed": true,
+      "evidence": "Ranked culprit list plus 'Order to swap: PLA \u2192 RAM \u2192 CPU \u2192 VIC \u2192 KERNAL ROM' and 'Start: reseat chips + check reset line HIGH + verify +5V'"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

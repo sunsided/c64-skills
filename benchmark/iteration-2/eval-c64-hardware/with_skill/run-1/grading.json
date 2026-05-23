@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Supplies +5V DC (regulated)",
+      "passed": true,
+      "evidence": "'+5V DC regulated \u2014 direct to all digital logic'"
+    },
+    {
+      "text": "Supplies 9V AC (unregulated)",
+      "passed": true,
+      "evidence": "'9V AC \u2014 rectified on-board'; AC inherently unregulated"
+    },
+    {
+      "text": "The classic failure is the 5V regulator failing such that the 5V rail rises (overvoltage)",
+      "passed": true,
+      "evidence": "'brick's internal 5V regulator drifts high as it ages...overvolted 5V'"
+    },
+    {
+      "text": "The overvoltage damages chips (RAM and/or other ICs)",
+      "passed": true,
+      "evidence": "'fries RAM, PLA (U17), and other chips at once'"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

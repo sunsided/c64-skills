@@ -1,0 +1,12 @@
+{
+  "eval_id": "c64-basic",
+  "eval_name": "c64-basic (without_skill)",
+  "prompt": "Write a Commodore 64 BASIC program that asks the user for their name with INPUT and then prints HELLO followed by the name five times using a FOR/NEXT loop.",
+  "assertions": [
+    "Uses INPUT with a string variable (name ending in $)",
+    "Uses a FOR ... NEXT loop iterating 5 times",
+    "Uses numbered BASIC lines",
+    "Concatenates/prints HELLO together with the name variable",
+    "Is valid runnable C64 BASIC V2 (no non-existent keywords)"
+  ]
+}

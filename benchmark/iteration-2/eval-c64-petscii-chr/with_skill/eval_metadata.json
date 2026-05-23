@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-petscii-chr",
+  "eval_name": "c64-petscii-chr (with_skill)",
+  "prompt": "Give the exact PETSCII CHR$ codes for: switching to lower-case character set, cursor down, reverse-on (RVS ON), and the color white.",
+  "assertions": [
+    "CHR$(14) switches to lower-case / text mode",
+    "CHR$(17) is cursor down",
+    "CHR$(18) is RVS ON (reverse on)",
+    "CHR$(5) is white"
+  ]
+}

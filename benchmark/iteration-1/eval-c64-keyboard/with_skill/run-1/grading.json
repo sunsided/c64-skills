@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "C= key: with SHIFT switches upper-case/graphics vs upper/lower charset (and/or color selection)",
+      "passed": true,
+      "evidence": "'C=+SHIFT \u2192 toggle charset (upper/graphics \u2194 upper/lower)' with correct POKE 53272,21/23; also covers C=+number for second color set"
+    },
+    {
+      "text": "RUN/STOP + RESTORE performs a warm reset / returns to BASIC (RESTORE triggers an NMI)",
+      "passed": true,
+      "evidence": "'RUN/STOP + RESTORE \u2014 warm reset... BASIC program survives' and 'RESTORE... Wired to CPU NMI line'"
+    },
+    {
+      "text": "Explains only f1/f3/f5/f7 are unshifted and f2/f4/f6/f8 need SHIFT",
+      "passed": true,
+      "evidence": "'f1/f3/f5/f7 unshifted, f2/f4/f6/f8 with SHIFT'"
+    },
+    {
+      "text": "Does not invent non-existent behavior",
+      "passed": false,
+      "evidence": "Two errors: 'RUN/STOP held during LIST = slow listing' (slow-listing is CTRL; RUN/STOP halts LIST), and cold reset 'SYS 64759' is wrong (correct cold-start vector is SYS 64738 / $FCE2)"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  }
+}

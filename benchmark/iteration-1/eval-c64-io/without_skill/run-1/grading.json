@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Uses OPEN with device number 4 (e.g. OPEN 4,4)",
+      "passed": true,
+      "evidence": "`OPEN 4,4` \u2014 open logical file 4 on device 4 (printer)"
+    },
+    {
+      "text": "Uses PRINT# to the opened file number to send the text",
+      "passed": true,
+      "evidence": "`PRINT#4,\"HELLO PRINTER\"` sends text to logical file 4"
+    },
+    {
+      "text": "Uses CLOSE on the file number",
+      "passed": true,
+      "evidence": "`CLOSE 4` closes logical file 4"
+    },
+    {
+      "text": "Device/secondary-address usage is correct for a printer",
+      "passed": true,
+      "evidence": "Device 4 = printer; secondary 0 = uppercase/graphics, 7 = lowercase/business \u2014 correct for MPS printers"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

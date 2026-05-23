@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Supplies +5V DC (regulated)",
+      "passed": true,
+      "evidence": "\"+5V DC regulated \u2014 powers all digital logic\""
+    },
+    {
+      "text": "Supplies 9V AC (unregulated)",
+      "passed": true,
+      "evidence": "\"9V AC (unregulated) \u2014 feeds onboard circuits\""
+    },
+    {
+      "text": "The classic failure is the 5V regulator failing such that the 5V rail rises (overvoltage)",
+      "passed": true,
+      "evidence": "\"5V regulator fails shorted... dumps the raw rectified input (~9\u201312V+ DC) straight onto the 5V rail\""
+    },
+    {
+      "text": "The overvoltage damages chips (RAM and/or other ICs)",
+      "passed": true,
+      "evidence": "\"RAM (4164s) and the CPU/PLA/CIA cook\""
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

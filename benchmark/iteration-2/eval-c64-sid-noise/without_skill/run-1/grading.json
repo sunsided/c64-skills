@@ -1,0 +1,25 @@
+{
+  "expectations": [
+    {
+      "text": "States the noise generator can lock up / go silent (the waveform output can freeze near zero)",
+      "passed": true,
+      "evidence": "\"noise generator stuck, output silent/DC\"; \"register progressively fills with zeros \u2192 LFSR = all-0\""
+    },
+    {
+      "text": "States it stays silent until reset",
+      "passed": true,
+      "evidence": "\"stuck, output silent/DC until reseeded\""
+    },
+    {
+      "text": "Says it is reset by the TEST bit (or by RES / chip reset)",
+      "passed": true,
+      "evidence": "\"set TEST bit ($08), or full SID reset\"; TEST=bit 3=$08 correct"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  }
+}

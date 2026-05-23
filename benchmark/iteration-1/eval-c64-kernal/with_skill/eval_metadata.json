@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-kernal",
+  "eval_name": "c64-kernal (with_skill)",
+  "prompt": "Using KERNAL routines from 6510 assembly, print the two-character string HI to the screen. Give the routine address(es) and which register holds what.",
+  "assertions": [
+    "Uses CHROUT at $FFD2",
+    "Puts the character to print in the accumulator A",
+    "Uses PETSCII codes 72 for H and 73 for I",
+    "Calls CHROUT once per character (or loops)"
+  ]
+}

@@ -1,0 +1,23 @@
+[
+  {"query": "how do I define my own custom character set on the c64 and tell the VIC to use it from $3000", "should_trigger": true},
+  {"query": "trying to get into multicolor character mode on the commodore 64, which register bit", "should_trigger": true},
+  {"query": "switch the c64 into standard hi-res bitmap mode with the bitmap at $2000, what POKEs", "should_trigger": true},
+  {"query": "where is screen RAM and color RAM by default and how do I relocate the screen on a c64", "should_trigger": true},
+  {"query": "how do I select a different VIC-II video bank so I can put graphics data in the upper 16k", "should_trigger": true},
+  {"query": "i want to smooth-scroll the whole screen horizontally a pixel at a time on the 64", "should_trigger": true},
+  {"query": "what is extended background color mode and how do I turn it on", "should_trigger": true},
+  {"query": "POKE 53272 — what does this do and how does it pick the charset vs bitmap base", "should_trigger": true},
+  {"query": "my multicolor bitmap colors are coming from the wrong place, which memory holds each color source", "should_trigger": true},
+  {"query": "how do I make the C64 display lowercase letters in a program (switch the character set)", "should_trigger": true},
+
+  {"query": "set up a stable raster interrupt at line 100 with cycle-exact timing on the c64", "should_trigger": false},
+  {"query": "how do I make a sprite, enable it and move it across the screen", "should_trigger": false},
+  {"query": "play a little tune on the SID chip from basic", "should_trigger": false},
+  {"query": "exactly what is at $D000 in the c64 memory map and how do I bank ROM in and out", "should_trigger": false},
+  {"query": "read the joystick in port 2 and tell me the direction bits", "should_trigger": false},
+  {"query": "what CHR$ code do I print to switch text to cyan and clear the screen", "should_trigger": false},
+  {"query": "what exactly is a bad line on the VIC-II and why does it steal CPU cycles", "should_trigger": false},
+  {"query": "write a basic program with a FOR NEXT loop that prints the times tables", "should_trigger": false},
+  {"query": "i have a .prg dump, walk me through disassembling it", "should_trigger": false},
+  {"query": "whats a good c64 emulator for linux", "should_trigger": false}
+]

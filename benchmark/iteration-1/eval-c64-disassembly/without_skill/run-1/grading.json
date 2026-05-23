@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Identifies the first two bytes 01 08 as the load address $0801",
+      "passed": true,
+      "evidence": "\"Bytes 0-1: load address `01 08` \u2192 little-endian `$0801`\""
+    },
+    {
+      "text": "Identifies a tokenized BASIC line: line number 10, SYS token ($9E)",
+      "passed": true,
+      "evidence": "\"line number = `$000A` = 10\" and \"$0805 `9E` BASIC token SYS\""
+    },
+    {
+      "text": "Decodes the digits 32 30 36 31 as ASCII '2061' \u2014 the SYS target",
+      "passed": true,
+      "evidence": "\"$0806 `32 30 36 31` ASCII `\"2061\"`\" detokenized as 10 SYS 2061"
+    },
+    {
+      "text": "Concludes the machine code starts at $080D (2061) after the BASIC stub",
+      "passed": true,
+      "evidence": "\"Machine code starts at $080D. 2061 decimal = `$080D`\"; stub occupies $0801-$080C \u2014 correct"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

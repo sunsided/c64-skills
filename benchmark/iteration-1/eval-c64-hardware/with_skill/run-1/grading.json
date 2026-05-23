@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Names the PLA (906114 / 82S100) as a common cause of no-boot/blank screen",
+      "passed": true,
+      "evidence": "'PLA U17 \u2014 bank-switch logic. Dead PLA = no ROM/RAM decode = no boot... notorious failure'; lists PLA as most-replaced part on dead C64"
+    },
+    {
+      "text": "Mentions checking the power supply / 5V rail",
+      "passed": true,
+      "evidence": "'Meter the +5V DC rail. Should be ~5.0V. >5.2V = brick bad'"
+    },
+    {
+      "text": "Mentions RAM and/or the kernal/clock as suspects",
+      "passed": true,
+      "evidence": "'KERNAL ROM U4', 'DRAM U9\u2013U12 / U21\u2013U24 \u2014 bad RAM', and VIC making system clock"
+    },
+    {
+      "text": "Gives a sensible first-check ordering rather than vague advice",
+      "passed": true,
+      "evidence": "Numbered suspect list and 'Order: brick voltage \u2192 reseat \u2192 swap PLA \u2192 swap KERNAL \u2192 swap VIC/CPU \u2192 DRAM'"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

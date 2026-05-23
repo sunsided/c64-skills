@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-hardware",
+  "eval_name": "c64-hardware (without_skill)",
+  "prompt": "What exactly does the original C64 power supply (the 'brick') output, and what is the well-known failure mode that damages the computer?",
+  "assertions": [
+    "Supplies +5V DC (regulated)",
+    "Supplies 9V AC (unregulated)",
+    "The classic failure is the 5V regulator failing such that the 5V rail rises (overvoltage)",
+    "The overvoltage damages chips (RAM and/or other ICs)"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Gives CHR$(147) to clear the screen",
+      "passed": true,
+      "evidence": "`CHR$(147)` = clear screen + home cursor (PETSCII shift-CLR/HOME)."
+    },
+    {
+      "text": "Gives CHR$(5) for white text",
+      "passed": true,
+      "evidence": "`CHR$(5)` = white text color. Stays white until changed."
+    },
+    {
+      "text": "States screen code for A is 1 while PETSCII/CHR$ for A is 65",
+      "passed": true,
+      "evidence": "Table: PETSCII/CHR$ code = 65 ($41); Screen code = 1 ($01)."
+    },
+    {
+      "text": "Explains POKEing screen RAM uses screen codes, PRINT/CHR$ uses PETSCII",
+      "passed": true,
+      "evidence": "screen RAM holds screen codes; PETSCII is what CHR$/PRINT use; POKE bypasses conversion so you supply screen code."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

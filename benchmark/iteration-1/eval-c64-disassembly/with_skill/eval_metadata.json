@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-disassembly",
+  "eval_name": "c64-disassembly (with_skill)",
+  "prompt": "I dumped a .prg and it begins with these bytes: 01 08 0B 08 0A 00 9E 32 30 36 31 00 00 00. Walk me through what this file is and where the actual machine code starts executing.",
+  "assertions": [
+    "Identifies the first two bytes 01 08 as the load address $0801",
+    "Identifies a tokenized BASIC line: line number 10, SYS token ($9E)",
+    "Decodes the digits 32 30 36 31 as ASCII '2061' \u2014 the SYS target",
+    "Concludes the machine code starts at $080D (2061) after the BASIC stub"
+  ]
+}

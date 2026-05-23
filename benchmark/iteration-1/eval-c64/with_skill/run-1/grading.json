@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "Names the VIC-II at $D000 (53248)",
+      "passed": true,
+      "evidence": "VIC-II at `$D000-$D3FF`; sprite X/Y `$D000-$D00F`; POKE 53248,160 \u2014 $D000=53248 correct"
+    },
+    {
+      "text": "Names the SID at $D400 (54272)",
+      "passed": true,
+      "evidence": "SID 6581 at `$D400-$D7FF`; 'SID at $D400 (...no, 54272)' lands on correct 54272"
+    },
+    {
+      "text": "Names the two CIA chips at $DC00 and $DD00",
+      "passed": true,
+      "evidence": "CIA1 6526 `$DC00-$DCFF`, CIA2 6526 `$DD00-$DDFF`"
+    },
+    {
+      "text": "States KERNAL ROM at $E000 and BASIC ROM at $A000",
+      "passed": true,
+      "evidence": "'ROM: BASIC $A000, KERNAL $E000'"
+    },
+    {
+      "text": "Points sound to SID, sprites to VIC/sprites, joystick to control ports/CIA, disk to the disk topic",
+      "passed": true,
+      "evidence": "Sound\u2192SID c64-sid; Sprites\u2192VIC-II c64-sprites; Joystick\u2192CIA1 ports c64-game-ports; Disk\u2192device 8/CIA2 c64-disk"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  }
+}

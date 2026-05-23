@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-disk",
+  "eval_name": "c64-disk (without_skill)",
+  "prompt": "On a 1541, after I send a DOS command on the command channel, how do I read the error/status channel in BASIC, and what does the channel return after a command that succeeded? Give the exact response.",
+  "assertions": [
+    "Open the command channel with OPEN 15,8,15 and read it with INPUT#15 (into four variables: code, message, track, sector)",
+    "A successful command returns error code 00",
+    "The success message text is OK",
+    "The track and sector fields are 00,00 on success"
+  ]
+}

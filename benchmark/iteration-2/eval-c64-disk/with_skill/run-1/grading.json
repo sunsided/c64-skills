@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Open the command channel with OPEN 15,8,15 and read it with INPUT#15 (into four variables: code, message, track, sector)",
+      "passed": true,
+      "evidence": "`10 OPEN 15,8,15` and `30 INPUT#15,EN,EM$,ET,ES` with EN=error number, EM$=message, ET=track, ES=sector"
+    },
+    {
+      "text": "A successful command returns error code 00",
+      "passed": true,
+      "evidence": "\"00 OK 00 00\", EN=0"
+    },
+    {
+      "text": "The success message text is OK",
+      "passed": true,
+      "evidence": "EM$=\"OK\""
+    },
+    {
+      "text": "The track and sector fields are 00,00 on success",
+      "passed": true,
+      "evidence": "ET=0, ES=0; response \"00 OK 00 00\""
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

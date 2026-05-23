@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "C= key: with SHIFT switches upper-case/graphics vs upper/lower charset (and/or color selection)",
+      "passed": true,
+      "evidence": "'C= + SHIFT \u2192 toggle uppercase/graphics \u2194 lowercase/uppercase charset' \u2014 correct, with POKE 657 disable detail also correct."
+    },
+    {
+      "text": "RUN/STOP + RESTORE performs a warm reset / returns to BASIC (RESTORE triggers an NMI)",
+      "passed": true,
+      "evidence": "'RUN/STOP + RESTORE together \u2192 Warm reset... returns to READY' and 'RESTORE \u2192 ...Triggers NMI when pressed.' Substance correct."
+    },
+    {
+      "text": "Explains only f1/f3/f5/f7 are unshifted and f2/f4/f6/f8 need SHIFT",
+      "passed": true,
+      "evidence": "'4 physical keys; SHIFT gives even numbers: f1/f2, f3/f4, f5/f6, f7/f8' plus correct PETSCII table (f1=133...f8=140)."
+    },
+    {
+      "text": "Does not invent non-existent behavior",
+      "passed": false,
+      "evidence": "Wrong: 'C= + number... (1=black, 2=white...)' \u2014 C=+number gives the second palette (orange/brown/etc.), not black/white; those are CTRL-row colors. Also NMI '$FFFE\u2192$FE43' is wrong ($FFFE is IRQ/BRK; NMI vector is $FFFA). False behavioral/mechanism claims."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  }
+}

@@ -1,0 +1,1488 @@
+{
+  "metadata": {
+    "skill_name": "c64-set",
+    "skill_path": "<path/to/skill>",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-05-23T11:28:04Z",
+    "evals_run": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 15.8,
+        "tokens": 20693,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Names the VIC-II at $D000 (53248)",
+          "passed": true,
+          "evidence": "VIC-II at `$D000-$D3FF`; sprite X/Y `$D000-$D00F`; POKE 53248,160 \u2014 $D000=53248 correct"
+        },
+        {
+          "text": "Names the SID at $D400 (54272)",
+          "passed": true,
+          "evidence": "SID 6581 at `$D400-$D7FF`; 'SID at $D400 (...no, 54272)' lands on correct 54272"
+        },
+        {
+          "text": "Names the two CIA chips at $DC00 and $DD00",
+          "passed": true,
+          "evidence": "CIA1 6526 `$DC00-$DCFF`, CIA2 6526 `$DD00-$DDFF`"
+        },
+        {
+          "text": "States KERNAL ROM at $E000 and BASIC ROM at $A000",
+          "passed": true,
+          "evidence": "'ROM: BASIC $A000, KERNAL $E000'"
+        },
+        {
+          "text": "Points sound to SID, sprites to VIC/sprites, joystick to control ports/CIA, disk to the disk topic",
+          "passed": true,
+          "evidence": "Sound\u2192SID c64-sid; Sprites\u2192VIC-II c64-sprites; Joystick\u2192CIA1 ports c64-game-ports; Disk\u2192device 8/CIA2 c64-disk"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 27.8,
+        "tokens": 23494,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Places the routine at $C000 (49152)",
+          "passed": true,
+          "evidence": "`*=$C000` and pokes into 49152 (`POKE 49152+I`, `SYS 49152`)"
+        },
+        {
+          "text": "Loads #81 into A and stores across the 1000 bytes of screen RAM at $0400-$07E7",
+          "passed": true,
+          "evidence": "`LDA #$51` (81) then STA to $0400/$0500/$0600/$0700,X covering all of $0400-$07E7 (and 24 extra bytes)"
+        },
+        {
+          "text": "Ends the routine with RTS to return to BASIC",
+          "passed": true,
+          "evidence": "`RTS ; back to BASIC (SYS = JSR)`"
+        },
+        {
+          "text": "Shows calling it with SYS 49152",
+          "passed": true,
+          "evidence": "`30 SYS 49152` and 'Re-run anytime with bare SYS 49152'"
+        },
+        {
+          "text": "The screen-fill loop is correct (covers all 1000 cells, e.g. 4 pages via an index loop)",
+          "passed": true,
+          "evidence": "4-page STA $0400/$0500/$0600/$0700,X with INX/BNE loop wrapping X 0-255 covers all 1000 cells correctly"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 4.6,
+        "tokens": 21090,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Uses INPUT with a string variable (name ending in $)",
+          "passed": true,
+          "evidence": "Line 10: INPUT \"WHAT IS YOUR NAME\";N$ \u2014 string var N$"
+        },
+        {
+          "text": "Uses a FOR ... NEXT loop iterating 5 times",
+          "passed": true,
+          "evidence": "Lines 20/40: FOR I=1 TO 5 ... NEXT I, default STEP 1 = 5 iterations"
+        },
+        {
+          "text": "Uses numbered BASIC lines",
+          "passed": true,
+          "evidence": "Lines 10,20,30,40"
+        },
+        {
+          "text": "Concatenates/prints HELLO together with the name variable",
+          "passed": true,
+          "evidence": "Line 30: PRINT \"HELLO \";N$"
+        },
+        {
+          "text": "Is valid runnable C64 BASIC V2 (no non-existent keywords)",
+          "passed": true,
+          "evidence": "INPUT, FOR/NEXT, PRINT all valid BASIC V2 keywords; syntax correct"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 22.6,
+        "tokens": 22385,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Loads the Timer A latch at $DC04/$DC05",
+          "passed": true,
+          "evidence": "STA $DC04 (Timer A latch LO) and STA $DC05 (Timer A latch HI)"
+        },
+        {
+          "text": "Enables the Timer A interrupt in the ICR $DC0D (with bit 7 set to mark 'set', bit 0 for timer A)",
+          "passed": true,
+          "evidence": "LDA #%10000001 (bit7=1 set-mask + TA bit) / STA $DC0D"
+        },
+        {
+          "text": "Starts the timer via control register A $DC0E (with continuous reload)",
+          "passed": true,
+          "evidence": "LDA #%00010001 / STA $DC0E with bit0 START, bit3=0 continuous reload"
+        },
+        {
+          "text": "Acknowledges/handles by reading $DC0D in the IRQ handler",
+          "passed": true,
+          "evidence": "newirq: LDA $DC0D ; READ+CLEAR CIA1 ICR -> ack"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 4,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 12.9,
+        "tokens": 22183,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Identifies the first two bytes 01 08 as the load address $0801",
+          "passed": true,
+          "evidence": "\"01 08 load address $0801 (2049) \u2192 BASIC start\""
+        },
+        {
+          "text": "Identifies a tokenized BASIC line: line number 10, SYS token ($9E)",
+          "passed": true,
+          "evidence": "\"0A 00 line number = 10\" and \"9E SYS token\""
+        },
+        {
+          "text": "Decodes the digits 32 30 36 31 as ASCII '2061' \u2014 the SYS target",
+          "passed": true,
+          "evidence": "\"32 30 36 31 PETSCII \\\"2061\\\"\" decoding to SYS 2061; PETSCII digits equal ASCII"
+        },
+        {
+          "text": "Concludes the machine code starts at $080D (2061) after the BASIC stub",
+          "passed": true,
+          "evidence": "\"Machine code entry = 2061 = $080D\"; 2061 = $080D correct"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 5,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 7.4,
+        "tokens": 20585,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Directory: LOAD\"$\",8 then LIST",
+          "passed": true,
+          "evidence": "`LOAD \"$\",8 : LIST` present and correct"
+        },
+        {
+          "text": "Load: LOAD\"GAME\",8",
+          "passed": true,
+          "evidence": "`LOAD \"GAME\",8` present and correct"
+        },
+        {
+          "text": "Format: OPEN 15,8,15 then PRINT#15,\"N0:label,id\" (NEW)",
+          "passed": true,
+          "evidence": "`OPEN 15,8,15,\"N0:MYDISK,42\"` \u2014 NEW format with label+id; equivalent form (command in OPEN string vs PRINT#15), correct substance"
+        },
+        {
+          "text": "Error channel: read via the command channel 15 (OPEN 15,8,15 then INPUT#15)",
+          "passed": true,
+          "evidence": "`OPEN 15,8,15` then `INPUT#15,EN,EM$,ET,ES` present and correct"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 6,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 7.6,
+        "tokens": 20664,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Reads control port 2 at 56320 ($DC00, CIA1 port A)",
+          "passed": true,
+          "evidence": "\"Port 2 = location 56320 ($DC00, CIA1 Port A)\" and JV=PEEK(56320)"
+        },
+        {
+          "text": "Treats the direction bits 0-3 as up/down/left/right",
+          "passed": true,
+          "evidence": "bit 0 = up, bit 1 = down, bit 2 = left, bit 3 = right"
+        },
+        {
+          "text": "Treats bit 4 as the fire button",
+          "passed": true,
+          "evidence": "bit 4 = fire"
+        },
+        {
+          "text": "Notes the bits are active-LOW (0 = pressed)",
+          "passed": true,
+          "evidence": "\"active LOW (0 = pressed)\""
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 7,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 18.4,
+        "tokens": 22597,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Sets the bitmap mode bit (BMM, bit 5) in $D011 / location 53265",
+          "passed": true,
+          "evidence": "POKE 53265,PEEK(53265) OR 32 : REM BMM=1 \u2014 bit5 value 32, correct"
+        },
+        {
+          "text": "Sets $D018 / location 53272 so the bitmap base points at $2000",
+          "passed": true,
+          "evidence": "POKE 53272,24; bit3=8 \u2192 bitmap $2000, correct math 16+8=24"
+        },
+        {
+          "text": "Mentions the bitmap is 8000 bytes",
+          "passed": true,
+          "evidence": "FOR I=8192 TO 16191 clears exactly 8000 bytes (8192..16191 inclusive)"
+        },
+        {
+          "text": "Mentions color comes from screen RAM (and clearing the bitmap)",
+          "passed": true,
+          "evidence": "'Color = screen RAM nibbles ($0400)... Not color RAM' plus 'CLEAR 8K BITMAP AT 8192' loop"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 8,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 17.8,
+        "tokens": 23211,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Names the PLA (906114 / 82S100) as a common cause of no-boot/blank screen",
+          "passed": true,
+          "evidence": "'PLA U17 \u2014 bank-switch logic. Dead PLA = no ROM/RAM decode = no boot... notorious failure'; lists PLA as most-replaced part on dead C64"
+        },
+        {
+          "text": "Mentions checking the power supply / 5V rail",
+          "passed": true,
+          "evidence": "'Meter the +5V DC rail. Should be ~5.0V. >5.2V = brick bad'"
+        },
+        {
+          "text": "Mentions RAM and/or the kernal/clock as suspects",
+          "passed": true,
+          "evidence": "'KERNAL ROM U4', 'DRAM U9\u2013U12 / U21\u2013U24 \u2014 bad RAM', and VIC making system clock"
+        },
+        {
+          "text": "Gives a sensible first-check ordering rather than vague advice",
+          "passed": true,
+          "evidence": "Numbered suspect list and 'Order: brick voltage \u2192 reseat \u2192 swap PLA \u2192 swap KERNAL \u2192 swap VIC/CPU \u2192 DRAM'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 9,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 5.5,
+        "tokens": 21772,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Uses OPEN with device number 4 (e.g. OPEN 4,4)",
+          "passed": true,
+          "evidence": "10 OPEN 4,4 \u2014 logical file 4 onto device 4 (printer)"
+        },
+        {
+          "text": "Uses PRINT# to the opened file number to send the text",
+          "passed": true,
+          "evidence": "20 PRINT#4,\"HELLO PRINTER\""
+        },
+        {
+          "text": "Uses CLOSE on the file number",
+          "passed": true,
+          "evidence": "30 CLOSE 4"
+        },
+        {
+          "text": "Device/secondary-address usage is correct for a printer",
+          "passed": true,
+          "evidence": "Device 4 correct; no SA = upper-case+graphics, SA 7 = upper/lower case \u2014 both correct"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 10,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 6.0,
+        "tokens": 20768,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Uses CHROUT at $FFD2",
+          "passed": true,
+          "evidence": "CHROUT = $FFD2; JSR $FFD2 used"
+        },
+        {
+          "text": "Puts the character to print in the accumulator A",
+          "passed": true,
+          "evidence": "LDA #$48 then JSR; 'A = char to print'"
+        },
+        {
+          "text": "Uses PETSCII codes 72 for H and 73 for I",
+          "passed": true,
+          "evidence": "$48=72 'H', $49=73 'I' correct"
+        },
+        {
+          "text": "Calls CHROUT once per character (or loops)",
+          "passed": true,
+          "evidence": "Two JSR $FFD2 calls, one per char"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 11,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.75,
+        "passed": 3,
+        "failed": 1,
+        "total": 4,
+        "time_seconds": 9.1,
+        "tokens": 20410,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "C= key: with SHIFT switches upper-case/graphics vs upper/lower charset (and/or color selection)",
+          "passed": true,
+          "evidence": "'C=+SHIFT \u2192 toggle charset (upper/graphics \u2194 upper/lower)' with correct POKE 53272,21/23; also covers C=+number for second color set"
+        },
+        {
+          "text": "RUN/STOP + RESTORE performs a warm reset / returns to BASIC (RESTORE triggers an NMI)",
+          "passed": true,
+          "evidence": "'RUN/STOP + RESTORE \u2014 warm reset... BASIC program survives' and 'RESTORE... Wired to CPU NMI line'"
+        },
+        {
+          "text": "Explains only f1/f3/f5/f7 are unshifted and f2/f4/f6/f8 need SHIFT",
+          "passed": true,
+          "evidence": "'f1/f3/f5/f7 unshifted, f2/f4/f6/f8 with SHIFT'"
+        },
+        {
+          "text": "Does not invent non-existent behavior",
+          "passed": false,
+          "evidence": "Two errors: 'RUN/STOP held during LIST = slow listing' (slow-listing is CTRL; RUN/STOP halts LIST), and cold reset 'SYS 64759' is wrong (correct cold-start vector is SYS 64738 / $FCE2)"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 12,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 19.2,
+        "tokens": 22254,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Explains the character ROM appears at $D000-$DFFF when CHAREN (bit 2 of $01) is cleared",
+          "passed": true,
+          "evidence": "'Char ROM only appears when CHAREN = bit 2 of $01 = 0. Shares $D000-$DFFF with I/O.'"
+        },
+        {
+          "text": "Sets $01 to $33 (or otherwise clears bit 2) to expose char ROM, then restores it (e.g. $37)",
+          "passed": true,
+          "evidence": "'Clear bit 2 \u2192 $33 (%00110011)'; asm AND #%11111011 then PLA/STA $01; default $37 stated"
+        },
+        {
+          "text": "Disables interrupts (SEI) during the copy because the I/O area is banked out",
+          "passed": true,
+          "evidence": "'SEI before, CLI after' with 'CIA1 gone from $D000-$DFFF' reasoning"
+        },
+        {
+          "text": "Copies 4096 bytes (2 char sets) or 2048 per set to $3000",
+          "passed": true,
+          "evidence": "'LDX #$10 ; 16 pages = 4096 bytes (both char sets)' to $3000; also LDX #$08 for 2K"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 13,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 10.0,
+        "tokens": 20808,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Gives CHR$(147) to clear the screen",
+          "passed": true,
+          "evidence": "`CHR$(147)` = CLR (clear screen + home cursor)"
+        },
+        {
+          "text": "Gives CHR$(5) for white text",
+          "passed": true,
+          "evidence": "`CHR$(5)` = white text color"
+        },
+        {
+          "text": "States screen code for A is 1 while PETSCII/CHR$ for A is 65",
+          "passed": true,
+          "evidence": "PETSCII \"A\"=65, Screen code \"A\"=1 \u2014 both stated explicitly and correctly"
+        },
+        {
+          "text": "Explains POKEing screen RAM uses screen codes, PRINT/CHR$ uses PETSCII",
+          "passed": true,
+          "evidence": "Screen code (stored in screen RAM) vs PETSCII (used by PRINT/CHR$); POKE 1024,1 shows A, POKE 1024,65 shows graphic char"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 14,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 16.9,
+        "tokens": 21638,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Sets master volume in $D418 / 54296 (low nibble, e.g. 15)",
+          "passed": true,
+          "evidence": "POKE S+24,15 with S=54272 \u2192 54296=$D418, volume 15; asm LDA #$0F : STA $D418"
+        },
+        {
+          "text": "Sets voice 1 frequency in $D400/$D401",
+          "passed": true,
+          "evidence": "POKE S,37 ($D400) and POKE S+1,17 ($D401); asm STA $D400 / STA $D401"
+        },
+        {
+          "text": "Sets the voice 1 control register $D404 to a sawtooth+gate value (sawtooth bit 32 + gate 1 = 33)",
+          "passed": true,
+          "evidence": "POKE S+4,33 (S+4=$D404), sawtooth(32)+GATE(1)=33; asm LDA #$21 : STA $D404"
+        },
+        {
+          "text": "Sets attack/decay $D405 and sustain/release $D406",
+          "passed": true,
+          "evidence": "POKE S+5,9 ($D405 attack/decay), POKE S+6,240 ($D406 sustain/release)"
+        },
+        {
+          "text": "Clears the gate bit afterwards to release the note",
+          "passed": true,
+          "evidence": "POKE S+4,32 \u2192 GATE off, release phase; asm LDA #$20 : STA $D404"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 15,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 9.8,
+        "tokens": 21646,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "POKEs 53269 ($D015) to enable sprite 0 (value 1)",
+          "passed": true,
+          "evidence": "POKE V+21,1 with V=53248 gives 53269 ($D015), value 1, bit 0 enables sprite 0"
+        },
+        {
+          "text": "Sets the sprite 0 pointer at 2040 (end of screen RAM)",
+          "passed": true,
+          "evidence": "POKE 2040,13 sets sprite 0 pointer"
+        },
+        {
+          "text": "POKEs 53248/53249 ($D000/$D001) for X=160, Y=100",
+          "passed": true,
+          "evidence": "POKE V,160:POKE V+1,100 = 53248,160 and 53249,100"
+        },
+        {
+          "text": "POKEs 53287 ($D027) to 2 for red",
+          "passed": true,
+          "evidence": "POKE V+39,2 = 53287 ($D027), value 2 = red"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 16,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 9.4,
+        "tokens": 20389,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "SAVE\"NAME\" (device 1 is the default for tape, optionally SAVE\"NAME\",1)",
+          "passed": true,
+          "evidence": "'SAVE \"NAME\" : REM device 1 = default, no number needed'; also shows explicit device-1 form"
+        },
+        {
+          "text": "LOAD\"NAME\" searches forward for that named program; LOAD with no name loads the next program",
+          "passed": true,
+          "evidence": "'scans headers forward from current position until name matches' and 'Repeated LOAD (no name) loads NEXT program'"
+        },
+        {
+          "text": "Explains tape is sequential with no random-access directory",
+          "passed": true,
+          "evidence": "'Tape = sequential, no directory, no random access.'"
+        },
+        {
+          "text": "Mentions practical ways to find a program (tape counter / forward search / header messages)",
+          "passed": true,
+          "evidence": "lists forward header scan, step-through with FOUND messages, and tape counter + log"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 17,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 14.7,
+        "tokens": 23531,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Writes 100 to $D012 and handles the 9th bit (bit 7 of $D011, cleared for line 100)",
+          "passed": true,
+          "evidence": "`lda #100 / sta $d012` and `lda $d011 / and #$7f / sta $d011` clears RST8 bit7"
+        },
+        {
+          "text": "Enables the raster interrupt by setting bit 0 of $D01A",
+          "passed": true,
+          "evidence": "`lda #$01 / sta $d01a ; enable raster IRQ (ERST)` sets bit 0"
+        },
+        {
+          "text": "Acknowledges the interrupt by writing to $D019 in the handler",
+          "passed": true,
+          "evidence": "In irq handler: `asl $d019 ; ACK \u2014 write 1 to $D019 bit0, clears latch`"
+        },
+        {
+          "text": "Sets the IRQ vector ($0314/$0315 or $FFFE) and uses SEI/CLI appropriately",
+          "passed": true,
+          "evidence": "Sets $0314/$0315 with <irq/>irq; `sei` at start, `cli` before rts"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 22.8,
+        "tokens": 18785,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Names the VIC-II at $D000 (53248)",
+          "passed": true,
+          "evidence": "VIC-II (6567/6569) video, sprites, screen $D000\u2013$D02E (53248+)"
+        },
+        {
+          "text": "Names the SID at $D400 (54272)",
+          "passed": true,
+          "evidence": "SID (6581/8580) sound $D400\u2013$D41C (54272+)"
+        },
+        {
+          "text": "Names the two CIA chips at $DC00 and $DD00",
+          "passed": true,
+          "evidence": "2\u00d7 CIA (6526) ... CIA1 $DC00, CIA2 $DD00"
+        },
+        {
+          "text": "States KERNAL ROM at $E000 and BASIC ROM at $A000",
+          "passed": true,
+          "evidence": "$A000\u2013$BFFF BASIC ROM; $E000\u2013$FFFF KERNAL ROM"
+        },
+        {
+          "text": "Points sound to SID, sprites to VIC/sprites, joystick to control ports/CIA, disk to the disk topic",
+          "passed": true,
+          "evidence": "Sound \u2192 SID; Sprites \u2192 VIC-II; Joystick \u2192 CIA $DC00/$DC01; Disk drive \u2192 serial bus via CIA2 + KERNAL"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 39.6,
+        "tokens": 20420,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Places the routine at $C000 (49152)",
+          "passed": true,
+          "evidence": "*=$C000 ; 49152"
+        },
+        {
+          "text": "Loads #81 into A and stores across the 1000 bytes of screen RAM at $0400-$07E7",
+          "passed": true,
+          "evidence": "LDA #$51 (=81), STA $0400/$0500/$0600,X then $0700,X up to $07E7 = 1000 bytes"
+        },
+        {
+          "text": "Ends the routine with RTS to return to BASIC",
+          "passed": true,
+          "evidence": "RTS ; back to BASIC"
+        },
+        {
+          "text": "Shows calling it with SYS 49152",
+          "passed": true,
+          "evidence": "SYS 49152"
+        },
+        {
+          "text": "The screen-fill loop is correct (covers all 1000 cells, e.g. 4 pages via an index loop)",
+          "passed": true,
+          "evidence": "Loop1 fills 3*256=768 ($0400-$06FF); loop2 CPX #$E8 fills 232 ($0700-$07E7); total 1000"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 4.9,
+        "tokens": 17423,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Uses INPUT with a string variable (name ending in $)",
+          "passed": true,
+          "evidence": "Line 10: INPUT \"WHAT IS YOUR NAME\";N$ \u2014 N$ is a string variable"
+        },
+        {
+          "text": "Uses a FOR ... NEXT loop iterating 5 times",
+          "passed": true,
+          "evidence": "Lines 20/40: FOR I=1 TO 5 ... NEXT I \u2014 5 iterations"
+        },
+        {
+          "text": "Uses numbered BASIC lines",
+          "passed": true,
+          "evidence": "Lines 10,20,30,40"
+        },
+        {
+          "text": "Concatenates/prints HELLO together with the name variable",
+          "passed": true,
+          "evidence": "Line 30: PRINT \"HELLO \";N$"
+        },
+        {
+          "text": "Is valid runnable C64 BASIC V2 (no non-existent keywords)",
+          "passed": true,
+          "evidence": "INPUT, FOR, TO, NEXT, PRINT all valid BASIC V2 keywords; program runs"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 24.5,
+        "tokens": 18905,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Loads the Timer A latch at $DC04/$DC05",
+          "passed": true,
+          "evidence": "lda #$25 / sta $dc04 (LO), lda #$40 / sta $dc05 (HI) loads 16421=$4025 into latch"
+        },
+        {
+          "text": "Enables the Timer A interrupt in the ICR $DC0D (with bit 7 set to mark 'set', bit 0 for timer A)",
+          "passed": true,
+          "evidence": "lda #$81 (%10000001 bit7=set, bit0=Timer A); sta $dc0d enables Timer A IRQ"
+        },
+        {
+          "text": "Starts the timer via control register A $DC0E (with continuous reload)",
+          "passed": true,
+          "evidence": "writes $dc0e with ora #%00010001 (bit4 force-load, bit0 start); continuous mode bit3=0 auto-reloads"
+        },
+        {
+          "text": "Acknowledges/handles by reading $DC0D in the IRQ handler",
+          "passed": true,
+          "evidence": "irq: lda $dc0d reads ICR to ack/clear Timer A IRQ"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 4,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 18.8,
+        "tokens": 18532,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Identifies the first two bytes 01 08 as the load address $0801",
+          "passed": true,
+          "evidence": "\"Bytes 0-1: load address `01 08` \u2192 little-endian `$0801`\""
+        },
+        {
+          "text": "Identifies a tokenized BASIC line: line number 10, SYS token ($9E)",
+          "passed": true,
+          "evidence": "\"line number = `$000A` = 10\" and \"$0805 `9E` BASIC token SYS\""
+        },
+        {
+          "text": "Decodes the digits 32 30 36 31 as ASCII '2061' \u2014 the SYS target",
+          "passed": true,
+          "evidence": "\"$0806 `32 30 36 31` ASCII `\"2061\"`\" detokenized as 10 SYS 2061"
+        },
+        {
+          "text": "Concludes the machine code starts at $080D (2061) after the BASIC stub",
+          "passed": true,
+          "evidence": "\"Machine code starts at $080D. 2061 decimal = `$080D`\"; stub occupies $0801-$080C \u2014 correct"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 5,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 12.1,
+        "tokens": 17999,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Directory: LOAD\"$\",8 then LIST",
+          "passed": true,
+          "evidence": "Shows LOAD\"$\",8 then LIST"
+        },
+        {
+          "text": "Load: LOAD\"GAME\",8",
+          "passed": true,
+          "evidence": "Shows LOAD\"GAME\",8"
+        },
+        {
+          "text": "Format: OPEN 15,8,15 then PRINT#15,\"N0:label,id\" (NEW)",
+          "passed": true,
+          "evidence": "OPEN 15,8,15,\"N0:DISKNAME,ID\" passes the N0: NEW command via command channel 15 \u2014 equivalent form, correct"
+        },
+        {
+          "text": "Error channel: read via the command channel 15 (OPEN 15,8,15 then INPUT#15)",
+          "passed": true,
+          "evidence": "OPEN 15,8,15 then INPUT#15,EN,EM$,ET,ES"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 6,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 8.2,
+        "tokens": 17769,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Reads control port 2 at 56320 ($DC00, CIA1 port A)",
+          "passed": true,
+          "evidence": "\"Port 2 = 56320 ($DC00), CIA#1 Data Port A. Read with PEEK(56320)\""
+        },
+        {
+          "text": "Treats the direction bits 0-3 as up/down/left/right",
+          "passed": true,
+          "evidence": "Table: bit0=Up, bit1=Down, bit2=Left, bit3=Right"
+        },
+        {
+          "text": "Treats bit 4 as the fire button",
+          "passed": true,
+          "evidence": "Bit 4 value 16 = Fire"
+        },
+        {
+          "text": "Notes the bits are active-LOW (0 = pressed)",
+          "passed": true,
+          "evidence": "\"Bits active LOW (0 = pushed)\""
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 7,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 33.1,
+        "tokens": 19766,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Sets the bitmap mode bit (BMM, bit 5) in $D011 / location 53265",
+          "passed": true,
+          "evidence": "Line 30: POKE 53265,PEEK(53265) OR 32 \u2014 32 = bit 5, sets BMM"
+        },
+        {
+          "text": "Sets $D018 / location 53272 so the bitmap base points at $2000",
+          "passed": true,
+          "evidence": "POKE 53272,24; explains bitmap $2000 \u2192 CB13 bit 3 = $08, combined to 24"
+        },
+        {
+          "text": "Mentions the bitmap is 8000 bytes",
+          "passed": true,
+          "evidence": "'8000 bytes $2000\u2013$3F3F'"
+        },
+        {
+          "text": "Mentions color comes from screen RAM (and clearing the bitmap)",
+          "passed": true,
+          "evidence": "'standard bitmap mode pulls color from screen RAM ($0400)'; line 50 clears bitmap $2000-$3F3F"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 8,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 20.5,
+        "tokens": 18242,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Names the PLA (906114 / 82S100) as a common cause of no-boot/blank screen",
+          "passed": true,
+          "evidence": "'PLA (906114-01, U17) \u2014 #1 killer. Generates all chip-select logic. Dead PLA = no ROM/RAM access = blank screen'"
+        },
+        {
+          "text": "Mentions checking the power supply / 5V rail",
+          "passed": true,
+          "evidence": "'Power rails \u2014 measure +5V and +12V at board'; table lists +5V expect 4.9\u20135.1V; mentions 7805 regulator"
+        },
+        {
+          "text": "Mentions RAM and/or the kernal/clock as suspects",
+          "passed": true,
+          "evidence": "RAM (4164 DRAM, U9\u2013U24), KERNAL (901227, U4), and clock (8701 oscillator) all listed as suspects"
+        },
+        {
+          "text": "Gives a sensible first-check ordering rather than vague advice",
+          "passed": true,
+          "evidence": "Ranked culprit list plus 'Order to swap: PLA \u2192 RAM \u2192 CPU \u2192 VIC \u2192 KERNAL ROM' and 'Start: reseat chips + check reset line HIGH + verify +5V'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 9,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 7.3,
+        "tokens": 17548,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Uses OPEN with device number 4 (e.g. OPEN 4,4)",
+          "passed": true,
+          "evidence": "`OPEN 4,4` \u2014 open logical file 4 on device 4 (printer)"
+        },
+        {
+          "text": "Uses PRINT# to the opened file number to send the text",
+          "passed": true,
+          "evidence": "`PRINT#4,\"HELLO PRINTER\"` sends text to logical file 4"
+        },
+        {
+          "text": "Uses CLOSE on the file number",
+          "passed": true,
+          "evidence": "`CLOSE 4` closes logical file 4"
+        },
+        {
+          "text": "Device/secondary-address usage is correct for a printer",
+          "passed": true,
+          "evidence": "Device 4 = printer; secondary 0 = uppercase/graphics, 7 = lowercase/business \u2014 correct for MPS printers"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 10,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 6.8,
+        "tokens": 17482,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Uses CHROUT at $FFD2",
+          "passed": true,
+          "evidence": "\"KERNAL CHROUT = $FFD2\"; JSR $FFD2"
+        },
+        {
+          "text": "Puts the character to print in the accumulator A",
+          "passed": true,
+          "evidence": "LDA #72 then JSR $FFD2; \"Char in A\""
+        },
+        {
+          "text": "Uses PETSCII codes 72 for H and 73 for I",
+          "passed": true,
+          "evidence": "LDA #72 'H', LDA #73 'I' \u2014 correct PETSCII/ASCII"
+        },
+        {
+          "text": "Calls CHROUT once per character (or loops)",
+          "passed": true,
+          "evidence": "JSR $FFD2 called twice, once per character"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 11,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.75,
+        "passed": 3,
+        "failed": 1,
+        "total": 4,
+        "time_seconds": 20.5,
+        "tokens": 18445,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "C= key: with SHIFT switches upper-case/graphics vs upper/lower charset (and/or color selection)",
+          "passed": true,
+          "evidence": "'C= + SHIFT \u2192 toggle uppercase/graphics \u2194 lowercase/uppercase charset' \u2014 correct, with POKE 657 disable detail also correct."
+        },
+        {
+          "text": "RUN/STOP + RESTORE performs a warm reset / returns to BASIC (RESTORE triggers an NMI)",
+          "passed": true,
+          "evidence": "'RUN/STOP + RESTORE together \u2192 Warm reset... returns to READY' and 'RESTORE \u2192 ...Triggers NMI when pressed.' Substance correct."
+        },
+        {
+          "text": "Explains only f1/f3/f5/f7 are unshifted and f2/f4/f6/f8 need SHIFT",
+          "passed": true,
+          "evidence": "'4 physical keys; SHIFT gives even numbers: f1/f2, f3/f4, f5/f6, f7/f8' plus correct PETSCII table (f1=133...f8=140)."
+        },
+        {
+          "text": "Does not invent non-existent behavior",
+          "passed": false,
+          "evidence": "Wrong: 'C= + number... (1=black, 2=white...)' \u2014 C=+number gives the second palette (orange/brown/etc.), not black/white; those are CTRL-row colors. Also NMI '$FFFE\u2192$FE43' is wrong ($FFFE is IRQ/BRK; NMI vector is $FFFA). False behavioral/mechanism claims."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 12,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 38.6,
+        "tokens": 19959,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Explains the character ROM appears at $D000-$DFFF when CHAREN (bit 2 of $01) is cleared",
+          "passed": true,
+          "evidence": "'CHAREN = bit 2', '0 = char ROM at $D000', 'Clear bit 2 \u2192 $33. Char ROM now readable at $D000\u2013$DFFF'"
+        },
+        {
+          "text": "Sets $01 to $33 (or otherwise clears bit 2) to expose char ROM, then restores it (e.g. $37)",
+          "passed": true,
+          "evidence": "'Clear bit 2 \u2192 $33'; BASIC POKE 1,PEEK(1) AND 251 then OR 4; ASM AND #%11111011 then ORA #%00000100; cites default $37"
+        },
+        {
+          "text": "Disables interrupts (SEI) during the copy because the I/O area is banked out",
+          "passed": true,
+          "evidence": "ASM uses 'sei'/'cli'; explains 'CHAREN=0 banks I/O out' and IRQ would read font bytes instead of CIA registers"
+        },
+        {
+          "text": "Copies 4096 bytes (2 char sets) or 2048 per set to $3000",
+          "passed": true,
+          "evidence": "FOR I=0 TO 4095 : POKE 12288+I,PEEK(53248+I) (12288=$3000, full 4KB); notes 'FOR I=0 TO 2047' for one set"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 13,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 19.1,
+        "tokens": 18425,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Gives CHR$(147) to clear the screen",
+          "passed": true,
+          "evidence": "`CHR$(147)` = clear screen + home cursor (PETSCII shift-CLR/HOME)."
+        },
+        {
+          "text": "Gives CHR$(5) for white text",
+          "passed": true,
+          "evidence": "`CHR$(5)` = white text color. Stays white until changed."
+        },
+        {
+          "text": "States screen code for A is 1 while PETSCII/CHR$ for A is 65",
+          "passed": true,
+          "evidence": "Table: PETSCII/CHR$ code = 65 ($41); Screen code = 1 ($01)."
+        },
+        {
+          "text": "Explains POKEing screen RAM uses screen codes, PRINT/CHR$ uses PETSCII",
+          "passed": true,
+          "evidence": "screen RAM holds screen codes; PETSCII is what CHR$/PRINT use; POKE bypasses conversion so you supply screen code."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 14,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 48.3,
+        "tokens": 20910,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Sets master volume in $D418 / 54296 (low nibble, e.g. 15)",
+          "passed": true,
+          "evidence": "$D418 master volume (lo nibble); POKE S+24,15 (54272+24=54296); lda #$0f / sta $d418"
+        },
+        {
+          "text": "Sets voice 1 frequency in $D400/$D401",
+          "passed": true,
+          "evidence": "freq lo/hi at $D400/$D401; POKE S+1,29 / POKE S,69; sta $d400 / sta $d401"
+        },
+        {
+          "text": "Sets the voice 1 control register $D404 to a sawtooth+gate value (sawtooth bit 32 + gate 1 = 33)",
+          "passed": true,
+          "evidence": "$D404 sawtooth=$20(32)+gate=$01 \u2192 $21=33; POKE S+4,33; lda #$21"
+        },
+        {
+          "text": "Sets attack/decay $D405 and sustain/release $D406",
+          "passed": true,
+          "evidence": "$D405 attack/decay, $D406 sustain/release; sta $d405 / sta $d406"
+        },
+        {
+          "text": "Clears the gate bit afterwards to release the note",
+          "passed": true,
+          "evidence": "POKE S+4,32 / lda #$20 sta $d404 = gate OFF -> release phase"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 15,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 10.9,
+        "tokens": 17850,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "POKEs 53269 ($D015) to enable sprite 0 (value 1)",
+          "passed": true,
+          "evidence": "Line 10: POKE 53269,1 REM ENABLE SPRITE 0 (VIC REG $D015)"
+        },
+        {
+          "text": "Sets the sprite 0 pointer at 2040 (end of screen RAM)",
+          "passed": true,
+          "evidence": "Line 20: POKE 2040,13 REM SPRITE 0 DATA POINTER; 2040 is correct sprite 0 pointer"
+        },
+        {
+          "text": "POKEs 53248/53249 ($D000/$D001) for X=160, Y=100",
+          "passed": true,
+          "evidence": "Lines 30-40: POKE 53248,160 and POKE 53249,100 with correct $D000/$D001"
+        },
+        {
+          "text": "POKEs 53287 ($D027) to 2 for red",
+          "passed": true,
+          "evidence": "Line 50: POKE 53287,2 REM COLOR = RED ($D027); 53287=$D027, 2=red correct"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 16,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 21.4,
+        "tokens": 18521,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "SAVE\"NAME\" (device 1 is the default for tape, optionally SAVE\"NAME\",1)",
+          "passed": true,
+          "evidence": "Shows SAVE \"MYPROG\" and states device 1 is default \u2014 no device number needed; correct."
+        },
+        {
+          "text": "LOAD\"NAME\" searches forward for that named program; LOAD with no name loads the next program",
+          "passed": true,
+          "evidence": "\"LOAD \"MYPROG\" scans forward from current tape position\" and \"Bare LOAD (no name) = loads next program\"; both correct."
+        },
+        {
+          "text": "Explains tape is sequential with no random-access directory",
+          "passed": true,
+          "evidence": "\"scans forward from current tape position, checks each header\" and \"Tape only moves forward, so rewind first\" \u2014 conveys sequential, no index/directory."
+        },
+        {
+          "text": "Mentions practical ways to find a program (tape counter / forward search / header messages)",
+          "passed": true,
+          "evidence": "Covers all three: tape counter (note Datasette counter number), forward search (LOAD scans forward), header messages (FOUND <name>)."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 17,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 24.2,
+        "tokens": 18856,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Writes 100 to $D012 and handles the 9th bit (bit 7 of $D011, cleared for line 100)",
+          "passed": true,
+          "evidence": "lda #100 / sta $d012; then lda $d011 / and #$7f / sta $d011 clears bit 7 for line <256"
+        },
+        {
+          "text": "Enables the raster interrupt by setting bit 0 of $D01A",
+          "passed": true,
+          "evidence": "lda #$01 / sta $d01a sets bit 0 = raster IRQ enable"
+        },
+        {
+          "text": "Acknowledges the interrupt by writing to $D019 in the handler",
+          "passed": true,
+          "evidence": "irq handler: lda #$01 / sta $d019 writes set bit to ack"
+        },
+        {
+          "text": "Sets the IRQ vector ($0314/$0315 or $FFFE) and uses SEI/CLI appropriately",
+          "passed": true,
+          "evidence": "sei at setup start, writes <irq/>irq to $0314/$0315, cli at end"
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.9861,
+        "stddev": 0.0589,
+        "min": 0.75,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 13.0833,
+        "stddev": 6.469,
+        "min": 4.6,
+        "max": 27.8
+      },
+      "tokens": {
+        "mean": 21673.2222,
+        "stddev": 1068.7258,
+        "min": 20389,
+        "max": 23531
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.9861,
+        "stddev": 0.0589,
+        "min": 0.75,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 21.2,
+        "stddev": 12.3077,
+        "min": 4.9,
+        "max": 48.3
+      },
+      "tokens": {
+        "mean": 18657.6111,
+        "stddev": 1015.6968,
+        "min": 17423,
+        "max": 20910
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "-8.1",
+      "tokens": "+3016"
+    }
+  },
+  "notes": []
+}

@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-petscii",
+  "eval_name": "c64-petscii (without_skill)",
+  "prompt": "Give the exact SCREEN codes (the values you POKE into screen RAM at $0400, NOT the PETSCII/CHR$ codes) for these characters: the @ sign, the letter A, a space, and a reverse (inverted) space.",
+  "assertions": [
+    "Screen code for @ is 0",
+    "Screen code for A is 1",
+    "Screen code for space is 32",
+    "Screen code for a reverse space is 160 (the normal code + 128)"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-game-ports",
+  "eval_name": "c64-game-ports (without_skill)",
+  "prompt": "Exactly how do I read the two paddles on the C64? Which CIA1 register/bits select which pair of paddles is connected to the SID, which SID registers return the paddle positions, and why is reading paddles awkward alongside the keyboard?",
+  "assertions": [
+    "The paddle position values are read from SID registers $D419 (POTX) and $D41A (POTY)",
+    "CIA1 port A ($DC00) bits 6 and 7 select which control port's paddle pair is routed to the SID",
+    "Notes the keyboard matrix shares CIA1 port A, so keyboard scanning interferes with paddle selection (must disable/avoid keyscan)",
+    "Each port has two paddles (X and Y), giving four total across the two ports"
+  ]
+}

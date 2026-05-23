@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-keyboard",
+  "eval_name": "c64-keyboard (with_skill)",
+  "prompt": "Explain what each of these C64 keys/combos does: the Commodore (C=) key, RUN/STOP, RESTORE, RUN/STOP+RESTORE together, and the function keys f1 through f8.",
+  "assertions": [
+    "C= key: with SHIFT switches upper-case/graphics vs upper/lower charset (and/or color selection)",
+    "RUN/STOP + RESTORE performs a warm reset / returns to BASIC (RESTORE triggers an NMI)",
+    "Explains only f1/f3/f5/f7 are unshifted and f2/f4/f6/f8 need SHIFT",
+    "Does not invent non-existent behavior"
+  ]
+}

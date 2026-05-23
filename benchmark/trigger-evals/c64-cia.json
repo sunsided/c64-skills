@@ -1,0 +1,23 @@
+[
+  {"query": "set up CIA1 timer A to fire an IRQ 60 times a second and explain the registers", "should_trigger": true},
+  {"query": "how do I read the time-of-day clock in the 6526 and what's the BCD format", "should_trigger": true},
+  {"query": "explain the CIA interrupt control register at $DC0D, the read-clears and write set/clear behavior", "should_trigger": true},
+  {"query": "the VIC bank select bits are in $DD00 on CIA2 — why are they inverted", "should_trigger": true},
+  {"query": "how do I generate an NMI from CIA2 timer B on the c64", "should_trigger": true},
+  {"query": "what are the data direction registers on the 6526 and how do I make port B outputs", "should_trigger": true},
+  {"query": "how does the CIA serial shift register work for the IEC bus clocking", "should_trigger": true},
+  {"query": "difference between CIA1 at $DC00 and CIA2 at $DD00 — what's each wired to", "should_trigger": true},
+  {"query": "how do I stop and restart a CIA timer using control register A", "should_trigger": true},
+  {"query": "i hooked a raw IRQ but it keeps re-firing — do I need to acknowledge the CIA interrupt", "should_trigger": true},
+
+  {"query": "which control port is player 1 and how do I read the joystick directions", "should_trigger": false},
+  {"query": "set up a raster interrupt on the VIC at line 200 for a screen split", "should_trigger": false},
+  {"query": "how do I OPEN a file to the disk drive and read it back", "should_trigger": false},
+  {"query": "play an explosion sound effect on the SID", "should_trigger": false},
+  {"query": "whats at $A000 and $E000 in the c64 memory map", "should_trigger": false},
+  {"query": "read the two paddles and their fire buttons on the c64", "should_trigger": false},
+  {"query": "make a sprite and move it with the joystick", "should_trigger": false},
+  {"query": "what does RUN/STOP plus RESTORE do", "should_trigger": false},
+  {"query": "list the directory of a disk in basic", "should_trigger": false},
+  {"query": "write a basic for next loop that counts to 100", "should_trigger": false}
+]

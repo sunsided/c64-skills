@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-io",
+  "eval_name": "c64-io (without_skill)",
+  "prompt": "In C64 BASIC, how do I open a channel to the printer (device 4), send one line of text to it, and close the channel?",
+  "assertions": [
+    "Uses OPEN with device number 4 (e.g. OPEN 4,4)",
+    "Uses PRINT# to the opened file number to send the text",
+    "Uses CLOSE on the file number",
+    "Device/secondary-address usage is correct for a printer"
+  ]
+}

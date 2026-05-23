@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-sprites",
+  "eval_name": "c64-sprites (without_skill)",
+  "prompt": "Give me a Commodore 64 BASIC program that enables sprite 0, sets its data pointer, positions it at X=160 Y=100, and colors it red.",
+  "assertions": [
+    "POKEs 53269 ($D015) to enable sprite 0 (value 1)",
+    "Sets the sprite 0 pointer at 2040 (end of screen RAM)",
+    "POKEs 53248/53249 ($D000/$D001) for X=160, Y=100",
+    "POKEs 53287 ($D027) to 2 for red"
+  ]
+}

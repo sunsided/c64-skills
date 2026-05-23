@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-memory-map",
+  "eval_name": "c64-memory-map (with_skill)",
+  "prompt": "On the C64, describe exactly the memory configuration the CPU sees for these values of the $01 processor port: $37 (default), $35, and $34. For each, state what occupies $A000-$BFFF, $D000-$DFFF, and $E000-$FFFF.",
+  "assertions": [
+    "$37: BASIC ROM at $A000-$BFFF, I/O at $D000-$DFFF, KERNAL ROM at $E000-$FFFF",
+    "$35: RAM at $A000-$BFFF, I/O at $D000-$DFFF, RAM at $E000-$FFFF (BASIC and KERNAL ROM banked out, I/O still visible)",
+    "$34: RAM everywhere including $A000-$BFFF, $D000-$DFFF and $E000-$FFFF (I/O banked out, all RAM)",
+    "Correctly ties this to the LORAM/HIRAM/CHAREN bits (bits 0/1/2 of $01)"
+  ]
+}

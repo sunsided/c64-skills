@@ -1,0 +1,616 @@
+{
+  "total": 62,
+  "correct": 62,
+  "accuracy": 1.0,
+  "per_skill_recall": {
+    "c64": {
+      "n": 2,
+      "correct": 2
+    },
+    "c64-basic": {
+      "n": 4,
+      "correct": 4
+    },
+    "c64-graphics": {
+      "n": 4,
+      "correct": 4
+    },
+    "c64-sprites": {
+      "n": 3,
+      "correct": 3
+    },
+    "c64-vic-ii": {
+      "n": 4,
+      "correct": 4
+    },
+    "c64-sid": {
+      "n": 4,
+      "correct": 4
+    },
+    "c64-assembly": {
+      "n": 4,
+      "correct": 4
+    },
+    "c64-kernal": {
+      "n": 3,
+      "correct": 3
+    },
+    "c64-memory-map": {
+      "n": 3,
+      "correct": 3
+    },
+    "c64-cia": {
+      "n": 3,
+      "correct": 3
+    },
+    "c64-io": {
+      "n": 3,
+      "correct": 3
+    },
+    "c64-disk": {
+      "n": 4,
+      "correct": 4
+    },
+    "c64-tape": {
+      "n": 3,
+      "correct": 3
+    },
+    "c64-game-ports": {
+      "n": 3,
+      "correct": 3
+    },
+    "c64-petscii": {
+      "n": 3,
+      "correct": 3
+    },
+    "c64-keyboard": {
+      "n": 3,
+      "correct": 3
+    },
+    "c64-hardware": {
+      "n": 3,
+      "correct": 3
+    },
+    "c64-disassembly": {
+      "n": 3,
+      "correct": 3
+    },
+    "none": {
+      "n": 3,
+      "correct": 3
+    }
+  },
+  "confusion_misroutes": {},
+  "results": [
+    {
+      "id": 1,
+      "query": "On my C64 in BASIC, how do I write a FOR/NEXT loop that counts down from 10 to 1?",
+      "expected": "c64-basic",
+      "acceptable": [],
+      "predicted": "c64-basic",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "query": "I keep getting ?REDIM'D ARRAY ERROR on my Commodore 64 when I run my program a second time. why?",
+      "expected": "c64-basic",
+      "acceptable": [],
+      "predicted": "c64-basic",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "query": "whats the shortest abbreviation for the PRINT command in c64 basic, the one with the question mark shortcut and the others",
+      "expected": "c64-basic",
+      "acceptable": [],
+      "predicted": "c64-basic",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "query": "what CHR$ code do I PRINT to clear the screen on a C64?",
+      "expected": "c64-petscii",
+      "acceptable": [],
+      "predicted": "c64-petscii",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "query": "why does POKE 1024,1 put a letter A on the screen instead of the control character I expected? whats the difference between that and CHR$",
+      "expected": "c64-petscii",
+      "acceptable": [],
+      "predicted": "c64-petscii",
+      "correct": true
+    },
+    {
+      "id": 6,
+      "query": "I want to draw a box / framed menu on the C64 screen using those PETSCII line graphics characters. how do the codes work",
+      "expected": "c64-petscii",
+      "acceptable": [
+        "c64-graphics"
+      ],
+      "predicted": "c64-petscii",
+      "correct": true
+    },
+    {
+      "id": 7,
+      "query": "what does the Commodore key (the C= one) actually do on the keyboard?",
+      "expected": "c64-keyboard",
+      "acceptable": [],
+      "predicted": "c64-keyboard",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "query": "how do I do a warm reset on the C64 without turning it off \u2014 isn't it RUN/STOP and RESTORE together?",
+      "expected": "c64-keyboard",
+      "acceptable": [],
+      "predicted": "c64-keyboard",
+      "correct": true
+    },
+    {
+      "id": 9,
+      "query": "what is quote mode in the C64 screen editor and how do I get a reversed heart into a string",
+      "expected": "c64-keyboard",
+      "acceptable": [
+        "c64-petscii"
+      ],
+      "predicted": "c64-keyboard",
+      "correct": true
+    },
+    {
+      "id": 10,
+      "query": "how do I define my own custom character set on the Commodore 64 and point the VIC at it?",
+      "expected": "c64-graphics",
+      "acceptable": [],
+      "predicted": "c64-graphics",
+      "correct": true
+    },
+    {
+      "id": 11,
+      "query": "trying to turn on multicolor character mode, which bit in 53270 / $D016 do I set",
+      "expected": "c64-graphics",
+      "acceptable": [],
+      "predicted": "c64-graphics",
+      "correct": true
+    },
+    {
+      "id": 12,
+      "query": "where does screen RAM and color RAM live on the C64 by default, and how do I move the screen?",
+      "expected": "c64-graphics",
+      "acceptable": [
+        "c64-memory-map"
+      ],
+      "predicted": "c64-memory-map",
+      "correct": true
+    },
+    {
+      "id": 13,
+      "query": "how do I make a sprite on the C64, enable it and set its color?",
+      "expected": "c64-sprites",
+      "acceptable": [],
+      "predicted": "c64-sprites",
+      "correct": true
+    },
+    {
+      "id": 14,
+      "query": "my sprite wraps around / disappears when its x position goes past 255. how do I use the MSB in $D010",
+      "expected": "c64-sprites",
+      "acceptable": [],
+      "predicted": "c64-sprites",
+      "correct": true
+    },
+    {
+      "id": 15,
+      "query": "how do I detect when two sprites collide on the c64, the $D01E register thing",
+      "expected": "c64-sprites",
+      "acceptable": [],
+      "predicted": "c64-sprites",
+      "correct": true
+    },
+    {
+      "id": 16,
+      "query": "how many cycles is one raster line on a PAL C64, and how many lines per frame?",
+      "expected": "c64-vic-ii",
+      "acceptable": [],
+      "predicted": "c64-vic-ii",
+      "correct": true
+    },
+    {
+      "id": 17,
+      "query": "I want to set up a raster interrupt at line 200 to split the screen. how does the VIC-II raster compare/IRQ work, with the 9th bit",
+      "expected": "c64-vic-ii",
+      "acceptable": [],
+      "predicted": "c64-vic-ii",
+      "correct": true
+    },
+    {
+      "id": 18,
+      "query": "what exactly is a Bad Line on the VIC-II and why does it steal cycles from my code",
+      "expected": "c64-vic-ii",
+      "acceptable": [],
+      "predicted": "c64-vic-ii",
+      "correct": true
+    },
+    {
+      "id": 19,
+      "query": "how do I play a single musical note on the C64 sound chip from BASIC?",
+      "expected": "c64-sid",
+      "acceptable": [],
+      "predicted": "c64-sid",
+      "correct": true
+    },
+    {
+      "id": 20,
+      "query": "my SID program makes no sound at all. volume is set. what am I missing with the gate bit and ADSR",
+      "expected": "c64-sid",
+      "acceptable": [],
+      "predicted": "c64-sid",
+      "correct": true
+    },
+    {
+      "id": 21,
+      "query": "what does the register at $D418 control on the C64",
+      "expected": "c64-sid",
+      "acceptable": [],
+      "predicted": "c64-sid",
+      "correct": true
+    },
+    {
+      "id": 22,
+      "query": "how do I call a machine language routine from BASIC with SYS and pass it values in A, X and Y?",
+      "expected": "c64-assembly",
+      "acceptable": [],
+      "predicted": "c64-assembly",
+      "correct": true
+    },
+    {
+      "id": 23,
+      "query": "writing some 6510 assembly for the c64 \u2014 where in memory is it safe to put my routine so BASIC doesn't clobber it?",
+      "expected": "c64-assembly",
+      "acceptable": [
+        "c64-memory-map"
+      ],
+      "predicted": "c64-assembly",
+      "correct": true
+    },
+    {
+      "id": 24,
+      "query": "in 6510 asm whats the difference between LDA #$01 and LDA $01",
+      "expected": "c64-assembly",
+      "acceptable": [],
+      "predicted": "c64-assembly",
+      "correct": true
+    },
+    {
+      "id": 25,
+      "query": "what's the KERNAL address to print a character, and what register holds it?",
+      "expected": "c64-kernal",
+      "acceptable": [],
+      "predicted": "c64-kernal",
+      "correct": true
+    },
+    {
+      "id": 26,
+      "query": "how do I open a file from assembly using SETLFS and SETNAM and then write to it via the KERNAL",
+      "expected": "c64-kernal",
+      "acceptable": [
+        "c64-io"
+      ],
+      "predicted": "c64-kernal",
+      "correct": true
+    },
+    {
+      "id": 27,
+      "query": "after I JSR to a KERNAL routine, what does it mean if the carry flag is set when it returns?",
+      "expected": "c64-kernal",
+      "acceptable": [],
+      "predicted": "c64-kernal",
+      "correct": true
+    },
+    {
+      "id": 28,
+      "query": "give me the C64 memory map \u2014 whats at $A000, $D000, $E000 and how much free RAM is there",
+      "expected": "c64-memory-map",
+      "acceptable": [],
+      "predicted": "c64-memory-map",
+      "correct": true
+    },
+    {
+      "id": 29,
+      "query": "how do I bank out the KERNAL ROM to get RAM underneath it \u2014 what do I write to $01",
+      "expected": "c64-memory-map",
+      "acceptable": [
+        "c64-assembly"
+      ],
+      "predicted": "c64-memory-map",
+      "correct": true
+    },
+    {
+      "id": 30,
+      "query": "what do the LORAM, HIRAM and CHAREN bits do on the Commodore 64",
+      "expected": "c64-memory-map",
+      "acceptable": [],
+      "predicted": "c64-memory-map",
+      "correct": true
+    },
+    {
+      "id": 31,
+      "query": "how do I set up a CIA timer to fire an IRQ 50 times a second on the c64",
+      "expected": "c64-cia",
+      "acceptable": [],
+      "predicted": "c64-cia",
+      "correct": true
+    },
+    {
+      "id": 32,
+      "query": "how do I read the time of day clock in the 6526 and whats at $DC0D",
+      "expected": "c64-cia",
+      "acceptable": [],
+      "predicted": "c64-cia",
+      "correct": true
+    },
+    {
+      "id": 33,
+      "query": "I need to read the data lines on the user port from a program \u2014 which CIA2 register is that",
+      "expected": "c64-cia",
+      "acceptable": [
+        "c64-io"
+      ],
+      "predicted": "c64-cia",
+      "correct": true
+    },
+    {
+      "id": 34,
+      "query": "how do I OPEN a logical file/channel in BASIC and what's the secondary address for",
+      "expected": "c64-io",
+      "acceptable": [],
+      "predicted": "c64-io",
+      "correct": true
+    },
+    {
+      "id": 35,
+      "query": "what device number is the printer vs the screen vs RS-232 on the C64?",
+      "expected": "c64-io",
+      "acceptable": [],
+      "predicted": "c64-io",
+      "correct": true
+    },
+    {
+      "id": 36,
+      "query": "how does the serial IEC bus work on the commodore 64, the ATN/CLK/DATA lines and daisy chaining",
+      "expected": "c64-io",
+      "acceptable": [],
+      "predicted": "c64-io",
+      "correct": true
+    },
+    {
+      "id": 37,
+      "query": "how do I show the directory of a floppy disk on the C64 with the 1541?",
+      "expected": "c64-disk",
+      "acceptable": [],
+      "predicted": "c64-disk",
+      "correct": true
+    },
+    {
+      "id": 38,
+      "query": "whats the difference between LOAD\"NAME\",8 and LOAD\"NAME\",8,1 on the disk drive",
+      "expected": "c64-disk",
+      "acceptable": [],
+      "predicted": "c64-disk",
+      "correct": true
+    },
+    {
+      "id": 39,
+      "query": "how do I scratch (delete) and rename a file on a 1541 disk using the command channel 15",
+      "expected": "c64-disk",
+      "acceptable": [],
+      "predicted": "c64-disk",
+      "correct": true
+    },
+    {
+      "id": 40,
+      "query": "how do I load and save programs to the cassette tape on a C64?",
+      "expected": "c64-tape",
+      "acceptable": [],
+      "predicted": "c64-tape",
+      "correct": true
+    },
+    {
+      "id": 41,
+      "query": "is there a way to list a directory of whats on a cassette tape like you can with a disk?",
+      "expected": "c64-tape",
+      "acceptable": [],
+      "predicted": "c64-tape",
+      "correct": true
+    },
+    {
+      "id": 42,
+      "query": "what's the tape buffer at $033C used for and can I stash machine code there",
+      "expected": "c64-tape",
+      "acceptable": [
+        "c64-assembly"
+      ],
+      "predicted": "c64-tape",
+      "correct": true
+    },
+    {
+      "id": 43,
+      "query": "which control port is player 1 on the Commodore 64 \u2014 port 1 or port 2?",
+      "expected": "c64-game-ports",
+      "acceptable": [],
+      "predicted": "c64-game-ports",
+      "correct": true
+    },
+    {
+      "id": 44,
+      "query": "how do I read the joystick in BASIC, which bits are up/down/left/right/fire",
+      "expected": "c64-game-ports",
+      "acceptable": [
+        "c64-cia"
+      ],
+      "predicted": "c64-game-ports",
+      "correct": true
+    },
+    {
+      "id": 45,
+      "query": "how do paddles work on the c64 and why are the POT values jittery when I read them in BASIC",
+      "expected": "c64-game-ports",
+      "acceptable": [
+        "c64-sid"
+      ],
+      "predicted": "c64-game-ports",
+      "correct": true
+    },
+    {
+      "id": 46,
+      "query": "my C64 won't boot \u2014 just a blank/black screen on power up. where do I start troubleshooting the hardware",
+      "expected": "c64-hardware",
+      "acceptable": [],
+      "predicted": "c64-hardware",
+      "correct": true
+    },
+    {
+      "id": 47,
+      "query": "what chip is at U18 on a C64 board and what voltage does the power brick put out",
+      "expected": "c64-hardware",
+      "acceptable": [],
+      "predicted": "c64-hardware",
+      "correct": true
+    },
+    {
+      "id": 48,
+      "query": "how do I tell which board revision my Commodore 64 is, the 5-pin vs 8-pin video ones",
+      "expected": "c64-hardware",
+      "acceptable": [],
+      "predicted": "c64-hardware",
+      "correct": true
+    },
+    {
+      "id": 49,
+      "query": "I have a .prg file and no idea what it does. how do I disassemble it and find where it starts?",
+      "expected": "c64-disassembly",
+      "acceptable": [],
+      "predicted": "c64-disassembly",
+      "correct": true
+    },
+    {
+      "id": 50,
+      "query": "reading a C64 memory dump, theres a JSR to $FFD2 and writes to $D015 \u2014 what is this code doing",
+      "expected": "c64-disassembly",
+      "acceptable": [],
+      "predicted": "c64-disassembly",
+      "correct": true
+    },
+    {
+      "id": 51,
+      "query": "how do I find the SYS address that launches the machine code in a basic loader stub",
+      "expected": "c64-disassembly",
+      "acceptable": [
+        "c64-assembly"
+      ],
+      "predicted": "c64-disassembly",
+      "correct": true
+    },
+    {
+      "id": 52,
+      "query": "give me a high level overview of how the Commodore 64 works and where I should start learning to program it",
+      "expected": "c64",
+      "acceptable": [
+        "c64-basic"
+      ],
+      "predicted": "c64",
+      "correct": true
+    },
+    {
+      "id": 53,
+      "query": "what are all the chips in a C64 and which skill covers what",
+      "expected": "c64",
+      "acceptable": [
+        "c64-hardware"
+      ],
+      "predicted": "c64-hardware",
+      "correct": true
+    },
+    {
+      "id": 54,
+      "query": "how do I smooth-scroll the whole screen horizontally on the C64",
+      "expected": "c64-graphics",
+      "acceptable": [
+        "c64-vic-ii"
+      ],
+      "predicted": "c64-graphics",
+      "correct": true
+    },
+    {
+      "id": 55,
+      "query": "explain the operator precedence in Commodore BASIC, like does AND bind tighter than OR",
+      "expected": "c64-basic",
+      "acceptable": [],
+      "predicted": "c64-basic",
+      "correct": true
+    },
+    {
+      "id": 56,
+      "query": "how do I read the disk drive's error channel to see why a command failed",
+      "expected": "c64-disk",
+      "acceptable": [
+        "c64-io"
+      ],
+      "predicted": "c64-disk",
+      "correct": true
+    },
+    {
+      "id": 57,
+      "query": "set up a stable raster interrupt with cycle-exact timing, accounting for bad lines and the 1-cycle jitter",
+      "expected": "c64-vic-ii",
+      "acceptable": [
+        "c64-assembly"
+      ],
+      "predicted": "c64-vic-ii",
+      "correct": true
+    },
+    {
+      "id": 58,
+      "query": "whats a good emulator to run C64 games on my mac and where do I download ROMs",
+      "expected": "none",
+      "acceptable": [],
+      "predicted": "none",
+      "correct": true
+    },
+    {
+      "id": 59,
+      "query": "can you recommend some classic Commodore 64 games worth playing",
+      "expected": "none",
+      "acceptable": [],
+      "predicted": "none",
+      "correct": true
+    },
+    {
+      "id": 60,
+      "query": "help me write a python script to parse a CSV of my expenses",
+      "expected": "none",
+      "acceptable": [],
+      "predicted": "none",
+      "correct": true
+    },
+    {
+      "id": 61,
+      "query": "how do I encode a 6502 ADC instruction's opcode bytes \u2014 is this the same on the C64's 6510?",
+      "expected": "c64-assembly",
+      "acceptable": [
+        "c64-disassembly"
+      ],
+      "predicted": "c64-assembly",
+      "correct": true
+    },
+    {
+      "id": 62,
+      "query": "how do I make an explosion sound effect on the Commodore 64",
+      "expected": "c64-sid",
+      "acceptable": [],
+      "predicted": "c64-sid",
+      "correct": true
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "reviews": [
+    {
+      "run_id": "eval-c64-with_skill-run-1",
+      "feedback": "This produces basic examples that stand mostly without description, e.g. the plain POKE in the sound example. Not actually a good answer for the prompt of a \"new to C64\" coder.",
+      "timestamp": "2026-05-23T11:34:37.842Z"
+    },
+    {
+      "run_id": "eval-c64-assembly-with_skill-run-1",
+      "feedback": "The no-skill version produces a 1000-character code right away, while we are producing the solution first that the user likely does not want. It is recovered by a proper hint, but still slightly worse.",
+      "timestamp": "2026-05-23T11:34:37.842Z"
+    },
+    {
+      "run_id": "eval-c64-basic-with_skill-run-1",
+      "feedback": "great",
+      "timestamp": "2026-05-23T11:34:37.842Z"
+    }
+  ],
+  "status": "in_progress"
+}

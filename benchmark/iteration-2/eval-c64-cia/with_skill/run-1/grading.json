@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "On WRITE, bit 7 is the set/clear control: if bit 7 = 1 the 1-bits set (enable) those mask bits; if bit 7 = 0 the 1-bits clear (disable) them",
+      "passed": true,
+      "evidence": "'Bit 7 = set/clear select... Bit 7 = 1 \u2192 enables that source. Bit 7 = 0 \u2192 disables that source.'"
+    },
+    {
+      "text": "On READ, the register returns the current interrupt flags",
+      "passed": true,
+      "evidence": "'READ side = flags (INT DATA)... Returns which sources fired'"
+    },
+    {
+      "text": "Reading the ICR CLEARS the interrupt flags (and acknowledges/de-asserts the interrupt)",
+      "passed": true,
+      "evidence": "'Read clears all flags and releases the /IRQ line.'"
+    },
+    {
+      "text": "Bit 7 on READ indicates whether an interrupt occurred (IR flag)",
+      "passed": true,
+      "evidence": "'Bit 7 (IR)=1 means this chip raised the IRQ.'"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

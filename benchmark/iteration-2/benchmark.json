@@ -1,0 +1,1130 @@
+{
+  "metadata": {
+    "skill_name": "c64-set-hard",
+    "skill_path": "<path/to/skill>",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-05-23T11:48:18Z",
+    "evals_run": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 8.8,
+        "tokens": 21862,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Accumulator A is at $030C (780)",
+          "passed": true,
+          "evidence": "Table row: `$030C` 780 SAREG A"
+        },
+        {
+          "text": "X register is at $030D (781)",
+          "passed": true,
+          "evidence": "Table row: `$030D` 781 SXREG X"
+        },
+        {
+          "text": "Y register is at $030E (782)",
+          "passed": true,
+          "evidence": "Table row: `$030E` 782 SYREG Y"
+        },
+        {
+          "text": "Status register (SR/flags) is at $030F (783)",
+          "passed": true,
+          "evidence": "Table row: `$030F` 783 SPREG status P"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 11.6,
+        "tokens": 21482,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "On WRITE, bit 7 is the set/clear control: if bit 7 = 1 the 1-bits set (enable) those mask bits; if bit 7 = 0 the 1-bits clear (disable) them",
+          "passed": true,
+          "evidence": "'Bit 7 = set/clear select... Bit 7 = 1 \u2192 enables that source. Bit 7 = 0 \u2192 disables that source.'"
+        },
+        {
+          "text": "On READ, the register returns the current interrupt flags",
+          "passed": true,
+          "evidence": "'READ side = flags (INT DATA)... Returns which sources fired'"
+        },
+        {
+          "text": "Reading the ICR CLEARS the interrupt flags (and acknowledges/de-asserts the interrupt)",
+          "passed": true,
+          "evidence": "'Read clears all flags and releases the /IRQ line.'"
+        },
+        {
+          "text": "Bit 7 on READ indicates whether an interrupt occurred (IR flag)",
+          "passed": true,
+          "evidence": "'Bit 7 (IR)=1 means this chip raised the IRQ.'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 5.2,
+        "tokens": 20397,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Open the command channel with OPEN 15,8,15 and read it with INPUT#15 (into four variables: code, message, track, sector)",
+          "passed": true,
+          "evidence": "`10 OPEN 15,8,15` and `30 INPUT#15,EN,EM$,ET,ES` with EN=error number, EM$=message, ET=track, ES=sector"
+        },
+        {
+          "text": "A successful command returns error code 00",
+          "passed": true,
+          "evidence": "\"00 OK 00 00\", EN=0"
+        },
+        {
+          "text": "The success message text is OK",
+          "passed": true,
+          "evidence": "EM$=\"OK\""
+        },
+        {
+          "text": "The track and sector fields are 00,00 on success",
+          "passed": true,
+          "evidence": "ET=0, ES=0; response \"00 OK 00 00\""
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 16.1,
+        "tokens": 21138,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The paddle position values are read from SID registers $D419 (POTX) and $D41A (POTY)",
+          "passed": true,
+          "evidence": "POTX 54297/$D419, POTY 54298/$D41A \u2014 correct addresses"
+        },
+        {
+          "text": "CIA1 port A ($DC00) bits 6 and 7 select which control port's paddle pair is routed to the SID",
+          "passed": true,
+          "evidence": "'top 2 bits of CIA1 PRA $DC00'; $40 (bit6)\u2192port1, $80 (bit7)\u2192port2 \u2014 correct"
+        },
+        {
+          "text": "Notes the keyboard matrix shares CIA1 port A, so keyboard scanning interferes with paddle selection (must disable/avoid keyscan)",
+          "passed": true,
+          "evidence": "'lower bits drive keyboard-scan columns... Writing select value clobbers keyboard scan'; uses SEI to stop keyscan IRQ"
+        },
+        {
+          "text": "Each port has two paddles (X and Y), giving four total across the two ports",
+          "passed": true,
+          "evidence": "'Two ports \u00d7 two pots each = 4 paddles'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 4,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 14.9,
+        "tokens": 22508,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Bits 7-4 select the video matrix (screen RAM) base, in units of $0400 (1K) within the VIC bank",
+          "passed": true,
+          "evidence": "'4 bits = VM13\u2013VM10. Value \u00d7 $0400 (1K granularity) within 16K bank.'"
+        },
+        {
+          "text": "Bits 3-1 select the character generator base, in units of $0800 (2K) within the bank",
+          "passed": true,
+          "evidence": "'3 bits = CB13\u2013CB11. Value field \u00d7 $0800 (2K granularity) within bank.'"
+        },
+        {
+          "text": "In bitmap mode, bit 3 selects the bitmap base at $0000 or $2000 within the bank (8K granularity)",
+          "passed": true,
+          "evidence": "'bit3=0 \u2192 bitmap at $0000; bit3=1 \u2192 bitmap at $2000 (8K granularity).'"
+        },
+        {
+          "text": "Bit 0 is unused",
+          "passed": true,
+          "evidence": "'Bit 0 = unused' and shown as unused in bit layout"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 5,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 6.9,
+        "tokens": 22622,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Supplies +5V DC (regulated)",
+          "passed": true,
+          "evidence": "'+5V DC regulated \u2014 direct to all digital logic'"
+        },
+        {
+          "text": "Supplies 9V AC (unregulated)",
+          "passed": true,
+          "evidence": "'9V AC \u2014 rectified on-board'; AC inherently unregulated"
+        },
+        {
+          "text": "The classic failure is the 5V regulator failing such that the 5V rail rises (overvoltage)",
+          "passed": true,
+          "evidence": "'brick's internal 5V regulator drifts high as it ages...overvolted 5V'"
+        },
+        {
+          "text": "The overvoltage damages chips (RAM and/or other ICs)",
+          "passed": true,
+          "evidence": "'fries RAM, PLA (U17), and other chips at once'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 6,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 9.3,
+        "tokens": 21077,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "SETLFS: A = logical file number, X = device number, Y = secondary address",
+          "passed": true,
+          "evidence": "'A = logical file number (1\u2013255)', 'X = device number', 'Y = secondary address'"
+        },
+        {
+          "text": "SETLFS is at $FFBA",
+          "passed": true,
+          "evidence": "'SETLFS \u2014 $FFBA' and 'JSR $FFBA ; SETLFS'"
+        },
+        {
+          "text": "GETIN: returns the input character in the accumulator A (0 if no key/character is available)",
+          "passed": true,
+          "evidence": "'A = PETSCII char from keyboard queue, or A=0 if queue empty'"
+        },
+        {
+          "text": "GETIN is at $FFE4",
+          "passed": true,
+          "evidence": "'GETIN \u2014 $FFE4' and 'JSR $FFE4 ; GETIN'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 7,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 42.2,
+        "tokens": 24815,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "$37: BASIC ROM at $A000-$BFFF, I/O at $D000-$DFFF, KERNAL ROM at $E000-$FFFF",
+          "passed": true,
+          "evidence": "$37 table: $A000-$BFFF BASIC ROM, $D000-$DFFF I/O, $E000-$FFFF KERNAL ROM"
+        },
+        {
+          "text": "$35: RAM at $A000-$BFFF, I/O at $D000-$DFFF, RAM at $E000-$FFFF (BASIC and KERNAL ROM banked out, I/O still visible)",
+          "passed": true,
+          "evidence": "$35 table: $A000-$BFFF RAM (HIRAM=0 kills BASIC), $D000-$DFFF I/O, $E000-$FFFF RAM (HIRAM=0)"
+        },
+        {
+          "text": "$34: RAM everywhere including $A000-$BFFF, $D000-$DFFF and $E000-$FFFF (I/O banked out, all RAM)",
+          "passed": true,
+          "evidence": "$34 table: all three regions RAM; D000 'not I/O! both HIRAM+LORAM low'"
+        },
+        {
+          "text": "Correctly ties this to the LORAM/HIRAM/CHAREN bits (bits 0/1/2 of $01)",
+          "passed": true,
+          "evidence": "'bits 2-0 of $01 = CHAREN(b2), HIRAM(b1), LORAM(b0)'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 8,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 5.6,
+        "tokens": 20567,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Screen code for @ is 0",
+          "passed": true,
+          "evidence": "Table: `@` | **0**"
+        },
+        {
+          "text": "Screen code for A is 1",
+          "passed": true,
+          "evidence": "Table: `A` | **1**"
+        },
+        {
+          "text": "Screen code for space is 32",
+          "passed": true,
+          "evidence": "Table: space | **32**"
+        },
+        {
+          "text": "Screen code for a reverse space is 160 (the normal code + 128)",
+          "passed": true,
+          "evidence": "Table: reverse space | **160** (32 + 128)"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 9,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 4.2,
+        "tokens": 20472,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "CHR$(14) switches to lower-case / text mode",
+          "passed": true,
+          "evidence": "'Lower-case charset | 14' and note 'CHR$(14) = lower/upper set'"
+        },
+        {
+          "text": "CHR$(17) is cursor down",
+          "passed": true,
+          "evidence": "'Cursor down | 17'"
+        },
+        {
+          "text": "CHR$(18) is RVS ON (reverse on)",
+          "passed": true,
+          "evidence": "'RVS ON | 18'"
+        },
+        {
+          "text": "CHR$(5) is white",
+          "passed": true,
+          "evidence": "'White | 5'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 10,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 10.7,
+        "tokens": 20447,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Attack time for value 11 is 800 ms",
+          "passed": true,
+          "evidence": "'Attack rate 11 ($B) \u2192 800 ms' \u2014 matches SID attack table"
+        },
+        {
+          "text": "Decay/Release time for value 11 is 2.4 seconds",
+          "passed": true,
+          "evidence": "'Decay/Release rate 11 ($B) \u2192 2.4 s (2400 ms)' \u2014 correct"
+        },
+        {
+          "text": "Attack time for value 0 is 2 ms",
+          "passed": true,
+          "evidence": "'Attack rate 0 \u2192 2 ms' \u2014 correct minimum attack rate"
+        },
+        {
+          "text": "Decay/Release time for value 0 is 6 ms",
+          "passed": true,
+          "evidence": "'Decay/Release rate 0 \u2192 6 ms' \u2014 correct, decay/release is 3x attack"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 11,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 11.9,
+        "tokens": 20642,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "States the noise generator can lock up / go silent (the waveform output can freeze near zero)",
+          "passed": true,
+          "evidence": "\"noise locks silent\"; \"noise output stuck at 0 (silence)\""
+        },
+        {
+          "text": "States it stays silent until reset",
+          "passed": true,
+          "evidence": "\"Permanent until reset, even after you reselect noise alone.\""
+        },
+        {
+          "text": "Says it is reset by the TEST bit (or by RES / chip reset)",
+          "passed": true,
+          "evidence": "\"pulse the TEST bit (bit3, value 8). TEST resets the oscillator and reloads the shift register\""
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 12,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 6.4,
+        "tokens": 22961,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Raster line is in the range $30 to $F7 (48 to 247)",
+          "passed": true,
+          "evidence": "\"$30 \u2264 RASTER \u2264 $F7 (line 48\u2013247)\""
+        },
+        {
+          "text": "The low 3 bits of the raster line equal YSCROLL (RASTER & 7 == YSCROLL, the low 3 bits of $D011)",
+          "passed": true,
+          "evidence": "\"(RASTER & 7) == YSCROLL \u2014 low 3 bits of raster equal $D011 bits 2\u20130\""
+        },
+        {
+          "text": "The DEN (display enable) bit was set at some point in raster line $30",
+          "passed": true,
+          "evidence": "\"display-enable bit ($D011 bit 4) set at some point during raster line $30\"; DEN=bit4 correct"
+        },
+        {
+          "text": "Describes that on a bad line the VIC stalls the CPU to do the c-accesses (badline steals cycles)",
+          "passed": true,
+          "evidence": "\"VIC pulls BA low, stalls 6510 ~40\u201343 cycles to fetch 40 char pointers\""
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 13,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 4.9,
+        "tokens": 22165,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "PAL 6569: 63 cycles per raster line",
+          "passed": true,
+          "evidence": "Table: 6569 PAL-B Cycles/line **63**"
+        },
+        {
+          "text": "PAL 6569: 312 raster lines per frame",
+          "passed": true,
+          "evidence": "Table: 6569 PAL-B Lines/frame **312**"
+        },
+        {
+          "text": "NTSC 6567R8: 65 cycles per raster line",
+          "passed": true,
+          "evidence": "Table: 6567R8 NTSC-M Cycles/line **65**"
+        },
+        {
+          "text": "NTSC 6567R8: 263 raster lines per frame",
+          "passed": true,
+          "evidence": "Table: 6567R8 NTSC-M Lines/frame **263**"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 18.8,
+        "tokens": 18349,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Accumulator A is at $030C (780)",
+          "passed": true,
+          "evidence": "Table: A | $030C | 780 | accumulator"
+        },
+        {
+          "text": "X register is at $030D (781)",
+          "passed": true,
+          "evidence": "Table: X | $030D | 781 | X index"
+        },
+        {
+          "text": "Y register is at $030E (782)",
+          "passed": true,
+          "evidence": "Table: Y | $030E | 782 | Y index"
+        },
+        {
+          "text": "Status register (SR/flags) is at $030F (783)",
+          "passed": true,
+          "evidence": "Table: P (SR) | $030F | 783 | processor status"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 21.5,
+        "tokens": 18675,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "On WRITE, bit 7 is the set/clear control: if bit 7 = 1 the 1-bits set (enable) those mask bits; if bit 7 = 0 the 1-bits clear (disable) them",
+          "passed": true,
+          "evidence": "\"bit 7 = 1 \u2192 each 1-bit in value sets (enables) that mask bit; bit 7 = 0 \u2192 each 1-bit in value clears (disables) that mask bit\""
+        },
+        {
+          "text": "On READ, the register returns the current interrupt flags",
+          "passed": true,
+          "evidence": "\"READ ($DC0D PEEK) Returns pending-interrupt flags\" with correct bit map"
+        },
+        {
+          "text": "Reading the ICR CLEARS the interrupt flags (and acknowledges/de-asserts the interrupt)",
+          "passed": true,
+          "evidence": "\"Reading DATA clears all 5 flag bits AND bit 7 to 0, and releases the interrupt line (acknowledges it)\""
+        },
+        {
+          "text": "Bit 7 on READ indicates whether an interrupt occurred (IR flag)",
+          "passed": true,
+          "evidence": "\"7 | IR \u2014 set if any enabled source latched. This is what drove the IRQ/NMI line.\""
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 12.3,
+        "tokens": 17674,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Open the command channel with OPEN 15,8,15 and read it with INPUT#15 (into four variables: code, message, track, sector)",
+          "passed": true,
+          "evidence": "`10 OPEN 15,8,15` and `20 INPUT#15,EN,EM$,ET,ES` \u2014 four vars: error number, message, track, sector"
+        },
+        {
+          "text": "A successful command returns error code 00",
+          "passed": true,
+          "evidence": "\"After a command that succeeded: 0 OK 0 0\"; `00, OK,00,00`; `EN=0`"
+        },
+        {
+          "text": "The success message text is OK",
+          "passed": true,
+          "evidence": "`EM$=\"OK\"`"
+        },
+        {
+          "text": "The track and sector fields are 00,00 on success",
+          "passed": true,
+          "evidence": "`ET=0`, `ES=0`; shown as `00,00`"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 66.1,
+        "tokens": 21776,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The paddle position values are read from SID registers $D419 (POTX) and $D41A (POTY)",
+          "passed": true,
+          "evidence": "POTX = $D419 (54297), POTY = $D41A (54298) \u2014 correct"
+        },
+        {
+          "text": "CIA1 port A ($DC00) bits 6 and 7 select which control port's paddle pair is routed to the SID",
+          "passed": true,
+          "evidence": "\"Select register \u2014 CIA1 Port A $DC00 (56320), bits 6 & 7\" with PA6/PA7 table selecting port 1/2"
+        },
+        {
+          "text": "Notes the keyboard matrix shares CIA1 port A, so keyboard scanning interferes with paddle selection (must disable/avoid keyscan)",
+          "passed": true,
+          "evidence": "\"PA6/PA7 do double duty \u2014 keyboard matrix column drive lines AND paddle select... KERNAL IRQ... rewrites $DC00... Must disable IRQ (SEI)\""
+        },
+        {
+          "text": "Each port has two paddles (X and Y), giving four total across the two ports",
+          "passed": true,
+          "evidence": "Each port's pair read as POTX=first paddle, POTY=second; paddle A/B per port across port 1 and port 2 = four total"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 4,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 80.6,
+        "tokens": 20126,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Bits 7-4 select the video matrix (screen RAM) base, in units of $0400 (1K) within the VIC bank",
+          "passed": true,
+          "evidence": "\"Bits 7-4 (VM13\u2013VM10): video matrix / screen base. Granularity 1 KB ($0400). 16 positions in bank.\""
+        },
+        {
+          "text": "Bits 3-1 select the character generator base, in units of $0800 (2K) within the bank",
+          "passed": true,
+          "evidence": "\"Bits 3-1 (CB13\u2013CB11): character generator base (text mode). Granularity 2 KB ($0800). 8 positions in bank.\""
+        },
+        {
+          "text": "In bitmap mode, bit 3 selects the bitmap base at $0000 or $2000 within the bank (8K granularity)",
+          "passed": true,
+          "evidence": "\"only bit 3 (CB13) matters. Bitmap is 8 KB, base = bit3 * 8192 \u2192 offset $0000 or $2000\""
+        },
+        {
+          "text": "Bit 0 is unused",
+          "passed": true,
+          "evidence": "\"Bit 0: unused. Reads back 1 on real VIC-II.\""
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 5,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 17.4,
+        "tokens": 17947,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Supplies +5V DC (regulated)",
+          "passed": true,
+          "evidence": "\"+5V DC regulated \u2014 powers all digital logic\""
+        },
+        {
+          "text": "Supplies 9V AC (unregulated)",
+          "passed": true,
+          "evidence": "\"9V AC (unregulated) \u2014 feeds onboard circuits\""
+        },
+        {
+          "text": "The classic failure is the 5V regulator failing such that the 5V rail rises (overvoltage)",
+          "passed": true,
+          "evidence": "\"5V regulator fails shorted... dumps the raw rectified input (~9\u201312V+ DC) straight onto the 5V rail\""
+        },
+        {
+          "text": "The overvoltage damages chips (RAM and/or other ICs)",
+          "passed": true,
+          "evidence": "\"RAM (4164s) and the CPU/PLA/CIA cook\""
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 6,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 22.5,
+        "tokens": 18565,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "SETLFS: A = logical file number, X = device number, Y = secondary address",
+          "passed": true,
+          "evidence": "Table: A=logical file number, X=device number, Y=secondary address"
+        },
+        {
+          "text": "SETLFS is at $FFBA",
+          "passed": true,
+          "evidence": "Header 'SETLFS \u2014 $FFBA (65466)' and JSR $FFBA"
+        },
+        {
+          "text": "GETIN: returns the input character in the accumulator A (0 if no key/character is available)",
+          "passed": true,
+          "evidence": "Returns table: A=PETSCII byte read; A=0 if buffer empty"
+        },
+        {
+          "text": "GETIN is at $FFE4",
+          "passed": true,
+          "evidence": "Header 'GETIN \u2014 $FFE4 (65508)' and JSR $FFE4"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 7,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 33.5,
+        "tokens": 19976,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "$37: BASIC ROM at $A000-$BFFF, I/O at $D000-$DFFF, KERNAL ROM at $E000-$FFFF",
+          "passed": true,
+          "evidence": "$37 section: A000-BFFF BASIC ROM, D000-DFFF I/O (VIC/SID/CIA), E000-FFFF KERNAL ROM. All correct."
+        },
+        {
+          "text": "$35: RAM at $A000-$BFFF, I/O at $D000-$DFFF, RAM at $E000-$FFFF (BASIC and KERNAL ROM banked out, I/O still visible)",
+          "passed": true,
+          "evidence": "$35 section: A000 RAM (HIRAM=0 no BASIC), D000 I/O (CHAREN=1 still visible), E000 RAM (no KERNAL). Correct."
+        },
+        {
+          "text": "$34: RAM everywhere including $A000-$BFFF, $D000-$DFFF and $E000-$FFFF (I/O banked out, all RAM)",
+          "passed": true,
+          "evidence": "$34 section: all three regions RAM, I/O hidden; correctly notes LORAM=HIRAM=0 forces RAM at $D000 despite CHAREN=1."
+        },
+        {
+          "text": "Correctly ties this to the LORAM/HIRAM/CHAREN bits (bits 0/1/2 of $01)",
+          "passed": true,
+          "evidence": "'bit0 LORAM, bit1 HIRAM, bit2 CHAREN'; correctly derives ROM/IO visibility from these bits."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 8,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 4.9,
+        "tokens": 17485,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Screen code for @ is 0",
+          "passed": true,
+          "evidence": "`@` | **0**"
+        },
+        {
+          "text": "Screen code for A is 1",
+          "passed": true,
+          "evidence": "`A` | **1**"
+        },
+        {
+          "text": "Screen code for space is 32",
+          "passed": true,
+          "evidence": "space | **32**"
+        },
+        {
+          "text": "Screen code for a reverse space is 160 (the normal code + 128)",
+          "passed": true,
+          "evidence": "reverse space | **160**; 160 = 32 + 128"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 9,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 7.5,
+        "tokens": 17552,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "CHR$(14) switches to lower-case / text mode",
+          "passed": true,
+          "evidence": "Table: 'Lower-case set (text mode) | CHR$(14)'"
+        },
+        {
+          "text": "CHR$(17) is cursor down",
+          "passed": true,
+          "evidence": "Table: 'Cursor down | CHR$(17)'"
+        },
+        {
+          "text": "CHR$(18) is RVS ON (reverse on)",
+          "passed": true,
+          "evidence": "Table: 'Reverse on (RVS ON) | CHR$(18)'"
+        },
+        {
+          "text": "CHR$(5) is white",
+          "passed": true,
+          "evidence": "Table: 'White | CHR$(5)'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 10,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 17.6,
+        "tokens": 18139,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Attack time for value 11 is 800 ms",
+          "passed": true,
+          "evidence": "'Attack: **800 ms**' for Value 11; matches standard SID table"
+        },
+        {
+          "text": "Decay/Release time for value 11 is 2.4 seconds",
+          "passed": true,
+          "evidence": "'Decay/Release: **2.4 s** (2400 ms)' for Value 11; correct (3x attack)"
+        },
+        {
+          "text": "Attack time for value 0 is 2 ms",
+          "passed": true,
+          "evidence": "'Attack: **2 ms**' for Value 0; matches table"
+        },
+        {
+          "text": "Decay/Release time for value 0 is 6 ms",
+          "passed": true,
+          "evidence": "'Decay/Release: **6 ms**' for Value 0; correct (3x 2ms)"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 11,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 44.0,
+        "tokens": 19587,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "States the noise generator can lock up / go silent (the waveform output can freeze near zero)",
+          "passed": true,
+          "evidence": "\"noise generator stuck, output silent/DC\"; \"register progressively fills with zeros \u2192 LFSR = all-0\""
+        },
+        {
+          "text": "States it stays silent until reset",
+          "passed": true,
+          "evidence": "\"stuck, output silent/DC until reseeded\""
+        },
+        {
+          "text": "Says it is reset by the TEST bit (or by RES / chip reset)",
+          "passed": true,
+          "evidence": "\"set TEST bit ($08), or full SID reset\"; TEST=bit 3=$08 correct"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 12,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 14.4,
+        "tokens": 17981,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Raster line is in the range $30 to $F7 (48 to 247)",
+          "passed": true,
+          "evidence": "States 'RASTER >= $30 AND RASTER <= $F7 (raster in 48\u2013247)'"
+        },
+        {
+          "text": "The low 3 bits of the raster line equal YSCROLL (RASTER & 7 == YSCROLL, the low 3 bits of $D011)",
+          "passed": true,
+          "evidence": "States '(RASTER & 7) == YSCROLL (low 3 bits of raster equal YSCROLL)' and 'YSCROLL = $D011 low 3 bits'"
+        },
+        {
+          "text": "The DEN (display enable) bit was set at some point in raster line $30",
+          "passed": true,
+          "evidence": "States 'DEN bit was set at some point during raster line $30 (48)'"
+        },
+        {
+          "text": "Describes that on a bad line the VIC stalls the CPU to do the c-accesses (badline steals cycles)",
+          "passed": true,
+          "evidence": "States 'VIC asserts BA low, steals cycles 12\u201354 from CPU ... to fetch video matrix + color data (c-access). CPU halted those cycles.'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 13,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 14.1,
+        "tokens": 17400,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "PAL 6569: 63 cycles per raster line",
+          "passed": true,
+          "evidence": "\"PAL 6569: 63 cycles/raster line\""
+        },
+        {
+          "text": "PAL 6569: 312 raster lines per frame",
+          "passed": true,
+          "evidence": "\"312 raster lines/frame\""
+        },
+        {
+          "text": "NTSC 6567R8: 65 cycles per raster line",
+          "passed": true,
+          "evidence": "\"NTSC 6567R8: 65 cycles/raster line\""
+        },
+        {
+          "text": "NTSC 6567R8: 263 raster lines per frame",
+          "passed": true,
+          "evidence": "\"263 raster lines/frame\""
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 11.3357,
+        "stddev": 9.6328,
+        "min": 4.2,
+        "max": 42.2
+      },
+      "tokens": {
+        "mean": 21653.9286,
+        "stddev": 1269.1426,
+        "min": 20397,
+        "max": 24815
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 26.8,
+        "stddev": 22.2583,
+        "min": 4.9,
+        "max": 80.6
+      },
+      "tokens": {
+        "mean": 18659.4286,
+        "stddev": 1269.9091,
+        "min": 17400,
+        "max": 21776
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "-15.5",
+      "tokens": "+2994"
+    }
+  },
+  "notes": []
+}

@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "POKEs 53269 ($D015) to enable sprite 0 (value 1)",
+      "passed": true,
+      "evidence": "Line 10: POKE 53269,1 REM ENABLE SPRITE 0 (VIC REG $D015)"
+    },
+    {
+      "text": "Sets the sprite 0 pointer at 2040 (end of screen RAM)",
+      "passed": true,
+      "evidence": "Line 20: POKE 2040,13 REM SPRITE 0 DATA POINTER; 2040 is correct sprite 0 pointer"
+    },
+    {
+      "text": "POKEs 53248/53249 ($D000/$D001) for X=160, Y=100",
+      "passed": true,
+      "evidence": "Lines 30-40: POKE 53248,160 and POKE 53249,100 with correct $D000/$D001"
+    },
+    {
+      "text": "POKEs 53287 ($D027) to 2 for red",
+      "passed": true,
+      "evidence": "Line 50: POKE 53287,2 REM COLOR = RED ($D027); 53287=$D027, 2=red correct"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

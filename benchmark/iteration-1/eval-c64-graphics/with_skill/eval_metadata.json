@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-graphics",
+  "eval_name": "c64-graphics (with_skill)",
+  "prompt": "Show me how to switch the C64 into standard high-resolution bitmap mode from BASIC, with the bitmap at $2000 and screen memory at $0400. Which registers/POKEs set this up?",
+  "assertions": [
+    "Sets the bitmap mode bit (BMM, bit 5) in $D011 / location 53265",
+    "Sets $D018 / location 53272 so the bitmap base points at $2000",
+    "Mentions the bitmap is 8000 bytes",
+    "Mentions color comes from screen RAM (and clearing the bitmap)"
+  ]
+}

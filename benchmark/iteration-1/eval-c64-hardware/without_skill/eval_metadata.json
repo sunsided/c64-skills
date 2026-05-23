@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-hardware",
+  "eval_name": "c64-hardware (without_skill)",
+  "prompt": "My Commodore 64 powers on (power LED is on) but the screen is completely blank \u2014 no border, no text. What are the most likely hardware causes and what should I check first?",
+  "assertions": [
+    "Names the PLA (906114 / 82S100) as a common cause of no-boot/blank screen",
+    "Mentions checking the power supply / 5V rail",
+    "Mentions RAM and/or the kernal/clock as suspects",
+    "Gives a sensible first-check ordering rather than vague advice"
+  ]
+}

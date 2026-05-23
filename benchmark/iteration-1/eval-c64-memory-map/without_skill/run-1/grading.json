@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Explains the character ROM appears at $D000-$DFFF when CHAREN (bit 2 of $01) is cleared",
+      "passed": true,
+      "evidence": "'CHAREN = bit 2', '0 = char ROM at $D000', 'Clear bit 2 \u2192 $33. Char ROM now readable at $D000\u2013$DFFF'"
+    },
+    {
+      "text": "Sets $01 to $33 (or otherwise clears bit 2) to expose char ROM, then restores it (e.g. $37)",
+      "passed": true,
+      "evidence": "'Clear bit 2 \u2192 $33'; BASIC POKE 1,PEEK(1) AND 251 then OR 4; ASM AND #%11111011 then ORA #%00000100; cites default $37"
+    },
+    {
+      "text": "Disables interrupts (SEI) during the copy because the I/O area is banked out",
+      "passed": true,
+      "evidence": "ASM uses 'sei'/'cli'; explains 'CHAREN=0 banks I/O out' and IRQ would read font bytes instead of CIA registers"
+    },
+    {
+      "text": "Copies 4096 bytes (2 char sets) or 2048 per set to $3000",
+      "passed": true,
+      "evidence": "FOR I=0 TO 4095 : POKE 12288+I,PEEK(53248+I) (12288=$3000, full 4KB); notes 'FOR I=0 TO 2047' for one set"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

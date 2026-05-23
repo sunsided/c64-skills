@@ -1,0 +1,10 @@
+{
+  "eval_id": "c64-sid-noise",
+  "eval_name": "c64-sid-noise (with_skill)",
+  "prompt": "On the C64 SID, what happens if I select the noise waveform at the same time as another waveform (e.g. noise + pulse) in a voice's control register, and how do I recover from it?",
+  "assertions": [
+    "States the noise generator can lock up / go silent (the waveform output can freeze near zero)",
+    "States it stays silent until reset",
+    "Says it is reset by the TEST bit (or by RES / chip reset)"
+  ]
+}

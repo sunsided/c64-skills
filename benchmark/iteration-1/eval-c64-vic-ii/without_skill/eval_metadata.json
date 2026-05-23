@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-vic-ii",
+  "eval_name": "c64-vic-ii (without_skill)",
+  "prompt": "Explain how to set up a raster interrupt on the C64 that fires at raster line 100, in 6510 assembly: which registers to set, the 9th raster bit, enabling the interrupt, and acknowledging it.",
+  "assertions": [
+    "Writes 100 to $D012 and handles the 9th bit (bit 7 of $D011, cleared for line 100)",
+    "Enables the raster interrupt by setting bit 0 of $D01A",
+    "Acknowledges the interrupt by writing to $D019 in the handler",
+    "Sets the IRQ vector ($0314/$0315 or $FFFE) and uses SEI/CLI appropriately"
+  ]
+}

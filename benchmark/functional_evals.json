@@ -1,0 +1,118 @@
+{
+  "skill_set": "c64-*",
+  "note": "One functional task per skill. Assertions check objectively-verifiable C64 facts the skill should get right (and baseline Claude often gets wrong). Graded on the final answer text/code the run produces.",
+  "evals": [
+    {"id": "c64", "skill": "c64", "prompt": "I'm brand new to Commodore 64 programming. Give me a short orientation: the main chips, roughly where they live in the memory map, and where I'd look for sound vs sprites vs reading a joystick vs the disk drive.",
+     "assertions": [
+       "Names the VIC-II at $D000 (53248)",
+       "Names the SID at $D400 (54272)",
+       "Names the two CIA chips at $DC00 and $DD00",
+       "States KERNAL ROM at $E000 and BASIC ROM at $A000",
+       "Points sound to SID, sprites to VIC/sprites, joystick to control ports/CIA, disk to the disk topic"]},
+    {"id": "c64-basic", "skill": "c64-basic", "prompt": "Write a Commodore 64 BASIC program that asks the user for their name with INPUT and then prints HELLO followed by the name five times using a FOR/NEXT loop.",
+     "assertions": [
+       "Uses INPUT with a string variable (name ending in $)",
+       "Uses a FOR ... NEXT loop iterating 5 times",
+       "Uses numbered BASIC lines",
+       "Concatenates/prints HELLO together with the name variable",
+       "Is valid runnable C64 BASIC V2 (no non-existent keywords)"]},
+    {"id": "c64-petscii", "skill": "c64-petscii", "prompt": "In C64 BASIC, how do I clear the screen and print the word READY in white? Give the exact CHR$ codes, and explain why the screen code I'd POKE to screen memory for the letter A is different from its PETSCII/CHR$ code.",
+     "assertions": [
+       "Gives CHR$(147) to clear the screen",
+       "Gives CHR$(5) for white text",
+       "States screen code for A is 1 while PETSCII/CHR$ for A is 65",
+       "Explains POKEing screen RAM uses screen codes, PRINT/CHR$ uses PETSCII"]},
+    {"id": "c64-keyboard", "skill": "c64-keyboard", "prompt": "Explain what each of these C64 keys/combos does: the Commodore (C=) key, RUN/STOP, RESTORE, RUN/STOP+RESTORE together, and the function keys f1 through f8.",
+     "assertions": [
+       "C= key: with SHIFT switches upper-case/graphics vs upper/lower charset (and/or color selection)",
+       "RUN/STOP + RESTORE performs a warm reset / returns to BASIC (RESTORE triggers an NMI)",
+       "Explains only f1/f3/f5/f7 are unshifted and f2/f4/f6/f8 need SHIFT",
+       "Does not invent non-existent behavior"]},
+    {"id": "c64-graphics", "skill": "c64-graphics", "prompt": "Show me how to switch the C64 into standard high-resolution bitmap mode from BASIC, with the bitmap at $2000 and screen memory at $0400. Which registers/POKEs set this up?",
+     "assertions": [
+       "Sets the bitmap mode bit (BMM, bit 5) in $D011 / location 53265",
+       "Sets $D018 / location 53272 so the bitmap base points at $2000",
+       "Mentions the bitmap is 8000 bytes",
+       "Mentions color comes from screen RAM (and clearing the bitmap)"]},
+    {"id": "c64-sprites", "skill": "c64-sprites", "prompt": "Give me a Commodore 64 BASIC program that enables sprite 0, sets its data pointer, positions it at X=160 Y=100, and colors it red.",
+     "assertions": [
+       "POKEs 53269 ($D015) to enable sprite 0 (value 1)",
+       "Sets the sprite 0 pointer at 2040 (end of screen RAM)",
+       "POKEs 53248/53249 ($D000/$D001) for X=160, Y=100",
+       "POKEs 53287 ($D027) to 2 for red"]},
+    {"id": "c64-vic-ii", "skill": "c64-vic-ii", "prompt": "Explain how to set up a raster interrupt on the C64 that fires at raster line 100, in 6510 assembly: which registers to set, the 9th raster bit, enabling the interrupt, and acknowledging it.",
+     "assertions": [
+       "Writes 100 to $D012 and handles the 9th bit (bit 7 of $D011, cleared for line 100)",
+       "Enables the raster interrupt by setting bit 0 of $D01A",
+       "Acknowledges the interrupt by writing to $D019 in the handler",
+       "Sets the IRQ vector ($0314/$0315 or $FFFE) and uses SEI/CLI appropriately"]},
+    {"id": "c64-sid", "skill": "c64-sid", "prompt": "Write code (BASIC or 6510 assembly) to play roughly a one-second note on voice 1 of the SID using a sawtooth waveform, with a simple envelope.",
+     "assertions": [
+       "Sets master volume in $D418 / 54296 (low nibble, e.g. 15)",
+       "Sets voice 1 frequency in $D400/$D401",
+       "Sets the voice 1 control register $D404 to a sawtooth+gate value (sawtooth bit 32 + gate 1 = 33)",
+       "Sets attack/decay $D405 and sustain/release $D406",
+       "Clears the gate bit afterwards to release the note"]},
+    {"id": "c64-assembly", "skill": "c64-assembly", "prompt": "Write a 6510 machine-language routine, callable from BASIC with SYS 49152, that fills the C64 text screen with character code 81 (the ball). Show the assembly and how to enter and call it.",
+     "assertions": [
+       "Places the routine at $C000 (49152)",
+       "Loads #81 into A and stores across the 1000 bytes of screen RAM at $0400-$07E7",
+       "Ends the routine with RTS to return to BASIC",
+       "Shows calling it with SYS 49152",
+       "The screen-fill loop is correct (covers all 1000 cells, e.g. 4 pages via an index loop)"]},
+    {"id": "c64-kernal", "skill": "c64-kernal", "prompt": "Using KERNAL routines from 6510 assembly, print the two-character string HI to the screen. Give the routine address(es) and which register holds what.",
+     "assertions": [
+       "Uses CHROUT at $FFD2",
+       "Puts the character to print in the accumulator A",
+       "Uses PETSCII codes 72 for H and 73 for I",
+       "Calls CHROUT once per character (or loops)"]},
+    {"id": "c64-memory-map", "skill": "c64-memory-map", "prompt": "I want to copy the C64 character ROM into RAM at $3000 so I can edit the font. Explain the banking I need to do with $01 to see the character ROM, and why interrupts matter.",
+     "assertions": [
+       "Explains the character ROM appears at $D000-$DFFF when CHAREN (bit 2 of $01) is cleared",
+       "Sets $01 to $33 (or otherwise clears bit 2) to expose char ROM, then restores it (e.g. $37)",
+       "Disables interrupts (SEI) during the copy because the I/O area is banked out",
+       "Copies 4096 bytes (2 char sets) or 2048 per set to $3000"]},
+    {"id": "c64-cia", "skill": "c64-cia", "prompt": "Write 6510 code to set CIA #1 Timer A to generate an IRQ about 60 times per second, and explain the registers involved.",
+     "assertions": [
+       "Loads the Timer A latch at $DC04/$DC05",
+       "Enables the Timer A interrupt in the ICR $DC0D (with bit 7 set to mark 'set', bit 0 for timer A)",
+       "Starts the timer via control register A $DC0E (with continuous reload)",
+       "Acknowledges/handles by reading $DC0D in the IRQ handler"]},
+    {"id": "c64-io", "skill": "c64-io", "prompt": "In C64 BASIC, how do I open a channel to the printer (device 4), send one line of text to it, and close the channel?",
+     "assertions": [
+       "Uses OPEN with device number 4 (e.g. OPEN 4,4)",
+       "Uses PRINT# to the opened file number to send the text",
+       "Uses CLOSE on the file number",
+       "Device/secondary-address usage is correct for a printer"]},
+    {"id": "c64-disk", "skill": "c64-disk", "prompt": "Give me the C64 BASIC commands to: (1) list the directory of a 1541 disk, (2) load a program called GAME, (3) format a new disk, and (4) read the disk drive's error channel.",
+     "assertions": [
+       "Directory: LOAD\"$\",8 then LIST",
+       "Load: LOAD\"GAME\",8",
+       "Format: OPEN 15,8,15 then PRINT#15,\"N0:label,id\" (NEW)",
+       "Error channel: read via the command channel 15 (OPEN 15,8,15 then INPUT#15)"]},
+    {"id": "c64-tape", "skill": "c64-tape", "prompt": "How do I save a BASIC program to cassette tape on the C64 and load it back later? And if there are several programs on the tape, how do I get to a specific one?",
+     "assertions": [
+       "SAVE\"NAME\" (device 1 is the default for tape, optionally SAVE\"NAME\",1)",
+       "LOAD\"NAME\" searches forward for that named program; LOAD with no name loads the next program",
+       "Explains tape is sequential with no random-access directory",
+       "Mentions practical ways to find a program (tape counter / forward search / header messages)"]},
+    {"id": "c64-game-ports", "skill": "c64-game-ports", "prompt": "Write C64 BASIC to read the joystick in control port 2 and print which direction is being pushed (and whether fire is pressed). Which memory location and bits do I read?",
+     "assertions": [
+       "Reads control port 2 at 56320 ($DC00, CIA1 port A)",
+       "Treats the direction bits 0-3 as up/down/left/right",
+       "Treats bit 4 as the fire button",
+       "Notes the bits are active-LOW (0 = pressed)"]},
+    {"id": "c64-hardware", "skill": "c64-hardware", "prompt": "My Commodore 64 powers on (power LED is on) but the screen is completely blank — no border, no text. What are the most likely hardware causes and what should I check first?",
+     "assertions": [
+       "Names the PLA (906114 / 82S100) as a common cause of no-boot/blank screen",
+       "Mentions checking the power supply / 5V rail",
+       "Mentions RAM and/or the kernal/clock as suspects",
+       "Gives a sensible first-check ordering rather than vague advice"]},
+    {"id": "c64-disassembly", "skill": "c64-disassembly", "prompt": "I dumped a .prg and it begins with these bytes: 01 08 0B 08 0A 00 9E 32 30 36 31 00 00 00. Walk me through what this file is and where the actual machine code starts executing.",
+     "assertions": [
+       "Identifies the first two bytes 01 08 as the load address $0801",
+       "Identifies a tokenized BASIC line: line number 10, SYS token ($9E)",
+       "Decodes the digits 32 30 36 31 as ASCII '2061' — the SYS target",
+       "Concludes the machine code starts at $080D (2061) after the BASIC stub"]}
+  ]
+}

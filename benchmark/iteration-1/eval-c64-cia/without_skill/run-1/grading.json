@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Loads the Timer A latch at $DC04/$DC05",
+      "passed": true,
+      "evidence": "lda #$25 / sta $dc04 (LO), lda #$40 / sta $dc05 (HI) loads 16421=$4025 into latch"
+    },
+    {
+      "text": "Enables the Timer A interrupt in the ICR $DC0D (with bit 7 set to mark 'set', bit 0 for timer A)",
+      "passed": true,
+      "evidence": "lda #$81 (%10000001 bit7=set, bit0=Timer A); sta $dc0d enables Timer A IRQ"
+    },
+    {
+      "text": "Starts the timer via control register A $DC0E (with continuous reload)",
+      "passed": true,
+      "evidence": "writes $dc0e with ora #%00010001 (bit4 force-load, bit0 start); continuous mode bit3=0 auto-reloads"
+    },
+    {
+      "text": "Acknowledges/handles by reading $DC0D in the IRQ handler",
+      "passed": true,
+      "evidence": "irq: lda $dc0d reads ICR to ack/clear Timer A IRQ"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Reads control port 2 at 56320 ($DC00, CIA1 port A)",
+      "passed": true,
+      "evidence": "\"Port 2 = 56320 ($DC00), CIA#1 Data Port A. Read with PEEK(56320)\""
+    },
+    {
+      "text": "Treats the direction bits 0-3 as up/down/left/right",
+      "passed": true,
+      "evidence": "Table: bit0=Up, bit1=Down, bit2=Left, bit3=Right"
+    },
+    {
+      "text": "Treats bit 4 as the fire button",
+      "passed": true,
+      "evidence": "Bit 4 value 16 = Fire"
+    },
+    {
+      "text": "Notes the bits are active-LOW (0 = pressed)",
+      "passed": true,
+      "evidence": "\"Bits active LOW (0 = pushed)\""
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "Uses INPUT with a string variable (name ending in $)",
+      "passed": true,
+      "evidence": "Line 10: INPUT \"WHAT IS YOUR NAME\";N$ \u2014 N$ is a string variable"
+    },
+    {
+      "text": "Uses a FOR ... NEXT loop iterating 5 times",
+      "passed": true,
+      "evidence": "Lines 20/40: FOR I=1 TO 5 ... NEXT I \u2014 5 iterations"
+    },
+    {
+      "text": "Uses numbered BASIC lines",
+      "passed": true,
+      "evidence": "Lines 10,20,30,40"
+    },
+    {
+      "text": "Concatenates/prints HELLO together with the name variable",
+      "passed": true,
+      "evidence": "Line 30: PRINT \"HELLO \";N$"
+    },
+    {
+      "text": "Is valid runnable C64 BASIC V2 (no non-existent keywords)",
+      "passed": true,
+      "evidence": "INPUT, FOR, TO, NEXT, PRINT all valid BASIC V2 keywords; program runs"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  }
+}

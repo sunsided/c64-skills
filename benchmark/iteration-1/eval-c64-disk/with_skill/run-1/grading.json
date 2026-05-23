@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Directory: LOAD\"$\",8 then LIST",
+      "passed": true,
+      "evidence": "`LOAD \"$\",8 : LIST` present and correct"
+    },
+    {
+      "text": "Load: LOAD\"GAME\",8",
+      "passed": true,
+      "evidence": "`LOAD \"GAME\",8` present and correct"
+    },
+    {
+      "text": "Format: OPEN 15,8,15 then PRINT#15,\"N0:label,id\" (NEW)",
+      "passed": true,
+      "evidence": "`OPEN 15,8,15,\"N0:MYDISK,42\"` \u2014 NEW format with label+id; equivalent form (command in OPEN string vs PRINT#15), correct substance"
+    },
+    {
+      "text": "Error channel: read via the command channel 15 (OPEN 15,8,15 then INPUT#15)",
+      "passed": true,
+      "evidence": "`OPEN 15,8,15` then `INPUT#15,EN,EM$,ET,ES` present and correct"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

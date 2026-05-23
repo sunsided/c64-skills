@@ -5,3 +5,8 @@
 .DS_Store
 *.swp
 *~
+
+# Benchmark cruft (keep results + scripts + eval sets)
+__pycache__/
+benchmark/**/*.log
+benchmark/**/report.html

@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-tape",
+  "eval_name": "c64-tape (without_skill)",
+  "prompt": "How do I save a BASIC program to cassette tape on the C64 and load it back later? And if there are several programs on the tape, how do I get to a specific one?",
+  "assertions": [
+    "SAVE\"NAME\" (device 1 is the default for tape, optionally SAVE\"NAME\",1)",
+    "LOAD\"NAME\" searches forward for that named program; LOAD with no name loads the next program",
+    "Explains tape is sequential with no random-access directory",
+    "Mentions practical ways to find a program (tape counter / forward search / header messages)"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "eval_id": "c64-assembly",
+  "eval_name": "c64-assembly (without_skill)",
+  "prompt": "Write a 6510 machine-language routine, callable from BASIC with SYS 49152, that fills the C64 text screen with character code 81 (the ball). Show the assembly and how to enter and call it.",
+  "assertions": [
+    "Places the routine at $C000 (49152)",
+    "Loads #81 into A and stores across the 1000 bytes of screen RAM at $0400-$07E7",
+    "Ends the routine with RTS to return to BASIC",
+    "Shows calling it with SYS 49152",
+    "The screen-fill loop is correct (covers all 1000 cells, e.g. 4 pages via an index loop)"
+  ]
+}

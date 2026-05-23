@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Explains the character ROM appears at $D000-$DFFF when CHAREN (bit 2 of $01) is cleared",
+      "passed": true,
+      "evidence": "'Char ROM only appears when CHAREN = bit 2 of $01 = 0. Shares $D000-$DFFF with I/O.'"
+    },
+    {
+      "text": "Sets $01 to $33 (or otherwise clears bit 2) to expose char ROM, then restores it (e.g. $37)",
+      "passed": true,
+      "evidence": "'Clear bit 2 \u2192 $33 (%00110011)'; asm AND #%11111011 then PLA/STA $01; default $37 stated"
+    },
+    {
+      "text": "Disables interrupts (SEI) during the copy because the I/O area is banked out",
+      "passed": true,
+      "evidence": "'SEI before, CLI after' with 'CIA1 gone from $D000-$DFFF' reasoning"
+    },
+    {
+      "text": "Copies 4096 bytes (2 char sets) or 2048 per set to $3000",
+      "passed": true,
+      "evidence": "'LDX #$10 ; 16 pages = 4096 bytes (both char sets)' to $3000; also LDX #$08 for 2K"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

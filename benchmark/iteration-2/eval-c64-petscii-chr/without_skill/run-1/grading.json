@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "CHR$(14) switches to lower-case / text mode",
+      "passed": true,
+      "evidence": "Table: 'Lower-case set (text mode) | CHR$(14)'"
+    },
+    {
+      "text": "CHR$(17) is cursor down",
+      "passed": true,
+      "evidence": "Table: 'Cursor down | CHR$(17)'"
+    },
+    {
+      "text": "CHR$(18) is RVS ON (reverse on)",
+      "passed": true,
+      "evidence": "Table: 'Reverse on (RVS ON) | CHR$(18)'"
+    },
+    {
+      "text": "CHR$(5) is white",
+      "passed": true,
+      "evidence": "Table: 'White | CHR$(5)'"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Bits 7-4 select the video matrix (screen RAM) base, in units of $0400 (1K) within the VIC bank",
+      "passed": true,
+      "evidence": "'4 bits = VM13\u2013VM10. Value \u00d7 $0400 (1K granularity) within 16K bank.'"
+    },
+    {
+      "text": "Bits 3-1 select the character generator base, in units of $0800 (2K) within the bank",
+      "passed": true,
+      "evidence": "'3 bits = CB13\u2013CB11. Value field \u00d7 $0800 (2K granularity) within bank.'"
+    },
+    {
+      "text": "In bitmap mode, bit 3 selects the bitmap base at $0000 or $2000 within the bank (8K granularity)",
+      "passed": true,
+      "evidence": "'bit3=0 \u2192 bitmap at $0000; bit3=1 \u2192 bitmap at $2000 (8K granularity).'"
+    },
+    {
+      "text": "Bit 0 is unused",
+      "passed": true,
+      "evidence": "'Bit 0 = unused' and shown as unused in bit layout"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

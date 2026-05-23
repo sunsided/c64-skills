@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "On WRITE, bit 7 is the set/clear control: if bit 7 = 1 the 1-bits set (enable) those mask bits; if bit 7 = 0 the 1-bits clear (disable) them",
+      "passed": true,
+      "evidence": "\"bit 7 = 1 \u2192 each 1-bit in value sets (enables) that mask bit; bit 7 = 0 \u2192 each 1-bit in value clears (disables) that mask bit\""
+    },
+    {
+      "text": "On READ, the register returns the current interrupt flags",
+      "passed": true,
+      "evidence": "\"READ ($DC0D PEEK) Returns pending-interrupt flags\" with correct bit map"
+    },
+    {
+      "text": "Reading the ICR CLEARS the interrupt flags (and acknowledges/de-asserts the interrupt)",
+      "passed": true,
+      "evidence": "\"Reading DATA clears all 5 flag bits AND bit 7 to 0, and releases the interrupt line (acknowledges it)\""
+    },
+    {
+      "text": "Bit 7 on READ indicates whether an interrupt occurred (IR flag)",
+      "passed": true,
+      "evidence": "\"7 | IR \u2014 set if any enabled source latched. This is what drove the IRQ/NMI line.\""
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

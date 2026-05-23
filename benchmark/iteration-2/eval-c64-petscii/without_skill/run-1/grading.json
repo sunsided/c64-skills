@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Screen code for @ is 0",
+      "passed": true,
+      "evidence": "`@` | **0**"
+    },
+    {
+      "text": "Screen code for A is 1",
+      "passed": true,
+      "evidence": "`A` | **1**"
+    },
+    {
+      "text": "Screen code for space is 32",
+      "passed": true,
+      "evidence": "space | **32**"
+    },
+    {
+      "text": "Screen code for a reverse space is 160 (the normal code + 128)",
+      "passed": true,
+      "evidence": "reverse space | **160**; 160 = 32 + 128"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

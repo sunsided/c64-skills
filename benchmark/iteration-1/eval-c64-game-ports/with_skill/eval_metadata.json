@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-game-ports",
+  "eval_name": "c64-game-ports (with_skill)",
+  "prompt": "Write C64 BASIC to read the joystick in control port 2 and print which direction is being pushed (and whether fire is pressed). Which memory location and bits do I read?",
+  "assertions": [
+    "Reads control port 2 at 56320 ($DC00, CIA1 port A)",
+    "Treats the direction bits 0-3 as up/down/left/right",
+    "Treats bit 4 as the fire button",
+    "Notes the bits are active-LOW (0 = pressed)"
+  ]
+}

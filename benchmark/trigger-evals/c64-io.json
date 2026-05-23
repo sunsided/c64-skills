@@ -1,0 +1,23 @@
+[
+  {"query": "how do I OPEN a logical file in c64 basic and what is the secondary address for", "should_trigger": true},
+  {"query": "what device number is the printer, the screen, RS-232 and the disk on a c64", "should_trigger": true},
+  {"query": "explain the serial IEC bus on the commodore 64, the ATN CLK and DATA lines", "should_trigger": true},
+  {"query": "how do I set up an RS-232 channel and send data through a modem on the 64", "should_trigger": true},
+  {"query": "send a line of text to the printer on device 4 from basic with PRINT#", "should_trigger": true},
+  {"query": "what's on the expansion port, the EXROM and GAME lines and the cartridge ROM windows", "should_trigger": true},
+  {"query": "how do I use CMD to redirect screen output to another device", "should_trigger": true},
+  {"query": "i want to drive some hardware off the user port lines from basic, how does it work", "should_trigger": true},
+  {"query": "what does the secondary address 0 vs 1 mean when opening a file", "should_trigger": true},
+  {"query": "how does the Z-80 cartridge get switched on for CP/M", "should_trigger": true},
+
+  {"query": "show me the directory of a 1541 disk and load a program from it", "should_trigger": false},
+  {"query": "how do I save and load programs on the cassette tape", "should_trigger": false},
+  {"query": "which control port is player 1 and how do I read the joystick", "should_trigger": false},
+  {"query": "set up a CIA timer interrupt and read the time of day clock at $DC08", "should_trigger": false},
+  {"query": "what is the KERNAL address for CHROUT to print a character from assembly", "should_trigger": false},
+  {"query": "whats the full c64 memory map and how does banking work", "should_trigger": false},
+  {"query": "play a note on the SID sound chip", "should_trigger": false},
+  {"query": "make a multicolor sprite and detect collisions", "should_trigger": false},
+  {"query": "what CHR$ codes move the cursor and change colors", "should_trigger": false},
+  {"query": "write a basic program that averages a list of numbers with arrays", "should_trigger": false}
+]

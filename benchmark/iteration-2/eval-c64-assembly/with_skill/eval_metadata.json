@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-assembly",
+  "eval_name": "c64-assembly (with_skill)",
+  "prompt": "When a BASIC SYS call transfers to machine code, exactly which memory addresses hold the A, X, Y register values and the processor status that are loaded into the CPU on entry (and stored back on RTS)?",
+  "assertions": [
+    "Accumulator A is at $030C (780)",
+    "X register is at $030D (781)",
+    "Y register is at $030E (782)",
+    "Status register (SR/flags) is at $030F (783)"
+  ]
+}

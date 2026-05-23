@@ -1,0 +1,12 @@
+{
+  "eval_id": "c64-sid",
+  "eval_name": "c64-sid (with_skill)",
+  "prompt": "Write code (BASIC or 6510 assembly) to play roughly a one-second note on voice 1 of the SID using a sawtooth waveform, with a simple envelope.",
+  "assertions": [
+    "Sets master volume in $D418 / 54296 (low nibble, e.g. 15)",
+    "Sets voice 1 frequency in $D400/$D401",
+    "Sets the voice 1 control register $D404 to a sawtooth+gate value (sawtooth bit 32 + gate 1 = 33)",
+    "Sets attack/decay $D405 and sustain/release $D406",
+    "Clears the gate bit afterwards to release the note"
+  ]
+}

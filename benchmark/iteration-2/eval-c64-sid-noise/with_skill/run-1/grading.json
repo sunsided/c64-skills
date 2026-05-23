@@ -1,0 +1,25 @@
+{
+  "expectations": [
+    {
+      "text": "States the noise generator can lock up / go silent (the waveform output can freeze near zero)",
+      "passed": true,
+      "evidence": "\"noise locks silent\"; \"noise output stuck at 0 (silence)\""
+    },
+    {
+      "text": "States it stays silent until reset",
+      "passed": true,
+      "evidence": "\"Permanent until reset, even after you reselect noise alone.\""
+    },
+    {
+      "text": "Says it is reset by the TEST bit (or by RES / chip reset)",
+      "passed": true,
+      "evidence": "\"pulse the TEST bit (bit3, value 8). TEST resets the oscillator and reloads the shift register\""
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  }
+}

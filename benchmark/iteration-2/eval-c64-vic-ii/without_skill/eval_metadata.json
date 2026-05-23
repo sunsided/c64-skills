@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-vic-ii",
+  "eval_name": "c64-vic-ii (without_skill)",
+  "prompt": "Give the exact timing of the VIC-II: how many clock cycles per raster line and how many raster lines per frame for the PAL 6569, and for the NTSC 6567R8?",
+  "assertions": [
+    "PAL 6569: 63 cycles per raster line",
+    "PAL 6569: 312 raster lines per frame",
+    "NTSC 6567R8: 65 cycles per raster line",
+    "NTSC 6567R8: 263 raster lines per frame"
+  ]
+}

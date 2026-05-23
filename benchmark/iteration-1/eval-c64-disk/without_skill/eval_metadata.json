@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-disk",
+  "eval_name": "c64-disk (without_skill)",
+  "prompt": "Give me the C64 BASIC commands to: (1) list the directory of a 1541 disk, (2) load a program called GAME, (3) format a new disk, and (4) read the disk drive's error channel.",
+  "assertions": [
+    "Directory: LOAD\"$\",8 then LIST",
+    "Load: LOAD\"GAME\",8",
+    "Format: OPEN 15,8,15 then PRINT#15,\"N0:label,id\" (NEW)",
+    "Error channel: read via the command channel 15 (OPEN 15,8,15 then INPUT#15)"
+  ]
+}

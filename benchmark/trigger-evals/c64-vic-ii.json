@@ -1,0 +1,23 @@
+[
+  {"query": "how many clock cycles per raster line on a PAL c64 and how many lines per frame", "should_trigger": true},
+  {"query": "set up a stable raster interrupt and explain the 9th raster bit in $D011", "should_trigger": true},
+  {"query": "explain the exact bad line condition on the VIC-II, the DEN and YSCROLL relationship", "should_trigger": true},
+  {"query": "how do demos open the top and bottom border on the c64", "should_trigger": true},
+  {"query": "what are the three invalid graphics modes when ECM BMM and MCM combine wrong", "should_trigger": true},
+  {"query": "describe the VIC-II memory access cycles in a raster line, the c-access and g-access", "should_trigger": true},
+  {"query": "how does FLI work and why does it need a write to $D011 every line", "should_trigger": true},
+  {"query": "whats the difference in timing between the 6567 NTSC and 6569 PAL VIC chips", "should_trigger": true},
+  {"query": "how does the light pen latch its position into the VIC registers", "should_trigger": true},
+  {"query": "i need cycle-exact sprite DMA timing — when does the VIC fetch sprite data", "should_trigger": true},
+
+  {"query": "how do I turn on multicolor bitmap mode and set the bitmap base from basic", "should_trigger": false},
+  {"query": "make sprite 0 move left and right across the screen", "should_trigger": false},
+  {"query": "set up a CIA timer to fire an interrupt 60 times a second", "should_trigger": false},
+  {"query": "play a sawtooth note on voice 1 of the SID", "should_trigger": false},
+  {"query": "how do I open a file to the printer and print a line", "should_trigger": false},
+  {"query": "whats the c64 memory map, where is BASIC and KERNAL rom", "should_trigger": false},
+  {"query": "read the directory of a floppy disk in basic", "should_trigger": false},
+  {"query": "what does the commodore key do on the keyboard", "should_trigger": false},
+  {"query": "disassemble this prg and find where it starts", "should_trigger": false},
+  {"query": "write a basic guessing game with random numbers", "should_trigger": false}
+]

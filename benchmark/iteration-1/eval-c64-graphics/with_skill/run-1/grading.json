@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Sets the bitmap mode bit (BMM, bit 5) in $D011 / location 53265",
+      "passed": true,
+      "evidence": "POKE 53265,PEEK(53265) OR 32 : REM BMM=1 \u2014 bit5 value 32, correct"
+    },
+    {
+      "text": "Sets $D018 / location 53272 so the bitmap base points at $2000",
+      "passed": true,
+      "evidence": "POKE 53272,24; bit3=8 \u2192 bitmap $2000, correct math 16+8=24"
+    },
+    {
+      "text": "Mentions the bitmap is 8000 bytes",
+      "passed": true,
+      "evidence": "FOR I=8192 TO 16191 clears exactly 8000 bytes (8192..16191 inclusive)"
+    },
+    {
+      "text": "Mentions color comes from screen RAM (and clearing the bitmap)",
+      "passed": true,
+      "evidence": "'Color = screen RAM nibbles ($0400)... Not color RAM' plus 'CLEAR 8K BITMAP AT 8192' loop"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

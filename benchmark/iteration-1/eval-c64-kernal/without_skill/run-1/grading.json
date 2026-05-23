@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Uses CHROUT at $FFD2",
+      "passed": true,
+      "evidence": "\"KERNAL CHROUT = $FFD2\"; JSR $FFD2"
+    },
+    {
+      "text": "Puts the character to print in the accumulator A",
+      "passed": true,
+      "evidence": "LDA #72 then JSR $FFD2; \"Char in A\""
+    },
+    {
+      "text": "Uses PETSCII codes 72 for H and 73 for I",
+      "passed": true,
+      "evidence": "LDA #72 'H', LDA #73 'I' \u2014 correct PETSCII/ASCII"
+    },
+    {
+      "text": "Calls CHROUT once per character (or loops)",
+      "passed": true,
+      "evidence": "JSR $FFD2 called twice, once per character"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

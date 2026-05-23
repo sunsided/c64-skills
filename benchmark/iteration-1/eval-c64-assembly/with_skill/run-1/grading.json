@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "Places the routine at $C000 (49152)",
+      "passed": true,
+      "evidence": "`*=$C000` and pokes into 49152 (`POKE 49152+I`, `SYS 49152`)"
+    },
+    {
+      "text": "Loads #81 into A and stores across the 1000 bytes of screen RAM at $0400-$07E7",
+      "passed": true,
+      "evidence": "`LDA #$51` (81) then STA to $0400/$0500/$0600/$0700,X covering all of $0400-$07E7 (and 24 extra bytes)"
+    },
+    {
+      "text": "Ends the routine with RTS to return to BASIC",
+      "passed": true,
+      "evidence": "`RTS ; back to BASIC (SYS = JSR)`"
+    },
+    {
+      "text": "Shows calling it with SYS 49152",
+      "passed": true,
+      "evidence": "`30 SYS 49152` and 'Re-run anytime with bare SYS 49152'"
+    },
+    {
+      "text": "The screen-fill loop is correct (covers all 1000 cells, e.g. 4 pages via an index loop)",
+      "passed": true,
+      "evidence": "4-page STA $0400/$0500/$0600/$0700,X with INX/BNE loop wrapping X 0-255 covers all 1000 cells correctly"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  }
+}

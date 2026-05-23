@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-petscii",
+  "eval_name": "c64-petscii (without_skill)",
+  "prompt": "In C64 BASIC, how do I clear the screen and print the word READY in white? Give the exact CHR$ codes, and explain why the screen code I'd POKE to screen memory for the letter A is different from its PETSCII/CHR$ code.",
+  "assertions": [
+    "Gives CHR$(147) to clear the screen",
+    "Gives CHR$(5) for white text",
+    "States screen code for A is 1 while PETSCII/CHR$ for A is 65",
+    "Explains POKEing screen RAM uses screen codes, PRINT/CHR$ uses PETSCII"
+  ]
+}

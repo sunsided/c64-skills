@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "POKEs 53269 ($D015) to enable sprite 0 (value 1)",
+      "passed": true,
+      "evidence": "POKE V+21,1 with V=53248 gives 53269 ($D015), value 1, bit 0 enables sprite 0"
+    },
+    {
+      "text": "Sets the sprite 0 pointer at 2040 (end of screen RAM)",
+      "passed": true,
+      "evidence": "POKE 2040,13 sets sprite 0 pointer"
+    },
+    {
+      "text": "POKEs 53248/53249 ($D000/$D001) for X=160, Y=100",
+      "passed": true,
+      "evidence": "POKE V,160:POKE V+1,100 = 53248,160 and 53249,100"
+    },
+    {
+      "text": "POKEs 53287 ($D027) to 2 for red",
+      "passed": true,
+      "evidence": "POKE V+39,2 = 53287 ($D027), value 2 = red"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

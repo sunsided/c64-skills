@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Attack time for value 11 is 800 ms",
+      "passed": true,
+      "evidence": "'Attack: **800 ms**' for Value 11; matches standard SID table"
+    },
+    {
+      "text": "Decay/Release time for value 11 is 2.4 seconds",
+      "passed": true,
+      "evidence": "'Decay/Release: **2.4 s** (2400 ms)' for Value 11; correct (3x attack)"
+    },
+    {
+      "text": "Attack time for value 0 is 2 ms",
+      "passed": true,
+      "evidence": "'Attack: **2 ms**' for Value 0; matches table"
+    },
+    {
+      "text": "Decay/Release time for value 0 is 6 ms",
+      "passed": true,
+      "evidence": "'Decay/Release: **6 ms**' for Value 0; correct (3x 2ms)"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

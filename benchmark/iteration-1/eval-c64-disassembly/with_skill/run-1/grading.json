@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Identifies the first two bytes 01 08 as the load address $0801",
+      "passed": true,
+      "evidence": "\"01 08 load address $0801 (2049) \u2192 BASIC start\""
+    },
+    {
+      "text": "Identifies a tokenized BASIC line: line number 10, SYS token ($9E)",
+      "passed": true,
+      "evidence": "\"0A 00 line number = 10\" and \"9E SYS token\""
+    },
+    {
+      "text": "Decodes the digits 32 30 36 31 as ASCII '2061' \u2014 the SYS target",
+      "passed": true,
+      "evidence": "\"32 30 36 31 PETSCII \\\"2061\\\"\" decoding to SYS 2061; PETSCII digits equal ASCII"
+    },
+    {
+      "text": "Concludes the machine code starts at $080D (2061) after the BASIC stub",
+      "passed": true,
+      "evidence": "\"Machine code entry = 2061 = $080D\"; 2061 = $080D correct"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

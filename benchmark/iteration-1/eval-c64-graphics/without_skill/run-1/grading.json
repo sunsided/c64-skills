@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Sets the bitmap mode bit (BMM, bit 5) in $D011 / location 53265",
+      "passed": true,
+      "evidence": "Line 30: POKE 53265,PEEK(53265) OR 32 \u2014 32 = bit 5, sets BMM"
+    },
+    {
+      "text": "Sets $D018 / location 53272 so the bitmap base points at $2000",
+      "passed": true,
+      "evidence": "POKE 53272,24; explains bitmap $2000 \u2192 CB13 bit 3 = $08, combined to 24"
+    },
+    {
+      "text": "Mentions the bitmap is 8000 bytes",
+      "passed": true,
+      "evidence": "'8000 bytes $2000\u2013$3F3F'"
+    },
+    {
+      "text": "Mentions color comes from screen RAM (and clearing the bitmap)",
+      "passed": true,
+      "evidence": "'standard bitmap mode pulls color from screen RAM ($0400)'; line 50 clears bitmap $2000-$3F3F"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Accumulator A is at $030C (780)",
+      "passed": true,
+      "evidence": "Table: A | $030C | 780 | accumulator"
+    },
+    {
+      "text": "X register is at $030D (781)",
+      "passed": true,
+      "evidence": "Table: X | $030D | 781 | X index"
+    },
+    {
+      "text": "Y register is at $030E (782)",
+      "passed": true,
+      "evidence": "Table: Y | $030E | 782 | Y index"
+    },
+    {
+      "text": "Status register (SR/flags) is at $030F (783)",
+      "passed": true,
+      "evidence": "Table: P (SR) | $030F | 783 | processor status"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

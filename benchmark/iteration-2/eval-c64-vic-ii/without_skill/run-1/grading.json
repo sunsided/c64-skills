@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "PAL 6569: 63 cycles per raster line",
+      "passed": true,
+      "evidence": "\"PAL 6569: 63 cycles/raster line\""
+    },
+    {
+      "text": "PAL 6569: 312 raster lines per frame",
+      "passed": true,
+      "evidence": "\"312 raster lines/frame\""
+    },
+    {
+      "text": "NTSC 6567R8: 65 cycles per raster line",
+      "passed": true,
+      "evidence": "\"NTSC 6567R8: 65 cycles/raster line\""
+    },
+    {
+      "text": "NTSC 6567R8: 263 raster lines per frame",
+      "passed": true,
+      "evidence": "\"263 raster lines/frame\""
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

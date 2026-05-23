@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "SAVE\"NAME\" (device 1 is the default for tape, optionally SAVE\"NAME\",1)",
+      "passed": true,
+      "evidence": "Shows SAVE \"MYPROG\" and states device 1 is default \u2014 no device number needed; correct."
+    },
+    {
+      "text": "LOAD\"NAME\" searches forward for that named program; LOAD with no name loads the next program",
+      "passed": true,
+      "evidence": "\"LOAD \"MYPROG\" scans forward from current tape position\" and \"Bare LOAD (no name) = loads next program\"; both correct."
+    },
+    {
+      "text": "Explains tape is sequential with no random-access directory",
+      "passed": true,
+      "evidence": "\"scans forward from current tape position, checks each header\" and \"Tape only moves forward, so rewind first\" \u2014 conveys sequential, no index/directory."
+    },
+    {
+      "text": "Mentions practical ways to find a program (tape counter / forward search / header messages)",
+      "passed": true,
+      "evidence": "Covers all three: tape counter (note Datasette counter number), forward search (LOAD scans forward), header messages (FOUND <name>)."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

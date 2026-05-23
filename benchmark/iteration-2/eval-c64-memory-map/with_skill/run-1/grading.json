@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "$37: BASIC ROM at $A000-$BFFF, I/O at $D000-$DFFF, KERNAL ROM at $E000-$FFFF",
+      "passed": true,
+      "evidence": "$37 table: $A000-$BFFF BASIC ROM, $D000-$DFFF I/O, $E000-$FFFF KERNAL ROM"
+    },
+    {
+      "text": "$35: RAM at $A000-$BFFF, I/O at $D000-$DFFF, RAM at $E000-$FFFF (BASIC and KERNAL ROM banked out, I/O still visible)",
+      "passed": true,
+      "evidence": "$35 table: $A000-$BFFF RAM (HIRAM=0 kills BASIC), $D000-$DFFF I/O, $E000-$FFFF RAM (HIRAM=0)"
+    },
+    {
+      "text": "$34: RAM everywhere including $A000-$BFFF, $D000-$DFFF and $E000-$FFFF (I/O banked out, all RAM)",
+      "passed": true,
+      "evidence": "$34 table: all three regions RAM; D000 'not I/O! both HIRAM+LORAM low'"
+    },
+    {
+      "text": "Correctly ties this to the LORAM/HIRAM/CHAREN bits (bits 0/1/2 of $01)",
+      "passed": true,
+      "evidence": "'bits 2-0 of $01 = CHAREN(b2), HIRAM(b1), LORAM(b0)'"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

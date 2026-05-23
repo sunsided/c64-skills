@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "SETLFS: A = logical file number, X = device number, Y = secondary address",
+      "passed": true,
+      "evidence": "Table: A=logical file number, X=device number, Y=secondary address"
+    },
+    {
+      "text": "SETLFS is at $FFBA",
+      "passed": true,
+      "evidence": "Header 'SETLFS \u2014 $FFBA (65466)' and JSR $FFBA"
+    },
+    {
+      "text": "GETIN: returns the input character in the accumulator A (0 if no key/character is available)",
+      "passed": true,
+      "evidence": "Returns table: A=PETSCII byte read; A=0 if buffer empty"
+    },
+    {
+      "text": "GETIN is at $FFE4",
+      "passed": true,
+      "evidence": "Header 'GETIN \u2014 $FFE4 (65508)' and JSR $FFE4"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

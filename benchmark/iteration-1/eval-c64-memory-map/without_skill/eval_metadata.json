@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-memory-map",
+  "eval_name": "c64-memory-map (without_skill)",
+  "prompt": "I want to copy the C64 character ROM into RAM at $3000 so I can edit the font. Explain the banking I need to do with $01 to see the character ROM, and why interrupts matter.",
+  "assertions": [
+    "Explains the character ROM appears at $D000-$DFFF when CHAREN (bit 2 of $01) is cleared",
+    "Sets $01 to $33 (or otherwise clears bit 2) to expose char ROM, then restores it (e.g. $37)",
+    "Disables interrupts (SEI) during the copy because the I/O area is banked out",
+    "Copies 4096 bytes (2 char sets) or 2048 per set to $3000"
+  ]
+}

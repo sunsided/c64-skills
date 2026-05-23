@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "The paddle position values are read from SID registers $D419 (POTX) and $D41A (POTY)",
+      "passed": true,
+      "evidence": "POTX 54297/$D419, POTY 54298/$D41A \u2014 correct addresses"
+    },
+    {
+      "text": "CIA1 port A ($DC00) bits 6 and 7 select which control port's paddle pair is routed to the SID",
+      "passed": true,
+      "evidence": "'top 2 bits of CIA1 PRA $DC00'; $40 (bit6)\u2192port1, $80 (bit7)\u2192port2 \u2014 correct"
+    },
+    {
+      "text": "Notes the keyboard matrix shares CIA1 port A, so keyboard scanning interferes with paddle selection (must disable/avoid keyscan)",
+      "passed": true,
+      "evidence": "'lower bits drive keyboard-scan columns... Writing select value clobbers keyboard scan'; uses SEI to stop keyscan IRQ"
+    },
+    {
+      "text": "Each port has two paddles (X and Y), giving four total across the two ports",
+      "passed": true,
+      "evidence": "'Two ports \u00d7 two pots each = 4 paddles'"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

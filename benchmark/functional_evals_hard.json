@@ -1,0 +1,89 @@
+{
+  "skill_set": "c64-* (iteration-2, long-tail)",
+  "note": "Hard tasks whose exact answers live in the reference docs but where baseline Claude tends to approximate or err. Assertions check precise values.",
+  "evals": [
+    {"id": "c64-sid", "skill": "c64-sid", "prompt": "On the C64 SID 6581, using the standard envelope rate table: what is the exact ATTACK time for attack-rate value 11 ($B), and what is the DECAY/RELEASE time for decay-rate value 11? Also, what is the attack time for value 0 and the decay/release time for value 0?",
+     "assertions": [
+       "Attack time for value 11 is 800 ms",
+       "Decay/Release time for value 11 is 2.4 seconds",
+       "Attack time for value 0 is 2 ms",
+       "Decay/Release time for value 0 is 6 ms"]},
+    {"id": "c64-sid-noise", "skill": "c64-sid", "prompt": "On the C64 SID, what happens if I select the noise waveform at the same time as another waveform (e.g. noise + pulse) in a voice's control register, and how do I recover from it?",
+     "assertions": [
+       "States the noise generator can lock up / go silent (the waveform output can freeze near zero)",
+       "States it stays silent until reset",
+       "Says it is reset by the TEST bit (or by RES / chip reset)"]},
+    {"id": "c64-vic-ii", "skill": "c64-vic-ii", "prompt": "Give the exact timing of the VIC-II: how many clock cycles per raster line and how many raster lines per frame for the PAL 6569, and for the NTSC 6567R8?",
+     "assertions": [
+       "PAL 6569: 63 cycles per raster line",
+       "PAL 6569: 312 raster lines per frame",
+       "NTSC 6567R8: 65 cycles per raster line",
+       "NTSC 6567R8: 263 raster lines per frame"]},
+    {"id": "c64-vic-badline", "skill": "c64-vic-ii", "prompt": "State the exact Bad Line condition on the VIC-II — the precise relationship between the current raster line, the DEN bit, and the YSCROLL bits that triggers a bad line.",
+     "assertions": [
+       "Raster line is in the range $30 to $F7 (48 to 247)",
+       "The low 3 bits of the raster line equal YSCROLL (RASTER & 7 == YSCROLL, the low 3 bits of $D011)",
+       "The DEN (display enable) bit was set at some point in raster line $30",
+       "Describes that on a bad line the VIC stalls the CPU to do the c-accesses (badline steals cycles)"]},
+    {"id": "c64-petscii", "skill": "c64-petscii", "prompt": "Give the exact SCREEN codes (the values you POKE into screen RAM at $0400, NOT the PETSCII/CHR$ codes) for these characters: the @ sign, the letter A, a space, and a reverse (inverted) space.",
+     "assertions": [
+       "Screen code for @ is 0",
+       "Screen code for A is 1",
+       "Screen code for space is 32",
+       "Screen code for a reverse space is 160 (the normal code + 128)"]},
+    {"id": "c64-petscii-chr", "skill": "c64-petscii", "prompt": "Give the exact PETSCII CHR$ codes for: switching to lower-case character set, cursor down, reverse-on (RVS ON), and the color white.",
+     "assertions": [
+       "CHR$(14) switches to lower-case / text mode",
+       "CHR$(17) is cursor down",
+       "CHR$(18) is RVS ON (reverse on)",
+       "CHR$(5) is white"]},
+    {"id": "c64-cia", "skill": "c64-cia", "prompt": "On the 6526 CIA, explain precisely how WRITING to the interrupt control register (ICR, e.g. $DC0D) differs from READING it: what does bit 7 do on a write, and what happens to the interrupt flags when you read it?",
+     "assertions": [
+       "On WRITE, bit 7 is the set/clear control: if bit 7 = 1 the 1-bits set (enable) those mask bits; if bit 7 = 0 the 1-bits clear (disable) them",
+       "On READ, the register returns the current interrupt flags",
+       "Reading the ICR CLEARS the interrupt flags (and acknowledges/de-asserts the interrupt)",
+       "Bit 7 on READ indicates whether an interrupt occurred (IR flag)"]},
+    {"id": "c64-game-ports", "skill": "c64-game-ports", "prompt": "Exactly how do I read the two paddles on the C64? Which CIA1 register/bits select which pair of paddles is connected to the SID, which SID registers return the paddle positions, and why is reading paddles awkward alongside the keyboard?",
+     "assertions": [
+       "The paddle position values are read from SID registers $D419 (POTX) and $D41A (POTY)",
+       "CIA1 port A ($DC00) bits 6 and 7 select which control port's paddle pair is routed to the SID",
+       "Notes the keyboard matrix shares CIA1 port A, so keyboard scanning interferes with paddle selection (must disable/avoid keyscan)",
+       "Each port has two paddles (X and Y), giving four total across the two ports"]},
+    {"id": "c64-memory-map", "skill": "c64-memory-map", "prompt": "On the C64, describe exactly the memory configuration the CPU sees for these values of the $01 processor port: $37 (default), $35, and $34. For each, state what occupies $A000-$BFFF, $D000-$DFFF, and $E000-$FFFF.",
+     "assertions": [
+       "$37: BASIC ROM at $A000-$BFFF, I/O at $D000-$DFFF, KERNAL ROM at $E000-$FFFF",
+       "$35: RAM at $A000-$BFFF, I/O at $D000-$DFFF, RAM at $E000-$FFFF (BASIC and KERNAL ROM banked out, I/O still visible)",
+       "$34: RAM everywhere including $A000-$BFFF, $D000-$DFFF and $E000-$FFFF (I/O banked out, all RAM)",
+       "Correctly ties this to the LORAM/HIRAM/CHAREN bits (bits 0/1/2 of $01)"]},
+    {"id": "c64-assembly", "skill": "c64-assembly", "prompt": "When a BASIC SYS call transfers to machine code, exactly which memory addresses hold the A, X, Y register values and the processor status that are loaded into the CPU on entry (and stored back on RTS)?",
+     "assertions": [
+       "Accumulator A is at $030C (780)",
+       "X register is at $030D (781)",
+       "Y register is at $030E (782)",
+       "Status register (SR/flags) is at $030F (783)"]},
+    {"id": "c64-graphics", "skill": "c64-graphics", "prompt": "Explain the exact bit layout of the VIC-II memory-pointer register $D018 (53272): which bits select the screen (video matrix) base and which select the character generator / bitmap base, and what address granularity each uses within the 16K VIC bank.",
+     "assertions": [
+       "Bits 7-4 select the video matrix (screen RAM) base, in units of $0400 (1K) within the VIC bank",
+       "Bits 3-1 select the character generator base, in units of $0800 (2K) within the bank",
+       "In bitmap mode, bit 3 selects the bitmap base at $0000 or $2000 within the bank (8K granularity)",
+       "Bit 0 is unused"]},
+    {"id": "c64-kernal", "skill": "c64-kernal", "prompt": "Give the exact register-level calling contract for two KERNAL routines: SETLFS and GETIN. Which registers hold which inputs, and what is returned?",
+     "assertions": [
+       "SETLFS: A = logical file number, X = device number, Y = secondary address",
+       "SETLFS is at $FFBA",
+       "GETIN: returns the input character in the accumulator A (0 if no key/character is available)",
+       "GETIN is at $FFE4"]},
+    {"id": "c64-hardware", "skill": "c64-hardware", "prompt": "What exactly does the original C64 power supply (the 'brick') output, and what is the well-known failure mode that damages the computer?",
+     "assertions": [
+       "Supplies +5V DC (regulated)",
+       "Supplies 9V AC (unregulated)",
+       "The classic failure is the 5V regulator failing such that the 5V rail rises (overvoltage)",
+       "The overvoltage damages chips (RAM and/or other ICs)"]},
+    {"id": "c64-disk", "skill": "c64-disk", "prompt": "On a 1541, after I send a DOS command on the command channel, how do I read the error/status channel in BASIC, and what does the channel return after a command that succeeded? Give the exact response.",
+     "assertions": [
+       "Open the command channel with OPEN 15,8,15 and read it with INPUT#15 (into four variables: code, message, track, sector)",
+       "A successful command returns error code 00",
+       "The success message text is OK",
+       "The track and sector fields are 00,00 on success"]}
+  ]
+}

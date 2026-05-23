@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Raster line is in the range $30 to $F7 (48 to 247)",
+      "passed": true,
+      "evidence": "\"$30 \u2264 RASTER \u2264 $F7 (line 48\u2013247)\""
+    },
+    {
+      "text": "The low 3 bits of the raster line equal YSCROLL (RASTER & 7 == YSCROLL, the low 3 bits of $D011)",
+      "passed": true,
+      "evidence": "\"(RASTER & 7) == YSCROLL \u2014 low 3 bits of raster equal $D011 bits 2\u20130\""
+    },
+    {
+      "text": "The DEN (display enable) bit was set at some point in raster line $30",
+      "passed": true,
+      "evidence": "\"display-enable bit ($D011 bit 4) set at some point during raster line $30\"; DEN=bit4 correct"
+    },
+    {
+      "text": "Describes that on a bad line the VIC stalls the CPU to do the c-accesses (badline steals cycles)",
+      "passed": true,
+      "evidence": "\"VIC pulls BA low, stalls 6510 ~40\u201343 cycles to fetch 40 char pointers\""
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

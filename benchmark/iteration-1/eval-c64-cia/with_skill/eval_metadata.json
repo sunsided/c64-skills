@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-cia",
+  "eval_name": "c64-cia (with_skill)",
+  "prompt": "Write 6510 code to set CIA #1 Timer A to generate an IRQ about 60 times per second, and explain the registers involved.",
+  "assertions": [
+    "Loads the Timer A latch at $DC04/$DC05",
+    "Enables the Timer A interrupt in the ICR $DC0D (with bit 7 set to mark 'set', bit 0 for timer A)",
+    "Starts the timer via control register A $DC0E (with continuous reload)",
+    "Acknowledges/handles by reading $DC0D in the IRQ handler"
+  ]
+}

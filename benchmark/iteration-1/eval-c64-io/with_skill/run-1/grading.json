@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Uses OPEN with device number 4 (e.g. OPEN 4,4)",
+      "passed": true,
+      "evidence": "10 OPEN 4,4 \u2014 logical file 4 onto device 4 (printer)"
+    },
+    {
+      "text": "Uses PRINT# to the opened file number to send the text",
+      "passed": true,
+      "evidence": "20 PRINT#4,\"HELLO PRINTER\""
+    },
+    {
+      "text": "Uses CLOSE on the file number",
+      "passed": true,
+      "evidence": "30 CLOSE 4"
+    },
+    {
+      "text": "Device/secondary-address usage is correct for a printer",
+      "passed": true,
+      "evidence": "Device 4 correct; no SA = upper-case+graphics, SA 7 = upper/lower case \u2014 both correct"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "Sets master volume in $D418 / 54296 (low nibble, e.g. 15)",
+      "passed": true,
+      "evidence": "$D418 master volume (lo nibble); POKE S+24,15 (54272+24=54296); lda #$0f / sta $d418"
+    },
+    {
+      "text": "Sets voice 1 frequency in $D400/$D401",
+      "passed": true,
+      "evidence": "freq lo/hi at $D400/$D401; POKE S+1,29 / POKE S,69; sta $d400 / sta $d401"
+    },
+    {
+      "text": "Sets the voice 1 control register $D404 to a sawtooth+gate value (sawtooth bit 32 + gate 1 = 33)",
+      "passed": true,
+      "evidence": "$D404 sawtooth=$20(32)+gate=$01 \u2192 $21=33; POKE S+4,33; lda #$21"
+    },
+    {
+      "text": "Sets attack/decay $D405 and sustain/release $D406",
+      "passed": true,
+      "evidence": "$D405 attack/decay, $D406 sustain/release; sta $d405 / sta $d406"
+    },
+    {
+      "text": "Clears the gate bit afterwards to release the note",
+      "passed": true,
+      "evidence": "POKE S+4,32 / lda #$20 sta $d404 = gate OFF -> release phase"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  }
+}

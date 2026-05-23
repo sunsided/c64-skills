@@ -1,0 +1,11 @@
+{
+  "eval_id": "c64-cia",
+  "eval_name": "c64-cia (without_skill)",
+  "prompt": "On the 6526 CIA, explain precisely how WRITING to the interrupt control register (ICR, e.g. $DC0D) differs from READING it: what does bit 7 do on a write, and what happens to the interrupt flags when you read it?",
+  "assertions": [
+    "On WRITE, bit 7 is the set/clear control: if bit 7 = 1 the 1-bits set (enable) those mask bits; if bit 7 = 0 the 1-bits clear (disable) them",
+    "On READ, the register returns the current interrupt flags",
+    "Reading the ICR CLEARS the interrupt flags (and acknowledges/de-asserts the interrupt)",
+    "Bit 7 on READ indicates whether an interrupt occurred (IR flag)"
+  ]
+}
