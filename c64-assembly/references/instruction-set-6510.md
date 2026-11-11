@@ -124,8 +124,8 @@
   |  Immediate     |   ADC #Oper           |    69   |    2    |    2     |
   |  Zero Page     |   ADC Oper            |    65   |    2    |    3     |
   |  Zero Page,X   |   ADC Oper,X          |    75   |    2    |    4     |
-  |  Absolute      |   ADC Oper            |    60   |    3    |    4     |
-  |  Absolute,X    |   ADC Oper,X          |    70   |    3    |    4*    |
+  |  Absolute      |   ADC Oper            |    6D   |    3    |    4     |
+  |  Absolute,X    |   ADC Oper,X          |    7D   |    3    |    4*    |
   |  Absolute,Y    |   ADC Oper,Y          |    79   |    3    |    4*    |
   |  (Indirect,X)  |   ADC (Oper,X)        |    61   |    2    |    6     |
   |  (Indirect),Y  |   ADC (Oper),Y        |    71   |    2    |    5*    |
@@ -240,7 +240,7 @@
   +----------------+-----------------------+---------+---------+----------+
   | Addressing Mode| Assembly Language Form| OP CODE |No. Bytes|No. Cycles|
   +----------------+-----------------------+---------+---------+----------+
-  |  Relative      |   BMI Oper            |    D0   |    2    |    2*    |
+  |  Relative      |   BNE Oper            |    D0   |    2    |    2*    |
   +----------------+-----------------------+---------+---------+----------+
   * Add 1 if branch occurs to same page.
   * Add 2 if branch occurs to different page.
@@ -430,8 +430,8 @@
   |  Immediate     |   EOR #Oper           |    49   |    2    |    2     |
   |  Zero Page     |   EOR Oper            |    45   |    2    |    3     |
   |  Zero Page,X   |   EOR Oper,X          |    55   |    2    |    4     |
-  |  Absolute      |   EOR Oper            |    40   |    3    |    4     |
-  |  Absolute,X    |   EOR Oper,X          |    50   |    3    |    4*    |
+  |  Absolute      |   EOR Oper            |    4D   |    3    |    4     |
+  |  Absolute,X    |   EOR Oper,X          |    5D   |    3    |    4*    |
   |  Absolute,Y    |   EOR Oper,Y          |    59   |    3    |    4*    |
   |  (Indirect,X)  |   EOR (Oper,X)        |    41   |    2    |    6     |
   |  (Indirect),Y  |   EOR (Oper),Y        |    51   |    2    |    5*    |
@@ -583,7 +583,7 @@
   |  Zero Page     |   ORA Oper            |    05   |    2    |    3     |
   |  Zero Page,X   |   ORA Oper,X          |    15   |    2    |    4     |
   |  Absolute      |   ORA Oper            |    0D   |    3    |    4     |
-  |  Absolute,X    |   ORA Oper,X          |    10   |    3    |    4*    |
+  |  Absolute,X    |   ORA Oper,X          |    1D   |    3    |    4*    |
   |  Absolute,Y    |   ORA Oper,Y          |    19   |    3    |    4*    |
   |  (Indirect,X)  |   ORA (Oper,X)        |    01   |    2    |    6     |
   |  (Indirect),Y  |   ORA (Oper),Y        |    11   |    2    |    5     |
@@ -680,7 +680,7 @@
   +----------------+-----------------------+---------+---------+----------+
   | Addressing Mode| Assembly Language Form| OP CODE |No. Bytes|No. Cycles|
   +----------------+-----------------------+---------+---------+----------+
-  |  Implied       |   RTI                 |    4D   |    1    |    6     |
+  |  Implied       |   RTI                 |    40   |    1    |    6     |
   +----------------+-----------------------+---------+---------+----------+
 
   RTS                    RTS Return from subroutine                     RTS
@@ -753,8 +753,8 @@
   +----------------+-----------------------+---------+---------+----------+
   |  Zero Page     |   STA Oper            |    85   |    2    |    3     |
   |  Zero Page,X   |   STA Oper,X          |    95   |    2    |    4     |
-  |  Absolute      |   STA Oper            |    80   |    3    |    4     |
-  |  Absolute,X    |   STA Oper,X          |    90   |    3    |    5     |
+  |  Absolute      |   STA Oper            |    8D   |    3    |    4     |
+  |  Absolute,X    |   STA Oper,X          |    9D   |    3    |    5     |
   |  Absolute,Y    |   STA Oper, Y         |    99   |    3    |    5     |
   |  (Indirect,X)  |   STA (Oper,X)        |    81   |    2    |    6     |
   |  (Indirect),Y  |   STA (Oper),Y        |    91   |    2    |    6     |
@@ -998,7 +998,7 @@
         5A - Future Expansion           7A - Future Expansion
         5B - Future Expansion           7B - Future Expansion
         5C - Future Expansion           7C - Future Expansion
-        50 - EOR - Absolute,X           70 - ADC - Absolute,X
+        5D - EOR - Absolute,X           7D - ADC - Absolute,X
         5E - LSR - Absolute,X           7E - ROR - Absolute,X
         5F - Future Expansion           7F - Future Expansion
 
@@ -1015,7 +1015,7 @@
         8A - TXA                        AA - TAX
         8B - Future Expansion           AB - Future Expansion
         8C - STY - Absolute             AC - LDY - Absolute
-        80 - STA - Absolute             AD - LDA - Absolute
+        8D - STA - Absolute             AD - LDA - Absolute
         8E - STX - Absolute             AE - LDX - Absolute
         8F - Future Expansion           AF - Future Expansion
         90 - BCC                        B0 - BCS
@@ -1023,7 +1023,7 @@
         92 - Future Expansion           B2 - Future Expansion
         93 - Future Expansion           B3 - Future Expansion
         94 - STY - Zero Page,X          B4 - LDY - Zero Page,X
-        95 - STA - Zero Page,X          BS - LDA - Zero Page,X
+        95 - STA - Zero Page,X          B5 - LDA - Zero Page,X
         96 - STX - Zero Page,Y          B6 - LDX - Zero Page,Y
         97 - Future Expansion           B7 - Future Expansion
         98 - TYA                        B8 - CLV
@@ -1031,7 +1031,7 @@
         9A - TXS                        BA - TSX
         9B - Future Expansion           BB - Future Expansion
         9C - Future Expansion           BC - LDY - Absolute,X
-        90 - STA - Absolute,X           BD - LDA - Absolute,X
+        9D - STA - Absolute,X           BD - LDA - Absolute,X
         9E - Future Expansion           BE - LDX - Absolute,Y
         9F - Future Expansion           BF - Future Expansion
 
